@@ -6,6 +6,10 @@ Introductory workshop on the National AI Research Resource (NAIRR) and Jetstream
 
 > **Attribution:** Materials in this folder are based on [MattyTheBoi/NAIRR_Intro](https://github.com/MattyTheBoi/NAIRR_Intro) by Matthew Philip Horvath Jr. (Oakland University & WPI, NAIRR Workshop Series 2026), used with permission. See [`NOTICE.md`](NOTICE.md) for full attribution.
 
+## Start Here
+
+**New to NAIRR, Jetstream2, or Jupyter?** Read [`CONCEPTS.md`](CONCEPTS.md) first. It explains how all the pieces (ACCESS, NAIRR, Jetstream2, JupyterHub, GitHub) fit together — the relationships and credential chain you need before any code makes sense.
+
 ## Slides
 
 | File | Topic |
@@ -60,6 +64,7 @@ The notebooks pull from:
 
 ## Folder Contents
 
+- [`CONCEPTS.md`](CONCEPTS.md) — **read first** — architecture and how the pieces fit together
 - `slides/` — PDF presentation decks
 - `notebooks/` — Jupyter notebooks for hands-on exercises
 - `exercises/` — additional practice problems (TBD)
