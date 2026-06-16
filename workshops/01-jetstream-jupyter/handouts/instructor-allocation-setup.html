@@ -3,42 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instructor Setup — Get Your Allocation &amp; Add Students</title>
+<title>NAIRR Pilot Instructor Playbook — From Request to Running Class</title>
 <style>
   :root{
     --ink:#16202c; --muted:#5b6b7b; --line:#e3e9ef; --bg:#f6f8fb;
     --brand:#0b6e99; --brand-dk:#084d6b; --accent:#13a4a4;
     --tip-bg:#e8f4fa; --tip-ln:#bfe1f0; --warn-bg:#fdf3e3; --warn-ln:#f0dcb4;
-    --pitch-bg:#e7f6ee; --pitch-ln:#bfe4cf; --radius:14px;
+    --pitch-bg:#e7f6ee; --pitch-ln:#bfe4cf; --code:#0f1b27; --code-ink:#e8eef4; --radius:14px;
   }
   *{box-sizing:border-box}
   body{margin:0; background:var(--bg); color:var(--ink);
-    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing:antialiased}
-  .wrap{max-width:820px; margin:0 auto; padding:0 20px 80px}
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:840px; margin:0 auto; padding:0 20px 80px}
 
   header{background:linear-gradient(135deg,#243240,#3a4a5a 60%,#4a6072); color:#fff; padding:44px 20px 36px; text-align:center}
   header .badge{display:inline-block; background:#f0b429; color:#3a2c05; font-weight:800; font-size:12px; letter-spacing:.12em; text-transform:uppercase; padding:5px 14px; border-radius:999px; margin-bottom:12px}
-  header h1{margin:0 auto; max-width:700px; font-size:28px; line-height:1.25; font-weight:800}
-  header p{margin:13px auto 0; max-width:620px; font-size:16px; opacity:.93}
-  .meta{margin:20px auto 0; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
-  .chip{background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28); padding:6px 14px; border-radius:999px; font-size:13.5px; font-weight:600}
+  header h1{margin:0 auto; max-width:720px; font-size:27px; line-height:1.25; font-weight:800}
+  header p{margin:13px auto 0; max-width:640px; font-size:16px; opacity:.93}
 
-  .callout{border-radius:var(--radius); padding:18px 20px; margin:22px 0; border:1px solid; display:flex; gap:14px; align-items:flex-start}
+  h2.phase{font-size:13px; text-transform:uppercase; letter-spacing:.1em; color:var(--brand); margin:38px 0 6px; font-weight:800}
+
+  .callout{border-radius:var(--radius); padding:18px 20px; margin:20px 0; border:1px solid; display:flex; gap:14px; align-items:flex-start}
   .callout .ico{font-size:22px; flex:0 0 auto}
   .callout h3{margin:0 0 4px; font-size:16px} .callout p{margin:0 0 8px; font-size:15px} .callout p:last-child{margin-bottom:0}
+  .callout ul{margin:6px 0 0; padding-left:18px; font-size:15px}
   .callout.tip{background:var(--tip-bg); border-color:var(--tip-ln); color:#0a3f57}
   .callout.warn{background:var(--warn-bg); border-color:var(--warn-ln); color:#6b4204}
   .callout.pitch{background:var(--pitch-bg); border-color:var(--pitch-ln); color:#13633c}
 
-  .step{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px 24px 12px; margin:18px 0; box-shadow:0 1px 2px rgba(16,32,44,.04)}
-  .step-head{display:flex; gap:16px; align-items:center; margin-bottom:6px}
-  .num{flex:0 0 auto; width:38px; height:38px; border-radius:50%; background:var(--brand); color:#fff; font-weight:800; font-size:17px; display:grid; place-items:center}
+  .step{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:22px 24px 12px; margin:16px 0; box-shadow:0 1px 2px rgba(16,32,44,.04)}
+  .step-head{display:flex; gap:15px; align-items:center; margin-bottom:4px}
+  .num{flex:0 0 auto; width:36px; height:36px; border-radius:50%; background:var(--brand); color:#fff; font-weight:800; font-size:16px; display:grid; place-items:center}
   .num.zero{background:#f0b429; color:#3a2c05}
   .step-head h2{margin:0; font-size:19px}
-  .step p{font-size:15.5px} .step ul{font-size:15.5px}
-  .who{color:var(--muted); font-size:13.5px; margin-top:-2px}
+  .step p{font-size:15.5px} .step ol,.step ul{font-size:15.5px} .step ol li,.step ul li{margin:0 0 7px}
+  .who{color:var(--muted); font-size:13.5px; margin:-2px 0 8px}
   .path{background:#eef2f6; border-radius:6px; padding:1px 7px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13.5px; color:#0a3f57}
+
+  .map{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:6px 4px; margin:16px 0}
+  table{width:100%; border-collapse:collapse; font-size:14.5px}
+  th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:#eef3f7; font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)}
+  tr:last-child td{border-bottom:none}
   footer{text-align:center; color:var(--muted); font-size:13px; margin-top:46px}
   a{color:var(--brand)}
 </style>
@@ -46,123 +52,152 @@
 <body>
 
 <header>
-  <span class="badge">For Instructors · Do This First</span>
-  <h1>Get Your Allocation &amp; Add Your Students</h1>
-  <p>The behind-the-scenes setup an instructor does <b>before class day</b> so students can log in
-     to Jetstream2. Without this, no one can get in — it's the true starting point.</p>
-  <div class="meta">
-    <span class="chip">👤 You = the PI</span>
-    <span class="chip">📅 Finish the day before</span>
-    <span class="chip">⏳ Adds take ~4 hrs to sync</span>
-  </div>
+  <span class="badge">For Instructors · The Playbook</span>
+  <h1>NAIRR Pilot: From Requesting Resources to a Running Class</h1>
+  <p>The complete admin journey — written from hard-won experience, with the exact clicks and the
+     traps that waste the most time. Follow it in order and you won't get lost like the rest of us did.</p>
 </header>
 
 <div class="wrap">
 
-  <div class="callout tip">
-    <div class="ico">🔑</div>
+  <div class="callout warn">
+    <div class="ico">🗺️</div>
     <div>
-      <h3>One identity for everything</h3>
-      <p>Your <b>ACCESS ID</b> is the single login for both the Allocations Portal <i>and</i>
-         Jetstream2 — there's no separate "Jetstream2 account" to connect. "Getting Jetstream2"
-         just means having an ACCESS allocation that includes Jetstream2 as a resource.</p>
+      <h3>First, the #1 source of confusion: there are THREE different websites</h3>
+      <p>They look related but do different jobs. Knowing which is which saves hours:</p>
     </div>
   </div>
-
-  <!-- STEP 0 -->
-  <div class="step">
-    <div class="step-head"><div class="num zero">0</div><h2>Everyone gets an ACCESS ID</h2></div>
-    <p class="who">You and every student — no exceptions, no ID = no access.</p>
-    <p>Register free at <a href="https://access-ci.org">access-ci.org</a> → <b>Register</b>. This is
-       the gate to the entire program. Students do this themselves and send you their <b>ACCESS username</b>.</p>
+  <div class="map">
+    <table>
+      <tr><th>Website</th><th>What it's for</th></tr>
+      <tr><td><b>access-ci.org</b><br><span class="path">operations.access-ci.org/identity</span></td><td>Create &amp; manage your <b>ACCESS ID</b> (your login identity)</td></tr>
+      <tr><td><b>submit-nairr.xras.org</b></td><td><b>Manage your NAIRR project</b> — add users, request extensions. <i>This is where student-adding happens.</i></td></tr>
+      <tr><td><b>jetstream2.exosphere.app</b></td><td><b>Use the resources</b> — launch instances, run notebooks</td></tr>
+    </table>
+  </div>
+  <div class="callout tip">
+    <div class="ico">💡</div>
+    <div><p>Your ACCESS ID is the <b>single login</b> for all three. There's no separate "Jetstream2 account."
+       And note: the <b>standard ACCESS Allocations Portal (allocations.access-ci.org) is NOT used for NAIRR
+       Pilot projects</b> — that's a common wrong turn. NAIRR Pilot = <b>submit-nairr.xras.org</b>.</p></div>
   </div>
 
-  <!-- STEP 1 -->
+  <!-- PHASE 1 -->
+  <h2 class="phase">Phase 1 · Get your allocation</h2>
+
   <div class="step">
-    <div class="step-head"><div class="num">1</div><h2>Have an allocation where you're the PI/Manager</h2></div>
-    <p>You manage students on <b>your own</b> allocation — not one you were merely added to. To add or
-       remove users you must be <b>PI, co-PI, or Resource Manager</b>.</p>
-    <p>No allocation yet? Request one in the <a href="https://allocations.access-ci.org/">ACCESS Allocations Portal</a>:</p>
+    <div class="step-head"><div class="num zero">0</div><h2>Get an ACCESS ID (you, and every student)</h2></div>
+    <p>Register free at <a href="https://operations.access-ci.org/identity/new-user">operations.access-ci.org/identity/new-user</a>.
+       <b>No ID = no access, full stop.</b> Remember <i>how</i> you register (see the login trap in Phase 2).</p>
+  </div>
+
+  <div class="step">
+    <div class="step-head"><div class="num">1</div><h2>Request a NAIRR Pilot Start-Up project</h2></div>
+    <p>Go to <a href="https://nairrpilot.org/opportunities/startup-project">nairrpilot.org → Start-Up Project</a> and submit a request. You're the <b>PI</b>.</p>
     <ul>
-      <li><b>Explore ACCESS</b> — small, fast (approved in days), built for "small-scale classroom activities." Needs your <b>CV</b>.</li>
-      <li><b>Education Allocation</b> — purpose-built for courses/workshops with many students.</li>
+      <li>It's a <b>short form + your CV</b> — far lighter than people fear.</li>
+      <li>Typically <b>approved in days</b>. You'll get an award email with your project ID (e.g. <span class="path">NAIRR2xxxxx</span>) and an SU amount.</li>
+      <li>Start-Up projects run <b>~3 months</b> and are <b>not extendable</b> (plan renewal early — see Phase 5).</li>
     </ul>
   </div>
 
   <div class="callout pitch">
     <div class="ico">💬</div>
     <div>
-      <h3>The reassurance to give hesitant faculty</h3>
-      <p>The application is the part people fear — but it's <b>a short form plus a CV</b>, and an
-         Explore/Education request is typically <b>approved in a few days</b>. That's the whole
-         message: getting NAIRR resources is far easier than it looks.</p>
+      <h3>The message for hesitant faculty</h3>
+      <p>The application is the part everyone dreads — but it's a short form and a CV, approved in days.
+         <b>Getting NAIRR resources is far easier than it looks.</b> The harder part is the navigation
+         below, which is exactly why this playbook exists.</p>
     </div>
   </div>
 
-  <!-- STEP 2 -->
-  <div class="step">
-    <div class="step-head"><div class="num">2</div><h2>Turn on Jetstream2 — exchange credits for SUs</h2></div>
-    <p>An allocation gives you generic <b>ACCESS credits</b>. Jetstream2 isn't automatic: in the
-       Allocations Portal, <b>exchange ACCESS credits for Jetstream2 SUs</b> (usually approved in a
-       day or less). That exchange is what makes Jetstream2 show up and run under your allocation.</p>
-    <p class="who">Instances consume SUs for every hour they run — size the exchange to cover your class with a buffer.</p>
-  </div>
+  <!-- PHASE 2 -->
+  <h2 class="phase">Phase 2 · Log in the right way (the identity trap)</h2>
 
-  <!-- STEP 3 -->
   <div class="step">
-    <div class="step-head"><div class="num">3</div><h2>Add your students</h2></div>
-    <p><b>NAIRR Pilot project</b> (ID looks like <span class="path">NAIRR2xxxxx</span>)? Add users through
-       the <b>NAIRR Pilot "Add User" form</b> at
-       <a href="https://submit-nairr.xras.org/requests">submit-nairr.xras.org/requests</a> —
-       <i>not</i> the ACCESS Allocations Portal. This is the #1 thing that confuses NAIRR PIs (the project
-       won't even appear in the regular ACCESS portal).</p>
-    <p><b>Standard ACCESS allocation?</b> Add users in
-       <a href="https://allocations.access-ci.org/">allocations.access-ci.org</a> → your allocation →
-       <b>User Management / Add User</b>.</p>
+    <div class="step-head"><div class="num">2</div><h2>Pick the identity provider you registered with</h2></div>
+    <p>At any ACCESS/NAIRR login you choose an <b>identity provider</b>. Pick the <b>same one you used to
+       register</b> — not just whichever looks right:</p>
     <ul>
-      <li>Enter each student's <b>ACCESS username</b>; add as a <b>User</b> (not Manager)</li>
-      <li>Every participant must be <b>U.S.-based</b> and use an <b>institutional email</b> (NAIRR Pilot rule)</li>
+      <li>Registered with an <b>email / ACCESS username</b>? → choose <b>"ACCESS CI (XSEDE)"</b>.</li>
+      <li>Registered through your <b>university</b>? → choose your university.</li>
     </ul>
-    <p>Then <b>wait up to ~4 hours</b> to sync to Jetstream2. <b>Do this the day before class</b> —
-       the sync delay catches people out.</p>
+    <div class="callout warn" style="margin:12px 0 2px">
+      <div class="ico">⚠️</div>
+      <div>
+        <h3>"User Not Registered" — the classic trap</h3>
+        <p>If your <b>university login</b> errors with <i>"User Not Registered,"</i> you actually registered
+           with an email/ACCESS username — go back and choose <b>"ACCESS CI (XSEDE)"</b> instead. To fix it
+           permanently, <b>link</b> your university identity to your ACCESS account (CILogon identity linking).
+           If a wrong choice gets stuck, clear it at <span class="path">cilogon.org/me</span> → "Delete ALL," then retry.</p>
+      </div>
+    </div>
   </div>
 
-  <!-- STEP 4 -->
+  <!-- PHASE 3 -->
+  <h2 class="phase">Phase 3 · Add your students</h2>
+
   <div class="step">
-    <div class="step-head"><div class="num">4</div><h2>Right-size for the class &amp; plan cleanup</h2></div>
-    <p>Check your allocation's quota fits the class — number of <b>instances</b>, <b>volumes</b>, and
-       <b>SUs</b>. If it's too small, request a <b>supplement</b> (more SUs/instances) ahead of time.</p>
+    <div class="step-head"><div class="num">3</div><h2>Add users on the NAIRR portal — exact steps</h2></div>
+    <p class="who">This is the step that confuses everyone. Use submit-nairr.xras.org — NOT the ACCESS Allocations Portal.</p>
+    <ol>
+      <li>Each student creates an ACCESS ID and <b>sends you their ACCESS username</b>.</li>
+      <li>Go to <a href="https://submit-nairr.xras.org">submit-nairr.xras.org</a> and log in (Phase 2).</li>
+      <li>Click the <b>"Add User" tab</b> in the top menu.</li>
+      <li>In the <b>Users</b> column for your awarded project, click <b>"Manage."</b></li>
+      <li>Add each student by their <b>ACCESS username</b>.</li>
+    </ol>
+    <div class="callout tip" style="margin:12px 0 2px">
+      <div class="ico">⏳</div>
+      <div>
+        <h3>Two things that bite people</h3>
+        <p>• Added users take <b>up to ~4 hours to sync</b> to Jetstream2 — do it <b>a couple days before class</b>, never the morning of.<br>
+           • Every participant must be at a <b>U.S. institution</b> (a NAIRR Pilot requirement). Can't find a username? Use the <a href="https://submit-nairr.xras.org/lookup">ACCESS Username Lookup</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <h2 class="phase">Phase 4 · Run the class</h2>
+
+  <div class="step">
+    <div class="step-head"><div class="num">4</div><h2>Hand students the setup guide</h2></div>
+    <p>Once they're added (and synced), students follow the <a href="jetstream2-local-llm-setup.html">student
+       setup guide</a>: launch an instance, clone the repo, run the notebook. Check your SU balance has room
+       (CPU instances are cheap; a workshop barely dents a typical award) and remind everyone to
+       <b>Delete their instance</b> when done so it stops drawing SUs.</p>
+  </div>
+
+  <!-- PHASE 5 -->
+  <h2 class="phase">Phase 5 · When it expires (~3 months)</h2>
+
+  <div class="step">
+    <div class="step-head"><div class="num">5</div><h2>Keep going past the Start-Up term</h2></div>
+    <p>You'll get an email ~30 days before your end date. Start-Ups are <b>generally not extendable</b>, so to continue:</p>
     <ul>
-      <li>Rough sizing: a few-hour session for ~20 students on small CPU instances is modest — but verify, don't assume.</li>
-      <li>Tell students to <b>Delete</b> their instance (and any volume) when finished, so it stops drawing SUs.</li>
+      <li><b>Submit a full NAIRR Pilot proposal</b> — the intended path to keep your activities running (and get more resources).</li>
+      <li>The expiration email may still offer an <b>extension request</b> (requires a short <b>progress report</b>) — worth trying for a small bridge.</li>
+      <li>Ask your <b>resource provider (e.g., Jetstream2/IU)</b> whether they'll keep your access on independently.</li>
+      <li>Either way, <b>submit your Final Report</b> — it's required and influences the future of the program.</li>
     </ul>
   </div>
 
   <div class="callout warn">
-    <div class="ico">⚠️</div>
+    <div class="ico">🧭</div>
     <div>
-      <h3>"My project doesn't show up" — two common causes</h3>
-      <p><b>1. Wrong site.</b> NAIRR <b>Pilot</b> projects are managed at
-         <a href="https://submit-nairr.xras.org/requests">submit-nairr.xras.org</a>, not the standard
-         ACCESS Allocations Portal — so they may not appear in the ACCESS portal at all.</p>
-      <p><b>2. Wrong login identity.</b> Log in with the <b>same identity you registered with</b>. If your
-         university login returns <i>"User Not Registered,"</i> you likely registered with an email /
-         ACCESS username — choose <b>"ACCESS CI (XSEDE)"</b> at the identity-provider prompt instead, then
-         optionally <b>link</b> your university identity for next time.</p>
-    </div>
-  </div>
-
-  <div class="callout tip">
-    <div class="ico">➡️</div>
-    <div>
-      <h3>Once this is done</h3>
-      <p>Your students are ready to follow the <b>student setup guide</b> (launch an instance, clone
-         the repo, run the notebook). This admin prep is the prerequisite that makes their day work.</p>
+      <h3>Quick reference — the traps, in one place</h3>
+      <ul>
+        <li><b>Wrong portal:</b> NAIRR Pilot users are added at <b>submit-nairr.xras.org</b> ("Add User" tab), not allocations.access-ci.org.</li>
+        <li><b>Wrong page:</b> existing projects live under <b>your awarded projects / "Add User"</b>, not the <i>new request</i> form.</li>
+        <li><b>Wrong login:</b> "User Not Registered" → choose <b>"ACCESS CI (XSEDE)"</b>.</li>
+        <li><b>Guest vs owner:</b> you can only manage projects where you're the <b>PI</b> — not ones you were added to as a user.</li>
+        <li><b>Sync delay:</b> added users take <b>~4 hours</b> — add them early.</li>
+      </ul>
     </div>
   </div>
 
   <footer>
-    NAIRR Workshop Series · Workshop 01 — Instructor Allocation &amp; Student Setup
+    NAIRR Workshop Series · Workshop 01 — Instructor Playbook: Allocation &amp; Class Setup
   </footer>
 
 </div>
