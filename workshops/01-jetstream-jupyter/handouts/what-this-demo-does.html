@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What This Demo Is Doing — and Why</title>
+<style>
+  :root{
+    --ink:#16202c; --muted:#5b6b7b; --line:#e3e9ef; --bg:#f6f8fb;
+    --brand:#0b6e99; --brand-dk:#084d6b; --accent:#13a4a4;
+    --tip-bg:#e8f4fa; --gold:#b4690e; --gold-bg:#fdf3e3;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:840px; margin:0 auto; padding:0 20px 70px}
+
+  header{
+    background:linear-gradient(135deg,var(--brand-dk),var(--brand) 55%,var(--accent));
+    color:#fff; padding:46px 20px 38px; text-align:center;
+  }
+  header .kicker{text-transform:uppercase; letter-spacing:.14em; font-size:13px; font-weight:700; opacity:.9; margin:0 0 10px}
+  header h1{margin:0 auto; max-width:680px; font-size:30px; line-height:1.25; font-weight:800}
+  header p{margin:14px auto 0; max-width:600px; font-size:17px; opacity:.96}
+
+  /* Big idea / analogy */
+  .bigidea{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 28px; margin:26px 0; box-shadow:0 1px 3px rgba(16,32,44,.05);
+  }
+  .bigidea h2{margin:0 0 10px; font-size:21px; color:var(--brand-dk)}
+  .bigidea p{margin:0 0 12px; font-size:17px}
+  .analogy{
+    background:var(--tip-bg); border-left:5px solid var(--accent);
+    border-radius:0 10px 10px 0; padding:16px 20px; margin:14px 0 0; font-size:16px;
+  }
+  .analogy b{color:var(--brand-dk)}
+
+  h2.sec{font-size:14px; text-transform:uppercase; letter-spacing:.1em; color:var(--brand);
+    margin:38px 0 12px; font-weight:800}
+
+  /* Two-up cards */
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media(max-width:640px){.two{grid-template-columns:1fr}}
+  .card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px;
+  }
+  .card h3{margin:0 0 8px; font-size:17px; display:flex; align-items:center; gap:9px}
+  .card p{margin:0; font-size:15.5px; color:#33414f}
+
+  /* Timeline */
+  .timeline{position:relative; margin:8px 0 0; padding-left:8px}
+  .ev{position:relative; padding:0 0 22px 56px}
+  .ev:last-child{padding-bottom:0}
+  .ev::before{ /* vertical line */
+    content:""; position:absolute; left:18px; top:6px; bottom:-6px; width:2px; background:var(--line);
+  }
+  .ev:last-child::before{display:none}
+  .dot{
+    position:absolute; left:0; top:0; width:38px; height:38px; border-radius:50%;
+    background:var(--brand); color:#fff; font-weight:800; display:grid; place-items:center; font-size:16px;
+    box-shadow:0 0 0 4px var(--bg);
+  }
+  .ev h3{margin:4px 0 4px; font-size:17px}
+  .ev p{margin:0; font-size:15.5px; color:#33414f}
+  .ev .small{color:var(--muted); font-size:13.5px}
+
+  /* Questions list */
+  .q{
+    background:#fff; border:1px solid var(--line); border-radius:10px; padding:13px 16px; margin:10px 0;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .q .tag{
+    flex:0 0 auto; background:#eef3f7; color:var(--brand-dk); border-radius:7px;
+    padding:4px 10px; font-size:13px; font-weight:700; min-width:96px; text-align:center;
+  }
+  .q p{margin:0; font-size:15px}
+  .q b{color:var(--ink)}
+
+  .payoff{
+    background:linear-gradient(135deg,#0d5e80,#13a4a4); color:#fff;
+    border-radius:var(--radius); padding:24px 26px; margin:30px 0 0;
+  }
+  .payoff h2{margin:0 0 10px; font-size:20px}
+  .payoff p{margin:0 0 10px; font-size:16px; opacity:.97}
+  .payoff .rule{
+    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.25);
+    border-radius:10px; padding:14px 16px; font-size:16px; margin-top:6px;
+  }
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:46px}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="kicker">NAIRR Workshop · Jetstream2 Demo</p>
+  <h1>What This Demo Is Doing — and Why</h1>
+  <p>We take <b>one</b> AI model and run it <b>three different ways</b> to see which is
+     fastest, lightest, and best — all on free cloud computing from NAIRR.</p>
+</header>
+
+<div class="wrap">
+
+  <!-- THE BIG IDEA -->
+  <div class="bigidea">
+    <h2>The big idea</h2>
+    <p>An "AI model" is just a file full of math — the <b>brain</b>. But that brain can't do
+       anything on its own; you need a piece of software to <b>run</b> it. There are several
+       popular programs for this, and they're <b>not all equally fast or efficient</b>.</p>
+    <p>So we ask a simple, practical question: <b>if we use the exact same AI brain, does it
+       matter which program we run it with?</b> We test three of the most popular ones and measure the difference.</p>
+    <div class="analogy">
+      🏎️ <b>Think of it like a car engine.</b> The <b>model</b> is the engine. The three programs
+      are three different <b>cars</b> you could drop that same engine into. Same engine — but one car
+      might be quicker off the line, another sips less fuel, another is built to carry a whole team.
+      We're test‑driving all three.
+    </div>
+  </div>
+
+  <!-- WHAT & WHY -->
+  <h2 class="sec">What we're doing &amp; why it matters</h2>
+  <div class="two">
+    <div class="card">
+      <h3>🔬 What we're doing</h3>
+      <p>Running the same model (called <b>Qwen3</b>) through three programs —
+         <b>Ollama</b>, <b>llama.cpp</b>, and <b>vLLM</b> — asking each the
+         <b>identical set of questions</b>, and timing everything.</p>
+    </div>
+    <div class="card">
+      <h3>🎯 Why it matters</h3>
+      <p>If you want to use AI in a <b>classroom or research project</b>, you have to pick a tool.
+         This shows you, with real numbers, <b>which one fits your needs</b> — and proves you can
+         do it on <b>free NAIRR computing</b>, no expensive hardware required.</p>
+    </div>
+  </div>
+
+  <!-- THE SEQUENCE -->
+  <h2 class="sec">The sequence — what happens, step by step</h2>
+  <div class="timeline">
+    <div class="ev">
+      <div class="dot">1</div>
+      <h3>Pick one model &amp; write the questions</h3>
+      <p>We choose a single AI model and prepare a fixed list of questions, so every program
+         gets the <b>exact same test</b>. Fair comparison starts here.</p>
+    </div>
+    <div class="ev">
+      <div class="dot">2</div>
+      <h3>Load the model into the first program</h3>
+      <p>We start <b>Ollama</b>, give it the model, and ask it our questions — recording how
+         long each answer takes.</p>
+    </div>
+    <div class="ev">
+      <div class="dot">3</div>
+      <h3>Repeat with the next program</h3>
+      <p>We do the very same thing with <b>llama.cpp</b>, then <b>vLLM</b>.
+         <span class="small">(vLLM needs a graphics card — on a basic instance it's skipped automatically.)</span></p>
+    </div>
+    <div class="ev">
+      <div class="dot">4</div>
+      <h3>Measure everything</h3>
+      <p>For each answer we track: <b>how fast</b> it types (words per second),
+         <b>how quickly</b> it starts replying, <b>how much memory</b> it uses, and
+         <b>how good</b> the answer is.</p>
+    </div>
+    <div class="ev">
+      <div class="dot">5</div>
+      <h3>Put it all in one comparison table</h3>
+      <p>Finally we line the three programs up side by side so the winner — and the trade‑offs —
+         are obvious at a glance.</p>
+    </div>
+  </div>
+
+  <!-- THE QUESTIONS -->
+  <h2 class="sec">The questions we ask (and what each one reveals)</h2>
+  <div class="q"><span class="tag">Quick hello</span><p><b>"Hi, who are you?"</b> — measures the bare minimum response time. How snappy is it?</p></div>
+  <div class="q"><span class="tag">Explain</span><p><b>"Why is the sky blue?"</b> — a everyday explanation, easy to judge for quality.</p></div>
+  <div class="q"><span class="tag">Write code</span><p><b>"Write a program to find prime numbers."</b> — can it produce correct, working code?</p></div>
+  <div class="q"><span class="tag">Long answer</span><p><b>"Write a 400-word essay on photosynthesis."</b> — the best test of sustained speed.</p></div>
+  <div class="q"><span class="tag">Reasoning</span><p><b>A two-step discount math problem.</b> — does it actually think, or just guess?</p></div>
+  <div class="q"><span class="tag">Follow format</span><p><b>"List the planets as structured data."</b> — can it follow precise instructions?</p></div>
+  <div class="q"><span class="tag">Comprehension</span><p><b>Read a passage, then answer about it.</b> — how well does it handle longer input?</p></div>
+  <div class="q"><span class="tag">All at once</span><p><b>Every question at the same time.</b> — which program handles a "crowd" (like a full classroom) best?</p></div>
+
+  <!-- PAYOFF -->
+  <div class="payoff">
+    <h2>🎓 The one thing to take away</h2>
+    <p>By the end, you'll have seen — with real numbers — that there's a simple rule behind all of it:</p>
+    <div class="rule">
+      The <b>program</b> you choose mostly changes the <b>speed</b>.<br>
+      The <b>model's size</b> mostly changes the <b>quality</b> of the answers.
+    </div>
+    <p style="margin-top:14px">Knowing that, you can confidently pick the right setup for your own
+       classroom or research — and you just did it all on free, shared national computing.</p>
+  </div>
+
+  <footer>
+    NAIRR Workshop Series · Workshop 01 — Jetstream2 &amp; Jupyter · Overview for Notebook 04
+  </footer>
+
+</div>
+</body>
+</html>

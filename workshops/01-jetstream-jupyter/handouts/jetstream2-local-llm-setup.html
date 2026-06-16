@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Run the Local LLM Notebook on Jetstream2 — Student Guide</title>
+<style>
+  :root{
+    --ink:#16202c; --muted:#5b6b7b; --line:#e3e9ef; --bg:#f6f8fb;
+    --brand:#0b6e99; --brand-dk:#084d6b; --accent:#13a4a4;
+    --tip:#0b6e99; --tip-bg:#e8f4fa; --warn:#b4690e; --warn-bg:#fdf3e3;
+    --code:#0f1b27; --code-ink:#e8eef4;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 80px}
+
+  /* Header */
+  header{
+    background:linear-gradient(135deg,var(--brand-dk),var(--brand) 55%,var(--accent));
+    color:#fff; padding:48px 20px 40px; text-align:center;
+  }
+  header .kicker{
+    text-transform:uppercase; letter-spacing:.14em; font-size:13px; font-weight:700;
+    opacity:.9; margin:0 0 10px;
+  }
+  header h1{margin:0 auto; max-width:680px; font-size:30px; line-height:1.25; font-weight:800}
+  header p{margin:14px auto 0; max-width:600px; font-size:16px; opacity:.95}
+  .meta{
+    margin:22px auto 0; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+  }
+  .chip{
+    background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28);
+    padding:6px 14px; border-radius:999px; font-size:13.5px; font-weight:600;
+  }
+
+  /* Before you begin */
+  .callout{
+    border-radius:var(--radius); padding:18px 20px; margin:22px 0; border:1px solid;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .callout .ico{font-size:22px; line-height:1.2; flex:0 0 auto}
+  .callout h3{margin:0 0 4px; font-size:16px}
+  .callout p{margin:0; font-size:15px}
+  .callout ul{margin:6px 0 0; padding-left:18px; font-size:15px}
+  .callout.tip{background:var(--tip-bg); border-color:#bfe1f0; color:#0a3f57}
+  .callout.warn{background:var(--warn-bg); border-color:#f0dcb4; color:#6b4204}
+
+  /* Steps */
+  .step{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px 24px 8px; margin:18px 0; box-shadow:0 1px 2px rgba(16,32,44,.04);
+  }
+  .step-head{display:flex; gap:16px; align-items:center; margin-bottom:6px}
+  .num{
+    flex:0 0 auto; width:38px; height:38px; border-radius:50%;
+    background:var(--brand); color:#fff; font-weight:800; font-size:18px;
+    display:grid; place-items:center;
+  }
+  .step-head h2{margin:0; font-size:20px}
+  .step p{color:var(--ink)}
+  .step .sub{color:var(--muted); font-size:14.5px; margin-top:-2px}
+
+  /* Code blocks */
+  .code{
+    position:relative; background:var(--code); color:var(--code-ink);
+    border-radius:10px; padding:16px 50px 16px 18px; margin:14px 0 18px;
+    font:14px/1.7 "SF Mono",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;
+    overflow-x:auto; white-space:pre;
+  }
+  .copy{
+    position:absolute; top:10px; right:10px; background:rgba(255,255,255,.12);
+    color:#cfe6f2; border:1px solid rgba(255,255,255,.2); border-radius:7px;
+    padding:5px 10px; font-size:12px; font-weight:600; cursor:pointer;
+    transition:background .15s;
+  }
+  .copy:hover{background:rgba(255,255,255,.24)}
+  .copy.done{background:#13a45f; color:#fff; border-color:#13a45f}
+
+  kbd{
+    background:#eef2f6; border:1px solid #d4dde5; border-bottom-width:2px;
+    border-radius:5px; padding:1px 7px; font-size:13px; font-weight:600; color:#243240;
+  }
+  .path{
+    background:#eef2f6; border-radius:6px; padding:1px 7px;
+    font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace; font-size:13.5px; color:#0a3f57;
+  }
+
+  /* What you'll see */
+  .grid{display:grid; gap:12px; margin:12px 0 4px}
+  .seebox{
+    border:1px solid var(--line); border-left:4px solid var(--accent);
+    border-radius:8px; padding:12px 16px; background:#fafdfd;
+  }
+  .seebox b{color:var(--brand-dk)}
+
+  h2.section{margin:40px 0 6px; font-size:22px; border-bottom:2px solid var(--line); padding-bottom:8px}
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:#eef3f7; font-size:13px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)}
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:50px}
+  a{color:var(--brand)}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="kicker">NAIRR Workshop · Jetstream2</p>
+  <h1>Running the Local LLM Notebook on Jetstream2</h1>
+  <p>A step-by-step guide to launching a cloud instance and running the
+     notebook that compares three local AI engines — Ollama, llama.cpp, and vLLM.</p>
+  <div class="meta">
+    <span class="chip">⏱ About 30–40 minutes</span>
+    <span class="chip">💻 No software needed on your laptop</span>
+    <span class="chip">🧩 Notebook 04</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="callout tip">
+    <div class="ico">✅</div>
+    <div>
+      <h3>Before you begin</h3>
+      <p>Make sure you have:</p>
+      <ul>
+        <li>An <b>ACCESS ID</b> (register free at <a href="https://access-ci.org">access-ci.org</a>)</li>
+        <li>Been <b>added to the workshop's Jetstream2 allocation</b> by your instructor</li>
+        <li>Logged in to the Jetstream2 portal: <a href="https://jetstream2.exosphere.app/">jetstream2.exosphere.app</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-head"><div class="num">1</div><h2>Launch your instance</h2></div>
+    <p>In the Jetstream2 portal (Exosphere), create a new virtual machine:</p>
+    <ul>
+      <li>Click <b>Create → Instance</b></li>
+      <li>Image: <b>Featured-Ubuntu24</b></li>
+      <li>Flavor (size): <b>m3.quad</b> &nbsp;<span class="sub">(4 CPUs, 15&nbsp;GB RAM — plenty for this demo)</span></li>
+      <li>Leave the disk at the default <b>20&nbsp;GB</b>, then click <b>Create</b></li>
+    </ul>
+    <p class="sub">Wait until the instance status shows <b>Ready</b> (usually 2–5 minutes). ☕</p>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-head"><div class="num">2</div><h2>Open the Web Desktop</h2></div>
+    <p>On your instance's card, choose:</p>
+    <p><b>Interactions → Web Desktop</b></p>
+    <p>This opens a full Linux desktop <i>inside your browser</i>, running on the instance.
+       Once it loads, open the <b>Terminal</b> application from the desktop.</p>
+    <div class="callout warn" style="margin:16px 0 4px">
+      <div class="ico">⚠️</div>
+      <div>
+        <h3>Use Web Desktop, not "Console"</h3>
+        <p>The <b>Console</b> is a raw boot screen with no browser and clumsy copy-paste.
+           The <b>Web Desktop</b> includes a browser, which we need to view the notebook.
+           The first load may take a minute and could ask for a passphrase shown on the instance page.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-head"><div class="num">3</div><h2>Install Jupyter</h2></div>
+    <p>In the terminal, set up a clean Python environment and install Jupyter.
+       Copy and paste these commands (run them one block at a time):</p>
+    <div class="code"><button class="copy">Copy</button>sudo apt update && sudo apt install -y python3-venv python3-pip git</div>
+    <div class="code"><button class="copy">Copy</button>python3 -m venv ~/llmdemo
+source ~/llmdemo/bin/activate
+pip install jupyterlab</div>
+    <div class="callout tip" style="margin:8px 0 4px">
+      <div class="ico">💡</div>
+      <div>
+        <h3>Why the <span class="path">~/llmdemo</span> environment?</h3>
+        <p>Ubuntu 24 won't let you install Python packages system-wide. The virtual
+           environment ("venv") is a private sandbox — it keeps Jupyter and the notebook's
+           AI engines neatly separated from the rest of the system.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="step-head"><div class="num">4</div><h2>Download the workshop & start Jupyter</h2></div>
+    <p>Still in the same terminal, download the workshop materials and launch Jupyter:</p>
+    <div class="code"><button class="copy">Copy</button>git clone https://github.com/TheAIHorizon/NAIRR_Workshops.git
+cd NAIRR_Workshops/workshops/01-jetstream-jupyter/notebooks
+jupyter lab</div>
+    <p>JupyterLab will open automatically in the desktop's <b>Firefox</b> browser.
+       If it doesn't, copy the <span class="path">http://localhost:8888/...?token=...</span>
+       link the terminal prints and paste it into Firefox.</p>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step">
+    <div class="step-head"><div class="num">5</div><h2>Open and run the notebook</h2></div>
+    <p>In the JupyterLab file list (left side), open:</p>
+    <p><span class="path">04_Local_LLM_Frameworks.ipynb</span></p>
+    <p>Run the cells from top to bottom — click a cell and press
+       <kbd>Shift</kbd> + <kbd>Enter</kbd>, or use <b>Run → Run All Cells</b>.</p>
+
+    <div class="grid">
+      <div class="seebox"><b>Section 2</b> should print <b>"CPU mode"</b> — this is correct for the
+        m3.quad instance. It compares Ollama and llama.cpp and skips vLLM (which needs a GPU).</div>
+      <div class="seebox"><b>Section 3</b> installs the AI engines. This is the slow step
+        (a few minutes) — let it finish before moving on.</div>
+      <div class="seebox"><b>Section 9</b> shows the comparison table. The <b>tokens/sec</b>
+        column is the headline: how fast each engine generates text on the same hardware.</div>
+    </div>
+  </div>
+
+  <!-- TROUBLESHOOTING -->
+  <h2 class="section">Troubleshooting</h2>
+  <table>
+    <tr><th>Problem</th><th>Fix</th></tr>
+    <tr>
+      <td><b>"command not found: jupyter"</b></td>
+      <td>Your environment isn't active. Run <span class="path">source ~/llmdemo/bin/activate</span> again, then retry.</td>
+    </tr>
+    <tr>
+      <td>Web Desktop is blank or stuck</td>
+      <td>Give it a full minute on first load. If still stuck, close the tab and reopen
+          <b>Interactions → Web Desktop</b>.</td>
+    </tr>
+    <tr>
+      <td>The notebook feels slow on the long "essay" prompt</td>
+      <td>That's expected on a 4-CPU instance. In the notebook's <b>config cell</b>, the comments
+          show how to switch to a smaller, faster model (<span class="path">qwen3:1.7b</span>).</td>
+    </tr>
+    <tr>
+      <td>"externally-managed-environment" error on pip</td>
+      <td>You skipped the venv. Run the Step 3 commands in order — the
+          <span class="path">source .../activate</span> line is required.</td>
+    </tr>
+    <tr>
+      <td>I'm done — how do I avoid using up credits?</td>
+      <td>Back in the Jetstream2 portal, <b>Shelve</b> or <b>Delete</b> your instance when finished.
+          A running instance keeps spending the allocation.</td>
+    </tr>
+  </table>
+
+  <div class="callout tip">
+    <div class="ico">🎓</div>
+    <div>
+      <h3>What this notebook teaches</h3>
+      <p>It runs the <b>same AI model three different ways</b>. The big takeaway:
+         the <b>framework</b> you choose mostly changes <b>speed</b>, while <b>model size and
+         quantization</b> mostly change <b>answer quality</b>. The final table lets you see both at once.</p>
+    </div>
+  </div>
+
+  <footer>
+    NAIRR Workshop Series · Workshop 01 — Jetstream2 &amp; Jupyter ·
+    Notebook 04: Local LLM Frameworks
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var code = btn.parentElement.cloneNode(true);
+      code.querySelector('.copy').remove();
+      navigator.clipboard.writeText(code.textContent.trim()).then(function(){
+        btn.textContent = 'Copied!'; btn.classList.add('done');
+        setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('done'); }, 1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>
