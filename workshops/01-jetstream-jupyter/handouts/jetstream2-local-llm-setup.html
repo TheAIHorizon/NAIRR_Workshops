@@ -197,14 +197,30 @@
     </div>
   </div>
 
+  <div class="callout tip">
+    <div class="ico">🔗</div>
+    <div>
+      <h3>First time connecting to Jetstream2? (do this once)</h3>
+      <p>The very first time, you add your allocation to your Exosphere account. You <b>won't repeat this</b>
+         for later workshops on the same allocation. You get your <b>own workspace</b> — your instances draw
+         from the shared allocation, and you won't see other people's instances.</p>
+      <ol style="margin:8px 0 0; padding-left:18px; font-size:15px">
+        <li>Go to <a href="https://jetstream2.exosphere.app/">jetstream2.exosphere.app</a> and click <b>Add Allocation</b>.</li>
+        <li>Choose <b>Jetstream2</b> as the provider when prompted.</li>
+        <li>Sign in with your <b>ACCESS ID</b> — pick the same identity provider you registered with
+            (often <b>"ACCESS CI (XSEDE)"</b>, or your university).</li>
+        <li>Exosphere lists the allocations you can use — <b>select your instructor's project</b>
+            (e.g. <span class="path">NAIRR2xxxxx</span>) and add it.</li>
+        <li>You land on your dashboard for that allocation. Done — continue to Step 1.</li>
+      </ol>
+    </div>
+  </div>
+
   <!-- STEP 1 -->
   <div class="step">
-    <div class="step-head"><div class="num">1</div><h2>Sign in &amp; launch your instance</h2></div>
-    <p>Go to <a href="https://jetstream2.exosphere.app/">jetstream2.exosphere.app</a> and sign in with your
-       ACCESS ID. <b>First time?</b> Exosphere asks you to <b>add an allocation</b> — choose your instructor's
-       project (they'll give you the name, e.g. <span class="path">NAIRR2xxxxx</span>). Your instances run on
-       that shared allocation; you get your own workspace (you won't see other people's instances).</p>
-    <p>Then create a new virtual machine:</p>
+    <div class="step-head"><div class="num">1</div><h2>Launch your instance</h2></div>
+    <p>Signed in to <a href="https://jetstream2.exosphere.app/">Exosphere</a> with your allocation added?
+       Create a new virtual machine:</p>
     <ul>
       <li>Click <b>Create → Instance</b></li>
       <li>Image: <b>Featured-Ubuntu24</b></li>
