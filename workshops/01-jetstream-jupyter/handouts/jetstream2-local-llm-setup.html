@@ -205,9 +205,19 @@
       <li>Click <b>Create → Instance</b></li>
       <li>Image: <b>Featured-Ubuntu24</b></li>
       <li>Flavor (size): <b>m3.quad</b> &nbsp;<span class="sub">(4 CPUs, 15&nbsp;GB RAM — plenty for this demo)</span></li>
-      <li>Leave the disk at the default <b>20&nbsp;GB</b>, then click <b>Create</b></li>
+      <li>Disk: choose <b>"Custom disk size (volume-backed)"</b> and set <b>40&nbsp;GB</b>
+          &nbsp;<span class="sub">(the default 20&nbsp;GB is too small — the AI model files won't fit)</span></li>
+      <li>Click <b>Create</b></li>
     </ul>
     <p class="sub">Wait until the instance status shows <b>Ready</b> (usually 2–5 minutes). ☕</p>
+    <div class="callout warn" style="margin:16px 0 4px">
+      <div class="ico">💾</div>
+      <div>
+        <h3>Don't skip the 40&nbsp;GB disk</h3>
+        <p>The demo downloads the AI model <b>twice</b> (once for each program), which overflows
+           the default 20&nbsp;GB disk. <b>40&nbsp;GB</b> gives comfortable room.</p>
+      </div>
+    </div>
   </div>
 
   <!-- STEP 2 -->
