@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before the Workshop — Create Your ACCESS ID</title>
+<style>
+  :root{
+    --ink:#16202c; --muted:#5b6b7b; --line:#e3e9ef; --bg:#f6f8fb;
+    --brand:#0b6e99; --brand-dk:#084d6b; --accent:#13a4a4;
+    --tip-bg:#e8f4fa; --tip-ln:#bfe1f0; --stop-bg:#fdecec; --stop-ln:#f3c5c5; --stop:#b42318;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px; margin:0 auto; padding:0 20px 70px}
+
+  header{background:linear-gradient(135deg,var(--brand-dk),var(--brand) 55%,var(--accent)); color:#fff; padding:46px 20px 38px; text-align:center}
+  header .kicker{text-transform:uppercase; letter-spacing:.14em; font-size:13px; font-weight:700; opacity:.9; margin:0 0 10px}
+  header h1{margin:0 auto; max-width:600px; font-size:29px; line-height:1.25; font-weight:800}
+  header p{margin:13px auto 0; max-width:560px; font-size:16px; opacity:.95}
+  .meta{margin:20px auto 0; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+  .chip{background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28); padding:6px 14px; border-radius:999px; font-size:13.5px; font-weight:600}
+
+  .stop{background:var(--stop-bg); border:2px solid var(--stop-ln); border-radius:var(--radius); padding:20px 22px; margin:24px 0; display:flex; gap:14px; align-items:flex-start}
+  .stop .ico{font-size:26px; flex:0 0 auto}
+  .stop h2{margin:0 0 6px; font-size:19px; color:var(--stop)}
+  .stop p{margin:0; font-size:16px; color:#5b1a14}
+  .stop b{color:var(--stop)}
+
+  .step{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:22px 24px 12px; margin:16px 0; box-shadow:0 1px 2px rgba(16,32,44,.04)}
+  .step-head{display:flex; gap:15px; align-items:center; margin-bottom:6px}
+  .num{flex:0 0 auto; width:36px; height:36px; border-radius:50%; background:var(--brand); color:#fff; font-weight:800; font-size:16px; display:grid; place-items:center}
+  .step-head h2{margin:0; font-size:19px}
+  .step p{font-size:15.5px}
+  .good{color:#13633c; font-weight:700} .bad{color:var(--stop); font-weight:700}
+  .path{background:#eef2f6; border-radius:6px; padding:1px 7px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13.5px; color:#0a3f57}
+
+  .code{position:relative; background:#0f1b27; color:#e8eef4; border-radius:10px; padding:14px 50px 14px 18px; margin:10px 0 14px; font:14px/1.6 ui-monospace,Menlo,Consolas,monospace; overflow-x:auto; white-space:pre-wrap}
+  .copy{position:absolute; top:9px; right:9px; background:rgba(255,255,255,.12); color:#cfe6f2; border:1px solid rgba(255,255,255,.2); border-radius:7px; padding:5px 10px; font-size:12px; font-weight:600; cursor:pointer}
+  .copy:hover{background:rgba(255,255,255,.24)} .copy.done{background:#13a45f; color:#fff; border-color:#13a45f}
+
+  .callout{border-radius:var(--radius); padding:16px 20px; margin:20px 0; border:1px solid; display:flex; gap:14px; align-items:flex-start}
+  .callout .ico{font-size:21px; flex:0 0 auto}
+  .callout h3{margin:0 0 4px; font-size:16px} .callout p{margin:0; font-size:15px}
+  .callout.tip{background:var(--tip-bg); border-color:var(--tip-ln); color:#0a3f57}
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:44px}
+  a{color:var(--brand)}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="kicker">Do this BEFORE the workshop</p>
+  <h1>Create Your ACCESS ID</h1>
+  <p>You need a free ACCESS ID to log into the NAIRR / Jetstream2 cloud computer we'll use.
+     It takes about 5 minutes — please do it a few days before class.</p>
+  <div class="meta">
+    <span class="chip">⏱ ~5 minutes</span>
+    <span class="chip">🆓 Free</span>
+    <span class="chip">📅 A few days ahead</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="stop">
+    <div class="ico">🛑</div>
+    <div>
+      <h2>Use your SCHOOL email — not Gmail</h2>
+      <p>You <b>must</b> register with your <b>institutional email</b> (like
+         <span class="path">you@university.edu</span>). An ACCESS ID made with a
+         <b>personal email — Gmail, Yahoo, Outlook.com, iCloud, etc. — will NOT work</b> and can't be
+         added to the workshop. If you already made one with a personal email, make a new one (or add
+         your school email to your profile) before class.</p>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-head"><div class="num">1</div><h2>Register for your ACCESS ID</h2></div>
+    <p>Go to:</p>
+    <div class="code"><button class="copy">Copy</button>https://operations.access-ci.org/identity/new-user</div>
+    <p>Fill in the form. For email, use your <span class="good">school address (you@university.edu)</span> —
+       <span class="bad">not a personal Gmail/Yahoo/Outlook address.</span> Where offered, choosing your
+       <b>university</b> as your sign-in option is best.</p>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-head"><div class="num">2</div><h2>Write down your ACCESS username</h2></div>
+    <p>When you finish, you'll have an <b>ACCESS username</b> (a short login name, e.g. <span class="path">jsmith42</span>).
+       Save it — you'll log into Jetstream2 with it, and your instructor needs it.</p>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-head"><div class="num">3</div><h2>Send your username to your instructor</h2></div>
+    <p>Email your instructor your <b>ACCESS username</b> (just the username — <b>never your password</b>).
+       They'll add you to the workshop's allocation. <span class="path">Adding takes a few hours to take
+       effect, so send it a couple days early.</span></p>
+  </div>
+
+  <div class="callout tip">
+    <div class="ico">✅</div>
+    <div>
+      <h3>What happens next</h3>
+      <p>Once your instructor adds you and it syncs (up to ~4 hours), you'll be able to log into Jetstream2
+         with your ACCESS ID on workshop day and follow the setup guide. That's it — you're ready.</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="ico">🇺🇸</div>
+    <div>
+      <h3>One eligibility note</h3>
+      <p>NAIRR is a U.S. national resource, so participants must be at a <b>U.S. institution</b> — which is
+         exactly why your <b>institutional email</b> matters.</p>
+    </div>
+  </div>
+
+  <footer>
+    NAIRR Workshop Series · Workshop 01 — Student Pre-Workshop Step
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var c = btn.parentElement.cloneNode(true); c.querySelector('.copy').remove();
+      navigator.clipboard.writeText(c.textContent.trim()).then(function(){
+        btn.textContent='Copied!'; btn.classList.add('done');
+        setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('done'); },1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>
