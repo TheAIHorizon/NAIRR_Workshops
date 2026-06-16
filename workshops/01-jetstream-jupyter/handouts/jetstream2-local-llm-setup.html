@@ -106,6 +106,18 @@
   th{background:#eef3f7; font-size:13px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)}
   footer{text-align:center; color:var(--muted); font-size:13px; margin-top:50px}
   a{color:var(--brand)}
+
+  /* Plain-language intro */
+  .intro{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px 26px; margin:26px 0; box-shadow:0 1px 3px rgba(16,32,44,.05)}
+  .intro h2{margin:0 0 6px; font-size:22px; color:var(--brand-dk)}
+  .intro .lead{font-size:17px; margin:0 0 16px; color:#33414f}
+  .qa{margin:14px 0; padding:14px 18px; border-left:4px solid var(--accent); background:#f7fbfc; border-radius:0 10px 10px 0}
+  .qa h3{margin:0 0 6px; font-size:16.5px; color:var(--brand-dk)}
+  .qa p{margin:0; font-size:15.5px; color:#33414f}
+  .qa .like{display:block; margin-top:9px; font-size:14px; color:var(--muted); font-style:italic}
+  .flow{display:grid; gap:10px; margin:14px 0 0}
+  .fstep{display:flex; gap:12px; align-items:flex-start; font-size:15.5px}
+  .fn{flex:0 0 auto; width:27px; height:27px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; font-size:14px; display:grid; place-items:center}
 </style>
 </head>
 <body>
@@ -123,6 +135,54 @@
 </header>
 
 <div class="wrap">
+
+  <div class="intro">
+    <h2>First — the big picture</h2>
+    <p class="lead">Before the steps, here's what we're actually doing, in plain terms.
+       Don't worry if some words are new — we'll define them as they come up.</p>
+
+    <div class="qa">
+      <h3>🖥️ We're going to "spin up a compute instance"</h3>
+      <p>An <b>instance</b> is simply a computer you borrow over the internet — you don't own
+         the hardware, you rent it for as long as you need it. We'll start with a
+         <b>CPU‑only</b> instance (no graphics card) to keep things simple and inexpensive.</p>
+      <span class="like">Same idea as Amazon AWS or Google Cloud: a computer that lives in the cloud, not on your desk.</span>
+    </div>
+
+    <div class="qa">
+      <h3>📓 We'll work inside a "Jupyter notebook"</h3>
+      <p>A notebook is one document that mixes <b>live code</b>, <b>written explanations</b>, and
+         <b>results</b> — all in your web browser. The code is split into small blocks called
+         <b>cells</b>, and we run them <b>one at a time</b> so we can read each explanation and
+         watch what happens before moving to the next.</p>
+      <span class="like">If you've ever used Google Colab, it's the very same idea.</span>
+    </div>
+
+    <div class="qa">
+      <h3>📦 The code lives on GitHub — we'll "clone" it</h3>
+      <p>All the code and explanations are stored in a shared online folder on <b>GitHub</b>
+         (called a <b>repository</b>, or "repo" for short). With a single command we copy that
+         folder onto our cloud instance — that copy step is called <b>cloning</b>.</p>
+      <span class="like">Like grabbing a shared Google Drive folder, but for code.</span>
+    </div>
+
+    <div class="qa">
+      <h3>🧪 What this first example explores</h3>
+      <p>To use an AI <b>model</b> (the "brain" — really just a big file of math), you need a
+         program to actually <b>run</b> it. Those programs are called <b>inferencing apps</b>.
+         We take <b>one</b> model and run it through <b>three</b> different apps —
+         <b>Ollama</b>, <b>llama.cpp</b>, and <b>vLLM</b> — giving each the <b>same questions</b>
+         (called <b>prompts</b>). The goal: <b>is one app clearly the better choice?</b>
+         We compare their speed, memory use, and answer quality.</p>
+    </div>
+
+    <p style="margin:18px 0 6px; font-weight:700; color:var(--brand-dk)">So the whole flow is just three moves:</p>
+    <div class="flow">
+      <div class="fstep"><span class="fn">1</span><div>Spin up our computer in the cloud (the <b>instance</b>)</div></div>
+      <div class="fstep"><span class="fn">2</span><div>Copy the code onto it from GitHub (<b>clone the repo</b>)</div></div>
+      <div class="fstep"><span class="fn">3</span><div>Open the notebook and run it <b>one cell at a time</b>, watching what each step does</div></div>
+    </div>
+  </div>
 
   <div class="callout tip">
     <div class="ico">✅</div>
