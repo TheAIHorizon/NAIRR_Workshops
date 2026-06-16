@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request a NAIRR Pilot Start-Up Allocation — Submission Helper</title>
+<style>
+  :root{
+    --ink:#16202c; --muted:#5b6b7b; --line:#e3e9ef; --bg:#f6f8fb;
+    --brand:#0b6e99; --brand-dk:#084d6b; --accent:#13a4a4;
+    --tip-bg:#e8f4fa; --tip-ln:#bfe1f0; --warn-bg:#fdf3e3; --warn-ln:#f0dcb4;
+    --tpl-bg:#f3f0fa; --tpl-ln:#dcd0f0; --tpl:#5a3b96; --code:#0f1b27; --code-ink:#e8eef4; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 80px}
+
+  header{background:linear-gradient(135deg,#243240,#3a4a5a 60%,#4a6072); color:#fff; padding:44px 20px 36px; text-align:center}
+  header .badge{display:inline-block; background:#f0b429; color:#3a2c05; font-weight:800; font-size:12px; letter-spacing:.12em; text-transform:uppercase; padding:5px 14px; border-radius:999px; margin-bottom:12px}
+  header h1{margin:0 auto; max-width:680px; font-size:27px; line-height:1.25; font-weight:800}
+  header p{margin:13px auto 0; max-width:620px; font-size:16px; opacity:.93}
+
+  h2.sec{margin:36px 0 6px; font-size:20px; border-bottom:2px solid var(--line); padding-bottom:8px}
+
+  .callout{border-radius:var(--radius); padding:18px 20px; margin:20px 0; border:1px solid; display:flex; gap:14px; align-items:flex-start}
+  .callout .ico{font-size:22px; flex:0 0 auto}
+  .callout h3{margin:0 0 4px; font-size:16px} .callout p{margin:0 0 8px; font-size:15px} .callout p:last-child{margin-bottom:0}
+  .callout.tip{background:var(--tip-bg); border-color:var(--tip-ln); color:#0a3f57}
+  .callout.warn{background:var(--warn-bg); border-color:var(--warn-ln); color:#6b4204}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:#eef3f7; font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)}
+  .path{background:#eef2f6; border-radius:6px; padding:1px 7px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13.5px; color:#0a3f57}
+
+  .tpl{background:var(--tpl-bg); border:1px solid var(--tpl-ln); border-radius:var(--radius); padding:16px 18px; margin:14px 0}
+  .tpl h3{margin:0 0 4px; font-size:15px; color:var(--tpl); text-transform:uppercase; letter-spacing:.04em}
+  .tpl .hint{font-size:13px; color:var(--muted); margin:0 0 10px}
+  .box{position:relative; background:#fff; border:1px dashed var(--tpl-ln); border-radius:10px; padding:14px 48px 14px 16px; font-size:14.5px; line-height:1.55; white-space:pre-wrap}
+  .copy{position:absolute; top:9px; right:9px; background:var(--tpl); color:#fff; border:none; border-radius:7px; padding:5px 10px; font-size:12px; font-weight:600; cursor:pointer; opacity:.85}
+  .copy:hover{opacity:1} .copy.done{background:#13a45f}
+  .fill{background:#fff3cf; border-radius:4px; padding:0 4px; font-weight:600; color:#7a530b}
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:46px}
+  a{color:var(--brand)}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="badge">For Instructors · Submission Helper</span>
+  <h1>Request a NAIRR Pilot Start-Up Allocation</h1>
+  <p>What the request form needs, plus ready-to-adapt text for an education / outreach project.
+     Replace the <span style="background:#fff3cf;color:#7a530b;padding:0 5px;border-radius:4px;font-weight:600">highlighted</span>
+     parts with your details and you're most of the way there.</p>
+</header>
+
+<div class="wrap">
+
+  <div class="callout tip">
+    <div class="ico">📝</div>
+    <div>
+      <h3>Where to submit</h3>
+      <p>Start your request at <a href="https://nairrpilot.org/opportunities/startup-project">nairrpilot.org → Start-Up Project</a>
+         (it routes you to the submission portal). Sign in with the identity you registered with — often
+         <b>"ACCESS CI (XSEDE)"</b>. Approvals typically come in <b>a few days</b>.</p>
+    </div>
+  </div>
+
+  <!-- WHAT IT ASKS -->
+  <h2 class="sec">What the request asks for</h2>
+  <table>
+    <tr><th>Item</th><th>What to provide</th></tr>
+    <tr><td><b>Project title</b></td><td>Short, descriptive (it's posted publicly). See template below.</td></tr>
+    <tr><td><b>Abstract</b></td><td>A public summary of the project. Template below.</td></tr>
+    <tr><td><b>Research description / justification</b></td><td>What you'll do and how it aligns with NAIRR's goals (education, broadening access). Template below.</td></tr>
+    <tr><td><b>PI info</b></td><td>Name, affiliation, <b>institutional email</b> (not Gmail).</td></tr>
+    <tr><td><b>Resource (pick ONE)</b></td><td>For this workshop: <b>Indiana Jetstream2</b> — up to <b>128,000 SUs</b>.</td></tr>
+    <tr><td><b>Funding info</b></td><td>List any grants directly supporting the work (or note none).</td></tr>
+    <tr><td><b>CV / advisor letter</b></td><td>PI CV; if you're a <b>grad student</b>, a support letter from your faculty advisor.</td></tr>
+  </table>
+  <div class="callout warn">
+    <div class="ico">📏</div>
+    <div>
+      <h3>Know the limits going in</h3>
+      <p>Start-Up projects run <b>3 months</b>, request <b>one resource</b>, and require a <b>U.S. institution</b>
+         and <b>institutional email</b>. Results must be <b>open / publishable</b>. Jetstream2's Start-Up cap is
+         <b>128,000 SUs</b> — far more than a CPU teaching workshop needs (see the estimate below).</p>
+    </div>
+  </div>
+
+  <!-- TEMPLATES -->
+  <h2 class="sec">Ready-to-adapt text</h2>
+
+  <div class="tpl">
+    <h3>Project title</h3>
+    <p class="hint">Keep it concrete and public-friendly.</p>
+    <div class="box"><button class="copy">Copy</button>Hands-On Introduction to NAIRR &amp; Jetstream2 for <span class="fill">[Your Institution]</span> Students and Educators</div>
+  </div>
+
+  <div class="tpl">
+    <h3>Abstract (public)</h3>
+    <p class="hint">~100–150 words. This is posted on the NAIRR website, so write for a general audience.</p>
+    <div class="box"><button class="copy">Copy</button>This project delivers hands-on workshops that introduce students and faculty at <span class="fill">[Your Institution]</span> to the National AI Research Resource (NAIRR) and the Jetstream2 cloud computing system. Participants learn to launch cloud instances, run Jupyter notebooks, and compare how AI models perform across multiple inference frameworks — gaining practical experience with national AI cyberinfrastructure they would otherwise be unable to access. By lowering the barrier to entry and openly publishing all teaching materials, the project broadens participation in AI research, strengthens AI readiness among the next generation of researchers and educators, and shows faculty how straightforward it is to bring NAIRR resources into their own courses.</div>
+  </div>
+
+  <div class="tpl">
+    <h3>Research description / justification</h3>
+    <p class="hint">Explain the activity, the audience, alignment with NAIRR's goals, and the outcomes.</p>
+    <div class="box"><button class="copy">Copy</button>Motivation. Many institutions and educators lack access to the GPU and cloud computing needed to teach and explore modern AI, and many faculty assume that obtaining national resources is too complex to attempt. This project removes that barrier by running practical, reproducible workshops on NAIRR's Jetstream2 resource.
+
+Activities. We will deliver <span class="fill">[number]</span> hands-on workshop sessions for approximately <span class="fill">[20]</span> participants each. Using openly published Jupyter notebooks, participants launch their own Jetstream2 instances and run guided exercises — including a comparison of local AI inference frameworks (Ollama, llama.cpp, and vLLM) running the same model — to understand cloud-based AI computing and the trade-offs between tools. Sessions cover both classroom and research use, and how to apply for NAIRR resources independently.
+
+Alignment with NAIRR goals. The project directly advances NAIRR's mission to broaden access to AI cyberinfrastructure and build the AI-capable workforce: it reaches learners and educators at <span class="fill">[institution type, e.g., a regional public university serving underrepresented students]</span>, and it equips faculty to sustain AI education beyond this project.
+
+Outcomes. All notebooks, slides, and step-by-step guides are published openly on GitHub for reuse by any educator. We will report participation and lessons learned in the required final report.</div>
+  </div>
+
+  <div class="tpl">
+    <h3>Resource &amp; SU justification</h3>
+    <p class="hint">Pick Jetstream2 (IU). Show the math so the amount is obviously reasonable.</p>
+    <div class="box"><button class="copy">Copy</button>Requested resource: Indiana University Jetstream2.
+
+Each workshop runs ~<span class="fill">[20]</span> participants, each on a small CPU instance (m3.quad, 4 vCPUs) for ~<span class="fill">[3]</span> hours. At roughly 1 SU per vCPU-hour, that is about 4 SU/hour per instance, or ~240 SU per session for 20 participants. Across <span class="fill">[number]</span> planned sessions plus instructor preparation and testing, total usage is on the order of a few thousand SUs — well within the 128,000 SU Start-Up cap, with comfortable headroom for repeat sessions and occasional GPU experimentation.</div>
+  </div>
+
+  <div class="callout tip">
+    <div class="ico">✍️</div>
+    <div>
+      <h3>Tips that help approval</h3>
+      <p>• Lead with <b>education / broadening access</b> — that's squarely in NAIRR's mission.<br>
+         • Emphasize that <b>outputs are open</b> (public GitHub repo, final report).<br>
+         • Keep the resource ask <b>modest and justified</b> — a CPU teaching workshop needs very little.<br>
+         • Have your <b>CV</b> ready to upload, and use your <b>institutional email</b> throughout.</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="ico">➡️</div>
+    <div>
+      <h3>After it's approved</h3>
+      <p>You'll get an award email with your project ID and SUs. Then follow the
+         <a href="060-instructor-allocation-setup.html">allocation playbook</a> to add your students and run the class.</p>
+    </div>
+  </div>
+
+  <footer>
+    NAIRR Workshop Series · Workshop 01 — Start-Up Allocation Submission Helper
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var c = btn.parentElement.cloneNode(true); c.querySelector('.copy').remove();
+      navigator.clipboard.writeText(c.textContent.trim()).then(function(){
+        btn.textContent='Copied!'; btn.classList.add('done');
+        setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('done'); },1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>

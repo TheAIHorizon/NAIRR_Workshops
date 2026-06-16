@@ -41,6 +41,7 @@ Open these HTML files in any web browser (double-click, or right-click → Open)
 | [`handouts/030-get-your-access-id.html`](handouts/030-get-your-access-id.html) | Students | **Do before class** — create your ACCESS ID (use your **school email, not Gmail**) and send the username to your instructor |
 | [`handouts/040-what-this-demo-does.html`](handouts/040-what-this-demo-does.html) | Everyone | Plain-language overview — what the Local LLM demo (Notebook 04) does and why |
 | [`handouts/050-jetstream2-local-llm-setup.html`](handouts/050-jetstream2-local-llm-setup.html) | Students | Step-by-step — launch a Jetstream2 instance and run Notebook 04 |
+| [`handouts/055-request-startup-allocation.html`](handouts/055-request-startup-allocation.html) | Instructors | Apply for a NAIRR Start-Up allocation — what the form needs + ready-to-adapt title/abstract/justification text |
 | [`handouts/060-instructor-allocation-setup.html`](handouts/060-instructor-allocation-setup.html) | Instructors | **Do this first** — get your allocation, exchange SUs, and add students' ACCESS IDs (pre-class admin) |
 | [`handouts/070-instructor-preflight-checklist.html`](handouts/070-instructor-preflight-checklist.html) | Instructors | Run before each workshop — interactive go/no-go checklist (allocation, students added, end-to-end test) |
 | [`handouts/080-instructor-notes.html`](handouts/080-instructor-notes.html) | Instructors | Talking points, teaching moments, and the capacity/disk rationale behind the lab setup |
