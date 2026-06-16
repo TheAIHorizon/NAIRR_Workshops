@@ -38,6 +38,7 @@ Open these HTML files in any web browser (double-click, or right-click → Open)
 | [`handouts/what-this-demo-does.html`](handouts/what-this-demo-does.html) | Everyone | Plain-language overview — what the Local LLM demo (Notebook 04) does and why |
 | [`handouts/jetstream2-local-llm-setup.html`](handouts/jetstream2-local-llm-setup.html) | Students | Step-by-step — launch a Jetstream2 instance and run Notebook 04 |
 | [`handouts/instructor-notes.html`](handouts/instructor-notes.html) | Instructors | Talking points, teaching moments, and the capacity/disk rationale behind the lab setup |
+| [`handouts/setup-ai-coding-assistant.html`](handouts/setup-ai-coding-assistant.html) | Instructors | Set up VS Code + Claude Code to build your own notebooks by describing what you want to teach |
 
 ## Local Setup
 
