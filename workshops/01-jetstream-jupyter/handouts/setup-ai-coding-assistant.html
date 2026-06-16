@@ -92,9 +92,10 @@
     <div>
       <h3>Read this first: it costs money</h3>
       <p>The AI assistant needs <b>either a paid subscription or pay-as-you-go credits</b>. For
-         Claude Code that's a <b>Claude Pro ($20/mo)</b> or <b>Max ($100–$200/mo)</b> plan, or
-         <b>Anthropic API credits</b> billed by usage. The VS Code editor and the extension itself
-         are free — only the AI usage is paid. Pro is plenty to start.</p>
+         Claude Code that's a <b>Claude Pro ($20/mo)</b> or <b>Max ($100–$200/mo)</b> plan (or Anthropic API
+         credits). <b>Already pay for ChatGPT?</b> You can use <b>OpenAI Codex</b> on your existing
+         <b>ChatGPT Plus/Pro/Team</b> plan instead — see the OpenAI section below. The VS Code editor and the
+         extensions are free; only the AI usage is paid. The $20/mo tier of either is plenty to start.</p>
     </div>
   </div>
 
@@ -181,9 +182,46 @@
     </div>
   </div>
 
+  <!-- OPENAI ALTERNATIVE -->
+  <h2 class="section">Already have a paid ChatGPT account? Use OpenAI Codex instead</h2>
+  <p>If you're already paying for ChatGPT, you don't need a Claude subscription — OpenAI's coding agent,
+     <b>Codex</b>, works the same way inside VS Code. <b>Steps 1–4 above are identical</b> (Python, VS Code,
+     the Python &amp; Jupyter extensions, Node.js). Then, instead of Claude Code:</p>
+  <div class="step" style="margin-top:8px">
+    <div class="step-head"><div class="num">A</div><h2>Install the Codex extension</h2></div>
+    <p>In VS Code's <b>Extensions</b> panel, search <b>"Codex"</b> and install the official one by publisher
+       <b>OpenAI</b> (Extension ID <span class="path">openai.chatgpt</span>).</p>
+    <p class="os">Optional command-line tool</p>
+    <div class="code"><button class="copy">Copy</button>npm install -g @openai/codex</div>
+  </div>
+  <div class="step">
+    <div class="step-head"><div class="num">B</div><h2>Sign in with ChatGPT</h2></div>
+    <p>Click the new <b>Codex icon</b> in the activity bar to open its panel, then click
+       <b>"Sign in with ChatGPT."</b> Your browser opens, you log in to your ChatGPT account
+       (the OAuth flow), and Codex connects automatically.</p>
+    <div class="callout tip" style="margin:12px 0 4px">
+      <div class="ico">🔑</div>
+      <div>
+        <h3>What you need</h3>
+        <p>A <b>paid ChatGPT plan</b> (Plus $20/mo, Team, Pro, or Enterprise) — Codex usage is
+           <b>included</b> in your plan, no extra setup. Or sign in with an <b>OpenAI API key</b> for
+           pay-as-you-go billing.</p>
+      </div>
+    </div>
+  </div>
+  <div class="callout tip">
+    <div class="ico">🟰</div>
+    <div>
+      <h3>Same workflow either way</h3>
+      <p>Claude Code and Codex work almost identically — chat in plain English, review the proposed diffs,
+         accept or reject. Everything below applies to <b>whichever one you chose</b>. Pick one and stick with
+         it while you learn.</p>
+    </div>
+  </div>
+
   <!-- HOW TO USE -->
   <h2 class="section">Now use it — the actual workflow</h2>
-  <p>This is exactly how the workshop notebooks were made:</p>
+  <p>This is exactly how the workshop notebooks were made (Claude Code or Codex — same idea):</p>
   <div class="step" style="margin-top:8px">
     <div class="step-head"><div class="num">▶</div><h2>Your first task</h2></div>
     <p><b>1.</b> In VS Code: <b>File → Open Folder</b>, and pick a folder to work in (even an empty new one).</p>

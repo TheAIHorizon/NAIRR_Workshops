@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instructor Pre-Flight Checklist — Before Each Workshop</title>
+<style>
+  :root{
+    --ink:#16202c; --muted:#5b6b7b; --line:#e3e9ef; --bg:#f6f8fb;
+    --brand:#0b6e99; --brand-dk:#084d6b; --accent:#13a4a4;
+    --tip-bg:#e8f4fa; --tip-ln:#bfe1f0; --go-bg:#e7f6ee; --go-ln:#bfe4cf; --go:#13633c;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:780px; margin:0 auto; padding:0 20px 70px}
+
+  header{background:linear-gradient(135deg,#243240,#3a4a5a 60%,#4a6072); color:#fff; padding:42px 20px 34px; text-align:center}
+  header .badge{display:inline-block; background:#f0b429; color:#3a2c05; font-weight:800; font-size:12px; letter-spacing:.12em; text-transform:uppercase; padding:5px 14px; border-radius:999px; margin-bottom:12px}
+  header h1{margin:0 auto; max-width:640px; font-size:27px; line-height:1.25; font-weight:800}
+  header p{margin:12px auto 0; max-width:580px; font-size:16px; opacity:.93}
+
+  h2.sec{font-size:13px; text-transform:uppercase; letter-spacing:.1em; color:var(--brand); margin:34px 0 4px; font-weight:800}
+  .when{color:var(--muted); font-size:14px; margin:0 0 10px}
+
+  ul.check{list-style:none; margin:0; padding:0}
+  ul.check li{background:#fff; border:1px solid var(--line); border-radius:10px; margin:8px 0; padding:13px 16px; display:flex; gap:12px; align-items:flex-start}
+  ul.check input{margin-top:3px; width:18px; height:18px; flex:0 0 auto; accent-color:var(--accent); cursor:pointer}
+  ul.check label{font-size:15.5px; cursor:pointer}
+  ul.check label b{color:var(--brand-dk)}
+  .path{background:#eef2f6; border-radius:6px; padding:1px 7px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13px; color:#0a3f57}
+
+  .callout{border-radius:var(--radius); padding:16px 20px; margin:22px 0; border:1px solid; display:flex; gap:14px; align-items:flex-start}
+  .callout .ico{font-size:21px; flex:0 0 auto}
+  .callout h3{margin:0 0 4px; font-size:16px} .callout p{margin:0; font-size:15px}
+  .callout.go{background:var(--go-bg); border-color:var(--go-ln); color:var(--go)}
+  .callout.tip{background:var(--tip-bg); border-color:var(--tip-ln); color:#0a3f57}
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:44px}
+  a{color:var(--brand)}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="badge">For Instructors · Run Before Each Workshop</span>
+  <h1>Pre-Flight Checklist</h1>
+  <p>Tick these off before workshop day. Most of it is one-time the first time; later workshops on the
+     same allocation only need the "few days before" and "day of" sections.</p>
+</header>
+
+<div class="wrap">
+
+  <!-- 2+ WEEKS -->
+  <h2 class="sec">First time / new allocation</h2>
+  <p class="when">~2 weeks ahead — skip if your allocation already exists and is current</p>
+  <ul class="check">
+    <li><input type="checkbox" id="a1"><label for="a1">You have a NAIRR/ACCESS allocation where <b>you are PI/Manager</b> (request one at <span class="path">nairrpilot.org</span> if not)</label></li>
+    <li><input type="checkbox" id="a2"><label for="a2"><b>Jetstream2 SUs are exchanged/available</b> on the allocation (not just generic credits)</label></li>
+    <li><input type="checkbox" id="a3"><label for="a3">You can <b>log in</b> to <span class="path">submit-nairr.xras.org</span> with the right identity (e.g. "ACCESS CI (XSEDE)")</label></li>
+  </ul>
+
+  <!-- DAYS BEFORE -->
+  <h2 class="sec">A few days before</h2>
+  <p class="when">2–3 days ahead — leaves time for the ~4-hour user sync</p>
+  <ul class="check">
+    <li><input type="checkbox" id="b1"><label for="b1">Allocation <b>end date is after your workshop date</b> (not expiring first)</label></li>
+    <li><input type="checkbox" id="b2"><label for="b2"><b>SU balance</b> is healthy for the class size (CPU instances are cheap; check it's not near zero)</label></li>
+    <li><input type="checkbox" id="b3"><label for="b3">Sent students the <a href="get-your-access-id.html">Create Your ACCESS ID</a> sheet — emphasizing <b>school email, NOT Gmail</b></label></li>
+    <li><input type="checkbox" id="b4"><label for="b4"><b>Collected students' ACCESS usernames</b> (just usernames, never passwords)</label></li>
+    <li><input type="checkbox" id="b5"><label for="b5"><b>Added each student</b> at <span class="path">submit-nairr.xras.org</span> → <b>"Add User" tab → Manage</b> → add as <b>User</b></label></li>
+    <li><input type="checkbox" id="b6"><label for="b6">Verified no student used a <b>personal email</b> (those are ineligible — have them re-register)</label></li>
+  </ul>
+
+  <!-- PRE-FLIGHT TEST -->
+  <h2 class="sec">End-to-end test (do once)</h2>
+  <p class="when">After adds sync — prove the whole student path works before you rely on it live</p>
+  <ul class="check">
+    <li><input type="checkbox" id="c1"><label for="c1">A <b>test student</b> (or a second ACCESS ID of yours) can <b>first-time connect</b> in Exosphere and <b>add the allocation</b></label></li>
+    <li><input type="checkbox" id="c2"><label for="c2">They can <b>launch an instance</b> (m3.quad, Featured-Ubuntu24, default 20&nbsp;GB)</label></li>
+    <li><input type="checkbox" id="c3"><label for="c3"><b>Web Desktop → Terminal</b> works; <span class="path">git clone</span> + Jupyter launch succeed</label></li>
+    <li><input type="checkbox" id="c4"><label for="c4"><b>Notebook 04 runs end-to-end</b> in <span class="path">single</span> mode (no errors, comparison table appears)</label></li>
+    <li><input type="checkbox" id="c5"><label for="c5">Test instance <b>deleted</b> afterward</label></li>
+  </ul>
+
+  <!-- DAY OF -->
+  <h2 class="sec">Day of the workshop</h2>
+  <p class="when">Before students arrive</p>
+  <ul class="check">
+    <li><input type="checkbox" id="d1"><label for="d1">Have the student links ready: <a href="start-here.html">Start Here</a>, <a href="what-this-demo-does.html">overview</a>, <a href="jetstream2-local-llm-setup.html">setup guide</a></label></li>
+    <li><input type="checkbox" id="d2"><label for="d2">Confirm the allocation is <b>still active</b> and SU balance is fine</label></li>
+    <li><input type="checkbox" id="d3"><label for="d3">Plan to remind students to <b>Delete their instance</b> (and any volume) when finished</label></li>
+  </ul>
+
+  <!-- AFTER -->
+  <h2 class="sec">After the workshop</h2>
+  <ul class="check">
+    <li><input type="checkbox" id="e1"><label for="e1">All student instances <b>deleted</b> (stop drawing SUs)</label></li>
+    <li><input type="checkbox" id="e2"><label for="e2">If the allocation is near expiry: plan a <b>full NAIRR proposal</b> and submit the <b>Final Report</b></label></li>
+  </ul>
+
+  <div class="callout go">
+    <div class="ico">✅</div>
+    <div>
+      <h3>You're GO when…</h3>
+      <p>The <b>end-to-end test passed</b>, every student is <b>added with an institutional email</b>, the
+         allocation is <b>active with SUs</b>, and adds were done <b>far enough ahead to sync</b>. Any of those
+         missing = fix before class.</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="ico">🖨️</div>
+    <div>
+      <h3>Tip</h3>
+      <p>The checkboxes are interactive in your browser (state resets on reload). Print this page, or
+         duplicate it per workshop, if you want a saved record.</p>
+    </div>
+  </div>
+
+  <footer>
+    NAIRR Workshop Series · Workshop 01 — Instructor Pre-Flight Checklist
+  </footer>
+
+</div>
+</body>
+</html>
