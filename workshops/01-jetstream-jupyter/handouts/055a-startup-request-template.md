@@ -90,3 +90,6 @@ supports this educational/outreach activity."]
 - Emphasize **open outputs** (public GitHub repo + final report).
 - Keep the resource ask **modest and justified** — a CPU teaching workshop needs very little.
 - Use your **institutional email** throughout; have your **CV** ready.
+
+---
+*Part of the AI Horizon project · NSF #2528858 · CSUSB Center for Cyber and AI*

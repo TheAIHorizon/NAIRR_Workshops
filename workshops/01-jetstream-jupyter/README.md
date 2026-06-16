@@ -6,6 +6,8 @@ Introductory workshop on the National AI Research Resource (NAIRR) and Jetstream
 
 > **Attribution:** Materials in this folder are based on [MattyTheBoi/NAIRR_Intro](https://github.com/MattyTheBoi/NAIRR_Intro) by Matthew Philip Horvath Jr. (Oakland University & WPI, NAIRR Workshop Series 2026), used with permission. See [`NOTICE.md`](NOTICE.md) for full attribution.
 
+> **Part of AI Horizon:** These workshop and outreach materials are developed as outputs of *AI Horizon — Forecasting Cybersecurity Workforce Evolution and Adaptive Skill Development* (NSF #2528858, CSUSB Center for Cyber and AI).
+
 ## Start Here
 
 **New to NAIRR, Jetstream2, or Jupyter?** Read [`CONCEPTS.md`](CONCEPTS.md) first. It explains how all the pieces (ACCESS, NAIRR, Jetstream2, JupyterHub, GitHub) fit together — the relationships and credential chain you need before any code makes sense.
