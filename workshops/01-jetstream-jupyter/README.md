@@ -32,9 +32,11 @@ Introductory workshop on the National AI Research Resource (NAIRR) and Jetstream
 ## Handouts
 
 Open these HTML files in any web browser (double-click, or right-click → Open).
+**New here? Open [`handouts/start-here.html`](handouts/start-here.html) first** — it routes you to the right track.
 
 | File | Audience | Purpose |
 |------|----------|---------|
+| [`handouts/start-here.html`](handouts/start-here.html) | Everyone | **Start here** — roadmap: run the lab (Track A) vs. build your own (Track B) |
 | [`handouts/what-this-demo-does.html`](handouts/what-this-demo-does.html) | Everyone | Plain-language overview — what the Local LLM demo (Notebook 04) does and why |
 | [`handouts/jetstream2-local-llm-setup.html`](handouts/jetstream2-local-llm-setup.html) | Students | Step-by-step — launch a Jetstream2 instance and run Notebook 04 |
 | [`handouts/instructor-notes.html`](handouts/instructor-notes.html) | Instructors | Talking points, teaching moments, and the capacity/disk rationale behind the lab setup |
