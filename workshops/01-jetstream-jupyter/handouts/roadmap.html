@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAIRR Workshop — Resource Map</title>
+<style>
+  :root{
+    --ink:#16202c; --muted:#5b6b7b; --line:#e3e9ef; --bg:#f6f8fb;
+    --brand:#0b6e99; --brand-dk:#084d6b; --accent:#13a4a4;
+    --a:#0b6e99; --a-bg:#eaf5fb; --a-ln:#bcdcee;
+    --b:#6a3da8; --b-bg:#f2ecfa; --b-ln:#d9c9f0;
+    --i:#9a6b0e; --i-bg:#fdf3e0; --i-ln:#f0dcb4;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px; margin:0 auto; padding:0 20px 70px}
+
+  header{background:linear-gradient(135deg,var(--brand-dk),var(--brand) 55%,var(--accent)); color:#fff; padding:44px 20px 36px; text-align:center}
+  header .kicker{text-transform:uppercase; letter-spacing:.14em; font-size:13px; font-weight:700; opacity:.9; margin:0 0 10px}
+  header h1{margin:0 auto; max-width:640px; font-size:30px; line-height:1.2; font-weight:800}
+  header p{margin:13px auto 0; max-width:560px; font-size:16px; opacity:.95}
+
+  .legend{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin:24px 0 6px}
+  .legend span{display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; color:var(--muted)}
+  .dot{width:13px; height:13px; border-radius:50%}
+  .dot.a{background:var(--a)} .dot.b{background:var(--b)} .dot.i{background:var(--i)}
+
+  .arrow{text-align:center; color:#9fb0be; font-size:22px; line-height:1; margin:8px 0}
+  .hubwrap{display:flex; justify-content:center; margin:14px 0 2px}
+  .hub{display:block; text-decoration:none; background:#fff; border:2px solid var(--brand); border-radius:var(--radius);
+    padding:18px 28px; text-align:center; box-shadow:0 2px 6px rgba(11,110,153,.12); max-width:420px}
+  .hub .t{font-size:19px; font-weight:800; color:var(--brand-dk)} .hub .d{font-size:14px; color:var(--muted); margin-top:3px}
+
+  .lanes{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:8px}
+  @media(max-width:700px){.lanes{grid-template-columns:1fr}}
+  .lane{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:18px 18px 20px}
+  .lane.a{border-top:5px solid var(--a)} .lane.b{border-top:5px solid var(--b)}
+  .lane h2{margin:2px 0 2px; font-size:19px}
+  .lane .tag{font-size:12px; font-weight:800; letter-spacing:.07em; text-transform:uppercase}
+  .lane.a .tag{color:var(--a)} .lane.b .tag{color:var(--b)}
+  .lane .sub{color:var(--muted); font-size:13.5px; margin:0 0 12px}
+
+  .node{display:flex; gap:11px; align-items:flex-start; text-decoration:none; color:inherit;
+    border:1px solid var(--line); border-radius:10px; padding:11px 13px; background:#fff; transition:border-color .15s, box-shadow .15s}
+  .node:hover{box-shadow:0 2px 8px rgba(16,32,44,.08)}
+  .lane.a .node:hover{border-color:var(--a)} .lane.b .node:hover{border-color:var(--b)}
+  .n{flex:0 0 auto; width:26px; height:26px; border-radius:50%; color:#fff; font-weight:800; font-size:13px; display:grid; place-items:center}
+  .lane.a .n{background:var(--a)} .lane.b .n{background:var(--b)}
+  .node .t{font-size:15px; font-weight:700} .node .d{font-size:13px; color:var(--muted); margin-top:1px}
+  .conn{text-align:center; color:#c3ced8; font-size:15px; line-height:1; margin:4px 0}
+  .note{font-size:13px; color:var(--muted); margin:10px 2px 0; font-style:italic}
+
+  .itools{margin-top:30px}
+  .itools .tag{font-size:12px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; color:var(--i)}
+  .itools h2{margin:2px 0 2px; font-size:19px}
+  .itools .sub{color:var(--muted); font-size:13.5px; margin:0 0 12px}
+  .igrid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px}
+  @media(max-width:700px){.igrid{grid-template-columns:1fr}}
+  .icard{display:block; text-decoration:none; color:inherit; background:var(--i-bg); border:1px solid var(--i-ln); border-radius:12px; padding:14px 15px; transition:box-shadow .15s}
+  .icard:hover{box-shadow:0 2px 8px rgba(154,107,14,.18)}
+  .icard .t{font-size:15px; font-weight:800; color:#7a530b} .icard .d{font-size:13px; color:#6b5320; margin-top:3px}
+
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:46px}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="kicker">NAIRR Workshop · Workshop 01</p>
+  <h1>Resource Map</h1>
+  <p>Every guide in this workshop and how they connect. Click any box to open it.</p>
+</header>
+
+<div class="wrap">
+
+  <div class="legend">
+    <span><span class="dot a"></span> Student path</span>
+    <span><span class="dot b"></span> Build-your-own path</span>
+    <span><span class="dot i"></span> Instructor toolkit</span>
+  </div>
+
+  <!-- HUB -->
+  <div class="hubwrap">
+    <a class="hub" href="start-here.html">
+      <div class="t">▸ Start Here</div>
+      <div class="d">The front door — "Which are you here to do?"</div>
+    </a>
+  </div>
+  <div class="arrow">▼ &nbsp; pick a path &nbsp; ▼</div>
+
+  <!-- LANES -->
+  <div class="lanes">
+
+    <!-- TRACK A -->
+    <div class="lane a">
+      <div class="tag">Track A</div>
+      <h2>Run the lab</h2>
+      <p class="sub">For students — everything runs in the cloud.</p>
+
+      <a class="node" href="get-your-access-id.html">
+        <div class="n">1</div><div><div class="t">Create Your ACCESS ID</div><div class="d">Before class · use school email, not Gmail</div></div></a>
+      <div class="conn">↓</div>
+      <a class="node" href="what-this-demo-does.html">
+        <div class="n">2</div><div><div class="t">What This Demo Does</div><div class="d">Plain-language overview &amp; why</div></div></a>
+      <div class="conn">↓</div>
+      <a class="node" href="jetstream2-local-llm-setup.html">
+        <div class="n">3</div><div><div class="t">Connect, Launch &amp; Run</div><div class="d">First-time connect → instance → notebook</div></div></a>
+      <div class="conn">↓</div>
+      <a class="node" href="../notebooks/04_Local_LLM_Frameworks.ipynb">
+        <div class="n">4</div><div><div class="t">Notebook 04</div><div class="d">The lab itself — the 3-engine comparison</div></div></a>
+    </div>
+
+    <!-- TRACK B -->
+    <div class="lane b">
+      <div class="tag">Track B</div>
+      <h2>Build your own</h2>
+      <p class="sub">For instructors — create materials with AI.</p>
+
+      <a class="node" href="setup-ai-coding-assistant.html">
+        <div class="n">1</div><div><div class="t">Set Up an AI Coding Assistant</div><div class="d">VS Code + Claude Code <i>or</i> ChatGPT/Codex</div></div></a>
+      <div class="conn">↓</div>
+      <a class="node" href="setup-ai-coding-assistant.html">
+        <div class="n">2</div><div><div class="t">Build a Jetstream2-ready notebook</div><div class="d">Describe the lesson → AI writes it</div></div></a>
+      <div class="conn">↓</div>
+      <a class="node" href="setup-ai-coding-assistant.html">
+        <div class="n">3</div><div><div class="t">Push to GitHub</div><div class="d">Students then clone &amp; run it (→ Track A)</div></div></a>
+      <p class="note">Build once, teach many — this loop is how Notebook 04 was made.</p>
+    </div>
+
+  </div>
+
+  <!-- INSTRUCTOR TOOLKIT -->
+  <div class="itools">
+    <div class="tag">Behind the scenes</div>
+    <h2>Instructor toolkit</h2>
+    <p class="sub">The admin and teaching docs that make the class run.</p>
+    <div class="igrid">
+      <a class="icard" href="instructor-allocation-setup.html">
+        <div class="t">📋 Allocation Playbook</div><div class="d">Do first — get an allocation &amp; add students (NAIRR Pilot)</div></a>
+      <a class="icard" href="instructor-preflight-checklist.html">
+        <div class="t">✅ Pre-Flight Checklist</div><div class="d">Run before each workshop — go/no-go</div></a>
+      <a class="icard" href="instructor-notes.html">
+        <div class="t">🎓 Instructor Notes</div><div class="d">Talking points &amp; teaching moments</div></a>
+    </div>
+  </div>
+
+  <footer>
+    NAIRR Workshop Series · Workshop 01 — Resource Map
+  </footer>
+
+</div>
+</body>
+</html>

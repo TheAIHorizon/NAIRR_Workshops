@@ -37,6 +37,7 @@ Open these HTML files in any web browser (double-click, or right-click → Open)
 | File | Audience | Purpose |
 |------|----------|---------|
 | [`handouts/start-here.html`](handouts/start-here.html) | Everyone | **Start here** — roadmap: run the lab (Track A) vs. build your own (Track B) |
+| [`handouts/roadmap.html`](handouts/roadmap.html) | Everyone | Visual **resource map** — every guide and how they connect (clickable diagram) |
 | [`handouts/get-your-access-id.html`](handouts/get-your-access-id.html) | Students | **Do before class** — create your ACCESS ID (use your **school email, not Gmail**) and send the username to your instructor |
 | [`handouts/what-this-demo-does.html`](handouts/what-this-demo-does.html) | Everyone | Plain-language overview — what the Local LLM demo (Notebook 04) does and why |
 | [`handouts/jetstream2-local-llm-setup.html`](handouts/jetstream2-local-llm-setup.html) | Students | Step-by-step — launch a Jetstream2 instance and run Notebook 04 |
