@@ -27,7 +27,17 @@ Introductory workshop on the National AI Research Resource (NAIRR) and Jetstream
 | 01 | [`notebooks/01_NAIRR_Models_and_HuggingFace.ipynb`](notebooks/01_NAIRR_Models_and_HuggingFace.ipynb) | NASA sentence transformer, semantic search |
 | 02 | [`notebooks/02_Bulk_Data_Processing.ipynb`](notebooks/02_Bulk_Data_Processing.ipynb) | 500K-row dataset, sklearn, grid search |
 | 03 | [`notebooks/03_NAIRR_Open_Datasets.ipynb`](notebooks/03_NAIRR_Open_Datasets.ipynb) | AG News, TF-IDF, text classification |
-| 04 | [`notebooks/04_Local_LLM_Frameworks.ipynb`](notebooks/04_Local_LLM_Frameworks.ipynb) | Same model (Qwen3-4B) benchmarked across Ollama, llama.cpp & vLLM — speed, throughput, quality; auto-adapts to CPU or GPU instances |
+| 04 | [`notebooks/04_Local_LLM_Frameworks.ipynb`](notebooks/04_Local_LLM_Frameworks.ipynb) | Same model (Qwen3) benchmarked across Ollama, llama.cpp & vLLM — speed, throughput, quality; auto-adapts to CPU or GPU instances |
+
+## Handouts
+
+Open these HTML files in any web browser (double-click, or right-click → Open).
+
+| File | Audience | Purpose |
+|------|----------|---------|
+| [`handouts/what-this-demo-does.html`](handouts/what-this-demo-does.html) | Everyone | Plain-language overview — what the Local LLM demo (Notebook 04) does and why |
+| [`handouts/jetstream2-local-llm-setup.html`](handouts/jetstream2-local-llm-setup.html) | Students | Step-by-step — launch a Jetstream2 instance and run Notebook 04 |
+| [`handouts/instructor-notes.html`](handouts/instructor-notes.html) | Instructors | Talking points, teaching moments, and the capacity/disk rationale behind the lab setup |
 
 ## Local Setup
 
