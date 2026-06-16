@@ -39,6 +39,7 @@ Open these HTML files in any web browser (double-click, or right-click → Open)
 | [`handouts/start-here.html`](handouts/start-here.html) | Everyone | **Start here** — roadmap: run the lab (Track A) vs. build your own (Track B) |
 | [`handouts/what-this-demo-does.html`](handouts/what-this-demo-does.html) | Everyone | Plain-language overview — what the Local LLM demo (Notebook 04) does and why |
 | [`handouts/jetstream2-local-llm-setup.html`](handouts/jetstream2-local-llm-setup.html) | Students | Step-by-step — launch a Jetstream2 instance and run Notebook 04 |
+| [`handouts/instructor-allocation-setup.html`](handouts/instructor-allocation-setup.html) | Instructors | **Do this first** — get your allocation, exchange SUs, and add students' ACCESS IDs (pre-class admin) |
 | [`handouts/instructor-notes.html`](handouts/instructor-notes.html) | Instructors | Talking points, teaching moments, and the capacity/disk rationale behind the lab setup |
 | [`handouts/setup-ai-coding-assistant.html`](handouts/setup-ai-coding-assistant.html) | Instructors | Set up VS Code + Claude Code to build your own notebooks by describing what you want to teach |
 

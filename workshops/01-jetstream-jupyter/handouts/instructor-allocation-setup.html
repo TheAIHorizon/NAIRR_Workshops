@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instructor Setup — Get Your Allocation &amp; Add Students</title>
+<style>
+  :root{
+    --ink:#16202c; --muted:#5b6b7b; --line:#e3e9ef; --bg:#f6f8fb;
+    --brand:#0b6e99; --brand-dk:#084d6b; --accent:#13a4a4;
+    --tip-bg:#e8f4fa; --tip-ln:#bfe1f0; --warn-bg:#fdf3e3; --warn-ln:#f0dcb4;
+    --pitch-bg:#e7f6ee; --pitch-ln:#bfe4cf; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 80px}
+
+  header{background:linear-gradient(135deg,#243240,#3a4a5a 60%,#4a6072); color:#fff; padding:44px 20px 36px; text-align:center}
+  header .badge{display:inline-block; background:#f0b429; color:#3a2c05; font-weight:800; font-size:12px; letter-spacing:.12em; text-transform:uppercase; padding:5px 14px; border-radius:999px; margin-bottom:12px}
+  header h1{margin:0 auto; max-width:700px; font-size:28px; line-height:1.25; font-weight:800}
+  header p{margin:13px auto 0; max-width:620px; font-size:16px; opacity:.93}
+  .meta{margin:20px auto 0; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+  .chip{background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28); padding:6px 14px; border-radius:999px; font-size:13.5px; font-weight:600}
+
+  .callout{border-radius:var(--radius); padding:18px 20px; margin:22px 0; border:1px solid; display:flex; gap:14px; align-items:flex-start}
+  .callout .ico{font-size:22px; flex:0 0 auto}
+  .callout h3{margin:0 0 4px; font-size:16px} .callout p{margin:0 0 8px; font-size:15px} .callout p:last-child{margin-bottom:0}
+  .callout.tip{background:var(--tip-bg); border-color:var(--tip-ln); color:#0a3f57}
+  .callout.warn{background:var(--warn-bg); border-color:var(--warn-ln); color:#6b4204}
+  .callout.pitch{background:var(--pitch-bg); border-color:var(--pitch-ln); color:#13633c}
+
+  .step{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px 24px 12px; margin:18px 0; box-shadow:0 1px 2px rgba(16,32,44,.04)}
+  .step-head{display:flex; gap:16px; align-items:center; margin-bottom:6px}
+  .num{flex:0 0 auto; width:38px; height:38px; border-radius:50%; background:var(--brand); color:#fff; font-weight:800; font-size:17px; display:grid; place-items:center}
+  .num.zero{background:#f0b429; color:#3a2c05}
+  .step-head h2{margin:0; font-size:19px}
+  .step p{font-size:15.5px} .step ul{font-size:15.5px}
+  .who{color:var(--muted); font-size:13.5px; margin-top:-2px}
+  .path{background:#eef2f6; border-radius:6px; padding:1px 7px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13.5px; color:#0a3f57}
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:46px}
+  a{color:var(--brand)}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="badge">For Instructors · Do This First</span>
+  <h1>Get Your Allocation &amp; Add Your Students</h1>
+  <p>The behind-the-scenes setup an instructor does <b>before class day</b> so students can log in
+     to Jetstream2. Without this, no one can get in — it's the true starting point.</p>
+  <div class="meta">
+    <span class="chip">👤 You = the PI</span>
+    <span class="chip">📅 Finish the day before</span>
+    <span class="chip">⏳ Adds take ~4 hrs to sync</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="callout tip">
+    <div class="ico">🔑</div>
+    <div>
+      <h3>One identity for everything</h3>
+      <p>Your <b>ACCESS ID</b> is the single login for both the Allocations Portal <i>and</i>
+         Jetstream2 — there's no separate "Jetstream2 account" to connect. "Getting Jetstream2"
+         just means having an ACCESS allocation that includes Jetstream2 as a resource.</p>
+    </div>
+  </div>
+
+  <!-- STEP 0 -->
+  <div class="step">
+    <div class="step-head"><div class="num zero">0</div><h2>Everyone gets an ACCESS ID</h2></div>
+    <p class="who">You and every student — no exceptions, no ID = no access.</p>
+    <p>Register free at <a href="https://access-ci.org">access-ci.org</a> → <b>Register</b>. This is
+       the gate to the entire program. Students do this themselves and send you their <b>ACCESS username</b>.</p>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-head"><div class="num">1</div><h2>Have an allocation where you're the PI/Manager</h2></div>
+    <p>You manage students on <b>your own</b> allocation — not one you were merely added to. To add or
+       remove users you must be <b>PI, co-PI, or Resource Manager</b>.</p>
+    <p>No allocation yet? Request one in the <a href="https://allocations.access-ci.org/">ACCESS Allocations Portal</a>:</p>
+    <ul>
+      <li><b>Explore ACCESS</b> — small, fast (approved in days), built for "small-scale classroom activities." Needs your <b>CV</b>.</li>
+      <li><b>Education Allocation</b> — purpose-built for courses/workshops with many students.</li>
+    </ul>
+  </div>
+
+  <div class="callout pitch">
+    <div class="ico">💬</div>
+    <div>
+      <h3>The reassurance to give hesitant faculty</h3>
+      <p>The application is the part people fear — but it's <b>a short form plus a CV</b>, and an
+         Explore/Education request is typically <b>approved in a few days</b>. That's the whole
+         message: getting NAIRR resources is far easier than it looks.</p>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-head"><div class="num">2</div><h2>Turn on Jetstream2 — exchange credits for SUs</h2></div>
+    <p>An allocation gives you generic <b>ACCESS credits</b>. Jetstream2 isn't automatic: in the
+       Allocations Portal, <b>exchange ACCESS credits for Jetstream2 SUs</b> (usually approved in a
+       day or less). That exchange is what makes Jetstream2 show up and run under your allocation.</p>
+    <p class="who">Instances consume SUs for every hour they run — size the exchange to cover your class with a buffer.</p>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-head"><div class="num">3</div><h2>Add your students' ACCESS IDs</h2></div>
+    <p>In <a href="https://allocations.access-ci.org/">allocations.access-ci.org</a> (logged in with
+       your ACCESS ID), open <b>your allocation → User Management / Add User</b>.</p>
+    <ul>
+      <li>Enter each student's <b>ACCESS username</b></li>
+      <li>Add them as a <b>User</b> — <i>not</i> a Manager (Users just run; Managers can spend credits &amp; add people)</li>
+    </ul>
+    <p>Then <b>wait up to ~4 hours</b> for it to sync to Jetstream2. <b>Do this the day before class</b>,
+       not minutes before — the sync delay catches people out.</p>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="step-head"><div class="num">4</div><h2>Right-size for the class &amp; plan cleanup</h2></div>
+    <p>Check your allocation's quota fits the class — number of <b>instances</b>, <b>volumes</b>, and
+       <b>SUs</b>. If it's too small, request a <b>supplement</b> (more SUs/instances) ahead of time.</p>
+    <ul>
+      <li>Rough sizing: a few-hour session for ~20 students on small CPU instances is modest — but verify, don't assume.</li>
+      <li>Tell students to <b>Delete</b> their instance (and any volume) when finished, so it stops drawing SUs.</li>
+    </ul>
+  </div>
+
+  <div class="callout warn">
+    <div class="ico">⚠️</div>
+    <div>
+      <h3>"My project doesn't show up in the portal"</h3>
+      <p>The Jetstream2 home page (for <i>using</i>) and the Allocations Portal (for <i>managing users</i>)
+         are <b>different sites</b>. If your project is missing in allocations.access-ci.org, confirm you're
+         logged in with the <b>same ACCESS ID</b> — and remember you can only manage allocations where
+         you're the PI/Manager, not ones you were added to as a guest.</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="ico">➡️</div>
+    <div>
+      <h3>Once this is done</h3>
+      <p>Your students are ready to follow the <b>student setup guide</b> (launch an instance, clone
+         the repo, run the notebook). This admin prep is the prerequisite that makes their day work.</p>
+    </div>
+  </div>
+
+  <footer>
+    NAIRR Workshop Series · Workshop 01 — Instructor Allocation &amp; Student Setup
+  </footer>
+
+</div>
+</body>
+</html>
