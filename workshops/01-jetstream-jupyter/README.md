@@ -32,19 +32,19 @@ Introductory workshop on the National AI Research Resource (NAIRR) and Jetstream
 ## Handouts
 
 Open these HTML files in any web browser (double-click, or right-click → Open).
-**New here? Open [`handouts/start-here.html`](handouts/start-here.html) first** — it routes you to the right track.
+**New here? Open [`handouts/010-start-here.html`](handouts/010-start-here.html) first** — it routes you to the right track.
 
 | File | Audience | Purpose |
 |------|----------|---------|
-| [`handouts/start-here.html`](handouts/start-here.html) | Everyone | **Start here** — roadmap: run the lab (Track A) vs. build your own (Track B) |
-| [`handouts/roadmap.html`](handouts/roadmap.html) | Everyone | Visual **resource map** — every guide and how they connect (clickable diagram) |
-| [`handouts/get-your-access-id.html`](handouts/get-your-access-id.html) | Students | **Do before class** — create your ACCESS ID (use your **school email, not Gmail**) and send the username to your instructor |
-| [`handouts/what-this-demo-does.html`](handouts/what-this-demo-does.html) | Everyone | Plain-language overview — what the Local LLM demo (Notebook 04) does and why |
-| [`handouts/jetstream2-local-llm-setup.html`](handouts/jetstream2-local-llm-setup.html) | Students | Step-by-step — launch a Jetstream2 instance and run Notebook 04 |
-| [`handouts/instructor-allocation-setup.html`](handouts/instructor-allocation-setup.html) | Instructors | **Do this first** — get your allocation, exchange SUs, and add students' ACCESS IDs (pre-class admin) |
-| [`handouts/instructor-preflight-checklist.html`](handouts/instructor-preflight-checklist.html) | Instructors | Run before each workshop — interactive go/no-go checklist (allocation, students added, end-to-end test) |
-| [`handouts/instructor-notes.html`](handouts/instructor-notes.html) | Instructors | Talking points, teaching moments, and the capacity/disk rationale behind the lab setup |
-| [`handouts/setup-ai-coding-assistant.html`](handouts/setup-ai-coding-assistant.html) | Instructors | Set up VS Code + Claude Code to build your own **Jetstream2-ready** notebooks by describing what you want to teach |
+| [`handouts/010-start-here.html`](handouts/010-start-here.html) | Everyone | **Start here** — roadmap: run the lab (Track A) vs. build your own (Track B) |
+| [`handouts/020-roadmap.html`](handouts/020-roadmap.html) | Everyone | Visual **resource map** — every guide and how they connect (clickable diagram) |
+| [`handouts/030-get-your-access-id.html`](handouts/030-get-your-access-id.html) | Students | **Do before class** — create your ACCESS ID (use your **school email, not Gmail**) and send the username to your instructor |
+| [`handouts/040-what-this-demo-does.html`](handouts/040-what-this-demo-does.html) | Everyone | Plain-language overview — what the Local LLM demo (Notebook 04) does and why |
+| [`handouts/050-jetstream2-local-llm-setup.html`](handouts/050-jetstream2-local-llm-setup.html) | Students | Step-by-step — launch a Jetstream2 instance and run Notebook 04 |
+| [`handouts/060-instructor-allocation-setup.html`](handouts/060-instructor-allocation-setup.html) | Instructors | **Do this first** — get your allocation, exchange SUs, and add students' ACCESS IDs (pre-class admin) |
+| [`handouts/070-instructor-preflight-checklist.html`](handouts/070-instructor-preflight-checklist.html) | Instructors | Run before each workshop — interactive go/no-go checklist (allocation, students added, end-to-end test) |
+| [`handouts/080-instructor-notes.html`](handouts/080-instructor-notes.html) | Instructors | Talking points, teaching moments, and the capacity/disk rationale behind the lab setup |
+| [`handouts/090-setup-ai-coding-assistant.html`](handouts/090-setup-ai-coding-assistant.html) | Instructors | Set up VS Code + Claude Code to build your own **Jetstream2-ready** notebooks by describing what you want to teach |
 
 ## Local Setup
 
