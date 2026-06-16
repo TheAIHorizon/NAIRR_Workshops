@@ -190,7 +190,7 @@
       <h3>Before you begin</h3>
       <p>Make sure you have:</p>
       <ul>
-        <li>An <b>ACCESS ID</b> (register free at <a href="https://access-ci.org">access-ci.org</a>)</li>
+        <li>An <b>ACCESS ID</b> (register free at <a href="https://operations.access-ci.org/identity/new-user">operations.access-ci.org/identity/new-user</a> — use your <b>school email, not Gmail</b>)</li>
         <li>Been <b>added to the workshop's Jetstream2 allocation</b> by your instructor</li>
         <li>Logged in to the Jetstream2 portal: <a href="https://jetstream2.exosphere.app/">jetstream2.exosphere.app</a></li>
       </ul>
@@ -205,17 +205,17 @@
       <li>Click <b>Create → Instance</b></li>
       <li>Image: <b>Featured-Ubuntu24</b></li>
       <li>Flavor (size): <b>m3.quad</b> &nbsp;<span class="sub">(4 CPUs, 15&nbsp;GB RAM — plenty for this demo)</span></li>
-      <li>Disk: choose <b>"Custom disk size (volume-backed)"</b> and set <b>40&nbsp;GB</b>
-          &nbsp;<span class="sub">(the default 20&nbsp;GB is too small — the AI model files won't fit)</span></li>
+      <li>Leave the disk at the <b>default 20&nbsp;GB</b> — <b>no volume needed</b></li>
       <li>Click <b>Create</b></li>
     </ul>
     <p class="sub">Wait until the instance status shows <b>Ready</b> (usually 2–5 minutes). ☕</p>
-    <div class="callout warn" style="margin:16px 0 4px">
+    <div class="callout tip" style="margin:16px 0 4px">
       <div class="ico">💾</div>
       <div>
-        <h3>Don't skip the 40&nbsp;GB disk</h3>
-        <p>The demo downloads the AI model <b>twice</b> (once for each program), which overflows
-           the default 20&nbsp;GB disk. <b>40&nbsp;GB</b> gives comfortable room.</p>
+        <h3>The default disk is enough</h3>
+        <p>This demo uses a <b>small model</b> that fits the default 20&nbsp;GB disk, so you don't need to
+           add a volume. (Avoiding volumes also lets a whole class run at once — volumes are limited per
+           allocation.) If you ever switch to a much larger model, you'd then need more disk.</p>
       </div>
     </div>
   </div>
