@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Train vs. Tune vs. RAG — Lesson Flow</title>
+<style>
+  :root{
+    --ink:#16202c; --muted:#5b6b7b; --line:#e3e9ef; --bg:#f6f8fb;
+    --brand:#0b6e99; --brand-dk:#084d6b; --accent:#13a4a4;
+    --train:#b4391a; --train-bg:#fdeee9; --tune:#9a6b0e; --tune-bg:#fdf3e0; --rag:#1a7a4c; --rag-bg:#e7f6ee;
+    --gpu-bg:#fdeee9; --gpu:#b4391a; --cpu-bg:#e7f6ee; --cpu:#1a7a4c; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px; margin:0 auto; padding:0 20px 80px}
+
+  header{background:linear-gradient(135deg,var(--brand-dk),var(--brand) 55%,var(--accent)); color:#fff; padding:46px 20px 38px; text-align:center}
+  header .kicker{text-transform:uppercase; letter-spacing:.14em; font-size:13px; font-weight:700; opacity:.9; margin:0 0 10px}
+  header h1{margin:0 auto; max-width:680px; font-size:30px; line-height:1.2; font-weight:800}
+  header p{margin:13px auto 0; max-width:600px; font-size:16px; opacity:.95}
+
+  .bigidea{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:22px 24px; margin:24px 0}
+  .bigidea h2{margin:0 0 12px; font-size:21px; color:var(--brand-dk)}
+  .three{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px}
+  @media(max-width:720px){.three{grid-template-columns:1fr}}
+  .card{border-radius:12px; padding:15px 16px; border:1px solid}
+  .card.train{background:var(--train-bg); border-color:#f3c5b8} .card.tune{background:var(--tune-bg); border-color:#f0dcb4} .card.rag{background:var(--rag-bg); border-color:#bfe4cf}
+  .card h3{margin:0 0 5px; font-size:16px} .card.train h3{color:var(--train)} .card.tune h3{color:#7a530b} .card.rag h3{color:var(--rag)}
+  .card p{margin:0; font-size:14px; color:#33414f}
+  .rule{margin:16px 0 0; padding:14px 16px; background:#eef6f6; border:1px solid #bfe6e6; border-radius:10px; font-size:15.5px; color:#0e5a5a}
+  .rule b{color:#0a4747}
+
+  h2.sec{font-size:13px; text-transform:uppercase; letter-spacing:.1em; color:var(--brand); margin:34px 0 10px; font-weight:800}
+  .phase{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px; margin:14px 0}
+  .phase .tag{display:inline-block; font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:4px 11px; border-radius:999px; margin-bottom:8px}
+  .tag.gpu{background:var(--gpu-bg); color:var(--gpu)} .tag.cpu{background:var(--cpu-bg); color:var(--cpu)}
+  .phase h3{margin:0 0 8px; font-size:18px}
+  .nb{display:flex; gap:11px; align-items:flex-start; text-decoration:none; color:inherit; border:1px solid var(--line); border-radius:10px; padding:11px 13px; margin:8px 0; transition:box-shadow .15s, border-color .15s}
+  .nb:hover{box-shadow:0 2px 8px rgba(16,32,44,.08); border-color:var(--brand)}
+  .nb .n{flex:0 0 auto; width:30px; height:30px; border-radius:8px; background:var(--brand); color:#fff; font-weight:800; font-size:13px; display:grid; place-items:center}
+  .nb .t{font-size:15px; font-weight:700} .nb .d{font-size:13px; color:var(--muted); margin-top:1px}
+
+  .callout{border-radius:var(--radius); padding:16px 20px; margin:20px 0; border:1px solid; display:flex; gap:14px; align-items:flex-start}
+  .callout .ico{font-size:21px; flex:0 0 auto}
+  .callout h3{margin:0 0 4px; font-size:16px} .callout p{margin:0; font-size:15px}
+  .callout.tip{background:#e8f4fa; border-color:#bfe1f0; color:#0a3f57}
+  .callout.warn{background:#fdf3e3; border-color:#f0dcb4; color:#6b4204}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{text-align:left; padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:#eef3f7; font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)}
+  .path{background:#eef2f6; border-radius:6px; padding:1px 7px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13px; color:#0a3f57}
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:44px}
+  a{color:var(--brand)}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="kicker">NAIRR Workshop 2 · Lesson Flow</p>
+  <h1>Train vs. Tune vs. RAG</h1>
+  <p>Three ways to make an AI model useful for your topic — built on the same model and knowledge,
+     so you can see the difference for yourself.</p>
+</header>
+
+<div class="wrap">
+
+  <!-- BIG IDEA -->
+  <div class="bigidea">
+    <h2>The big idea</h2>
+    <div class="three">
+      <div class="card train"><h3>Train from scratch</h3><p>The model learns <b>everything</b> from your data, starting from zero. Powerful but needs huge data + compute.</p></div>
+      <div class="card tune"><h3>Fine-tune (LoRA)</h3><p>Take a model that already knows language and <b>adapt its behavior/format</b> cheaply.</p></div>
+      <div class="card rag"><h3>RAG</h3><p>Change <b>nothing</b> in the model — <b>retrieve relevant facts</b> and hand them to it at question time.</p></div>
+    </div>
+    <div class="rule">
+      <b>The rule to remember:</b> need new <b>facts</b> → <b>RAG</b> &nbsp;·&nbsp;
+      need new <b>behavior/format</b> → <b>fine-tune</b> &nbsp;·&nbsp;
+      need a brand-new <b>capability</b> → <b>train</b> (expensive — usually not worth it).
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="ico">🧪</div>
+    <div>
+      <h3>Why it's a fair fight</h3>
+      <p>All approaches use the <b>same base model</b>, the <b>same small knowledge corpus</b>, and the
+         <b>same test questions</b>. The corpus even contains a few <b>private, fictional facts</b> (a
+         made-up "Redlake University" policy) that no pretrained model could know — so you'll see exactly
+         where each method wins.</p>
+    </div>
+  </div>
+
+  <!-- PHASE 1 -->
+  <h2 class="sec">Phase 1 · Instructor builds (live, on a GPU)</h2>
+  <div class="phase">
+    <span class="tag gpu">GPU · e.g. Jetstream2 g5.xl</span>
+    <h3>Run and discuss these together</h3>
+    <p style="font-size:15px;color:#33414f;margin:0 0 6px">Walk the class through each approach as it runs.
+       This produces an <span class="path">artifacts/</span> folder (tiny trained model, LoRA adapter, RAG index).</p>
+    <a class="nb" href="../notebooks/00_Setup_and_Ingredients.ipynb"><div class="n">00</div><div><div class="t">Setup &amp; Shared Ingredients</div><div class="d">Base model, knowledge corpus, and the fixed test questions</div></div></a>
+    <a class="nb" href="../notebooks/01_Train_From_Scratch.ipynb"><div class="n">01</div><div><div class="t">Train From Scratch</div><div class="d">Build a tiny model from zero — deliberately weak, to show the cost</div></div></a>
+    <a class="nb" href="../notebooks/02_FineTune_LoRA.ipynb"><div class="n">02</div><div><div class="t">Fine-Tune (LoRA)</div><div class="d">Adapt the base model's behavior; produces a tiny shareable adapter</div></div></a>
+    <a class="nb" href="../notebooks/03_RAG.ipynb"><div class="n">03</div><div><div class="t">RAG</div><div class="d">No training — build a search index and retrieve facts at query time</div></div></a>
+  </div>
+
+  <!-- SHARE -->
+  <h2 class="sec">Phase 2 · Share the results</h2>
+  <div class="callout warn">
+    <div class="ico">📦</div>
+    <div>
+      <h3>Hand students the <span class="path">artifacts/</span> folder</h3>
+      <p>Share via a <b>Hugging Face repo</b> (set <span class="path">HF_REPO</span> in notebooks 00/02) or
+         by zipping the folder. <b>Keep weights off GitHub</b> — code lives in GitHub, model weights on
+         Hugging Face. Students place <span class="path">artifacts/</span> next to the notebooks.</p>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <h2 class="sec">Phase 3 · Students compare (on CPU)</h2>
+  <div class="phase">
+    <span class="tag cpu">CPU · a normal m3.quad is fine</span>
+    <h3>Run the head-to-head</h3>
+    <p style="font-size:15px;color:#33414f;margin:0 0 6px">Same questions, four setups — base, from-scratch,
+       fine-tuned, and RAG — side by side. Students see <i>which approach wins which kind of question, and why.</i></p>
+    <a class="nb" href="../notebooks/04_Compare.ipynb"><div class="n">04</div><div><div class="t">Compare Head-to-Head</div><div class="d">The payoff — read the four answers side by side and draw the conclusion</div></div></a>
+  </div>
+
+  <!-- WHAT THEY SEE -->
+  <h2 class="sec">What students should notice</h2>
+  <table>
+    <tr><th>Question type</th><th>Winner</th><th>Why</th></tr>
+    <tr><td>Private "Redlake" facts</td><td><b>RAG</b></td><td>Only RAG can see facts no model was trained on</td></tr>
+    <tr><td>Common definitions</td><td>Base / tuned / RAG</td><td>All know common knowledge</td></tr>
+    <tr><td>Specific format/style</td><td><b>Fine-tuned</b></td><td>It learned the house style</td></tr>
+    <tr><td>Anything, from-scratch model</td><td>(loses)</td><td>Too little data/compute — shows why we rarely train from scratch</td></tr>
+  </table>
+
+  <div class="callout tip">
+    <div class="ico">⏱️</div>
+    <div>
+      <h3>Rough timing</h3>
+      <p>~15 min concepts + setup (00) · ~10 min each for train/tune/RAG with discussion (01–03) ·
+         ~15–20 min comparing and debating (04). Trim by pre-running 01–03 and focusing the live time on 04.</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="ico">🛠️</div>
+    <div>
+      <h3>Instructor note (draft)</h3>
+      <p>These notebooks are a solid first draft but should be <b>test-run on the GPU instance before class</b>
+         (model/library versions and the Qwen chat template can need small tweaks) — the same shake-out we did
+         for Workshop 1's notebook. The student step (04) runs on CPU.</p>
+    </div>
+  </div>
+
+  <footer>
+    NAIRR Workshop Series · Workshop 2 — Train vs. Tune vs. RAG
+  <br>Part of the <b>AI Horizon</b> project · NSF #2528858 · CSUSB Center for Cyber and AI
+  </footer>
+
+</div>
+</body>
+</html>
