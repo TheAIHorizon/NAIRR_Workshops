@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notebook Ideas to Ask the AI to Build — AI × Cybersecurity</title>
+<style>
+  :root{
+    --ink:#16202c; --muted:#5b6b7b; --line:#e3e9ef; --bg:#f6f8fb;
+    --brand:#0b6e99; --brand-dk:#084d6b; --accent:#13a4a4;
+    --cpu:#1a7a4c; --cpu-bg:#e7f6ee; --gpu:#b4391a; --gpu-bg:#fdeee9; --star:#9a6b0e; --star-bg:#fdf3e0;
+    --code:#0f1b27; --code-ink:#e8eef4; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px; margin:0 auto; padding:0 20px 80px}
+
+  header{background:linear-gradient(135deg,var(--brand-dk),var(--brand) 55%,var(--accent)); color:#fff; padding:46px 20px 38px; text-align:center}
+  header .kicker{text-transform:uppercase; letter-spacing:.14em; font-size:13px; font-weight:700; opacity:.9; margin:0 0 10px}
+  header h1{margin:0 auto; max-width:680px; font-size:29px; line-height:1.22; font-weight:800}
+  header p{margin:13px auto 0; max-width:600px; font-size:16px; opacity:.95}
+
+  .lead{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:18px 22px; margin:24px 0}
+  .lead p{margin:0; font-size:16px}
+  .lead b{color:var(--brand-dk)}
+
+  h2.sec{display:flex; align-items:center; gap:10px; font-size:20px; margin:34px 0 8px}
+  h2.sec .pill{font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:4px 11px; border-radius:999px}
+  .pill.cpu{background:var(--cpu-bg); color:var(--cpu)} .pill.gpu{background:var(--gpu-bg); color:var(--gpu)} .pill.star{background:var(--star-bg); color:var(--star)}
+  .sec-note{color:var(--muted); font-size:14px; margin:0 0 12px}
+
+  .idea{background:#fff; border:1px solid var(--line); border-radius:12px; padding:15px 17px; margin:10px 0}
+  .idea h3{margin:0 0 3px; font-size:16.5px}
+  .idea p{margin:0 0 9px; font-size:15px; color:#33414f}
+  .ask{position:relative; background:var(--code); color:var(--code-ink); border-radius:9px;
+    padding:11px 46px 11px 14px; font:13.5px/1.5 ui-monospace,Menlo,Consolas,monospace; white-space:pre-wrap}
+  .ask::before{content:"Ask the AI:"; display:block; color:#86c7e0; font-weight:700; font-family:-apple-system,Segoe UI,sans-serif; font-size:12px; margin-bottom:4px; letter-spacing:.03em}
+  .copy{position:absolute; top:9px; right:9px; background:rgba(255,255,255,.12); color:#cfe6f2; border:1px solid rgba(255,255,255,.2); border-radius:7px; padding:4px 9px; font-size:12px; font-weight:600; cursor:pointer}
+  .copy:hover{background:rgba(255,255,255,.24)} .copy.done{background:#13a45f; color:#fff; border-color:#13a45f}
+
+  .footytip{background:var(--star-bg); border:1px solid #f0dcb4; border-radius:var(--radius); padding:16px 20px; margin:26px 0 0; color:#5e4d12; font-size:15.5px}
+  .footytip b{color:#7a530b}
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:40px}
+  a{color:var(--brand)}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="kicker">NAIRR Workshop · Build Your Own</p>
+  <h1>Notebook Ideas to Ask the AI to Build</h1>
+  <p>AI × cybersecurity projects you can have an AI assistant build for you and run on NAIRR /
+     Jetstream2 — for the classroom or your research.</p>
+</header>
+
+<div class="wrap">
+
+  <div class="lead">
+    <p>Each idea below comes with the <b>plain-English request</b> you'd type to your AI assistant
+       (see the <a href="090-setup-ai-coding-assistant.html">setup guide</a>). The pattern is always the same:
+       <b>describe it → the AI builds the notebook → you run it on NAIRR.</b> Green = runs on a basic CPU
+       instance; red = worth spinning up a GPU. Copy a prompt and try one!</p>
+  </div>
+
+  <!-- CPU -->
+  <h2 class="sec"><span class="pill cpu">CPU</span> Runs on a basic instance (no GPU needed)</h2>
+  <p class="sec-note">Classic machine learning and small models — anyone can run these on the default m3.quad.</p>
+
+  <div class="idea">
+    <h3>Phishing email detector</h3>
+    <p>Train a classifier on labeled emails, then paste one in to score it.</p>
+    <div class="ask"><button class="copy">Copy</button>Build a notebook that trains a phishing-email classifier on a public dataset and lets me paste an email to get a phishing probability, with the top words that influenced the score.</div>
+  </div>
+
+  <div class="idea">
+    <h3>Log anomaly detection</h3>
+    <p>Flag unusual auth/web-server log entries with an Isolation Forest.</p>
+    <div class="ask"><button class="copy">Copy</button>Make a notebook that loads sample auth logs and flags anomalous login events, with a chart of when they happened.</div>
+  </div>
+
+  <div class="idea">
+    <h3>Intrusion detection on a classic dataset</h3>
+    <p>Classify benign vs. attack traffic on NSL-KDD or UNSW-NB15.</p>
+    <div class="ask"><button class="copy">Copy</button>Build an intrusion-detection notebook on the NSL-KDD dataset comparing a few models and showing accuracy and a confusion matrix.</div>
+  </div>
+
+  <div class="idea">
+    <h3>Malware classification from static features</h3>
+    <p>Train on PE-header / feature datasets — no live malware involved.</p>
+    <div class="ask"><button class="copy">Copy</button>Create a notebook that classifies malware vs. benign from a static-features dataset and explains which features matter most.</div>
+  </div>
+
+  <div class="idea">
+    <h3>CVE triage &amp; clustering</h3>
+    <p>Group and prioritize vulnerability descriptions with TF-IDF + clustering.</p>
+    <div class="ask"><button class="copy">Copy</button>Build a notebook that takes CVE descriptions, clusters them by topic, and flags the ones that look high-severity.</div>
+  </div>
+
+  <div class="idea">
+    <h3>IOC / threat-intel extractor</h3>
+    <p>Pull IPs, hashes, domains, and CVEs out of unstructured reports.</p>
+    <div class="ask"><button class="copy">Copy</button>Make a notebook that extracts indicators of compromise from a pasted threat report into a clean table.</div>
+  </div>
+
+  <div class="idea">
+    <h3>Password security analysis (educational)</h3>
+    <p>Study leaked-password <i>patterns</i>, entropy, and estimated crack times to teach better policy.</p>
+    <div class="ask"><button class="copy">Copy</button>Build a notebook that analyzes common password patterns and estimates crack times to illustrate why length beats complexity.</div>
+  </div>
+
+  <div class="idea">
+    <h3>SOC log dashboard</h3>
+    <p>Parse logs, geolocate source IPs, and chart failed-login spikes over time.</p>
+    <div class="ask"><button class="copy">Copy</button>Create a notebook that turns a log file into a dashboard: failed logins over time, top source IPs, and a map.</div>
+  </div>
+
+  <!-- GPU -->
+  <h2 class="sec"><span class="pill gpu">GPU</span> Worth spinning up a g3 / g4 / g5</h2>
+  <p class="sec-note">Deep learning and language models — these show off what NAIRR's bigger resources unlock.</p>
+
+  <div class="idea">
+    <h3>Local LLM as a SOC analyst assistant</h3>
+    <p>Run a model that explains logs, summarizes CVEs, and drafts incident reports.</p>
+    <div class="ask"><button class="copy">Copy</button>Build a notebook that runs a local LLM as a security assistant — I paste a log and it explains what happened and suggests next steps.</div>
+  </div>
+
+  <div class="idea">
+    <h3>Fine-tune a transformer for security text</h3>
+    <p>Adapt a small transformer to classify malicious vs. benign messages.</p>
+    <div class="ask"><button class="copy">Copy</button>Fine-tune a small transformer to classify malicious vs. benign messages and report before/after accuracy.</div>
+  </div>
+
+  <div class="idea">
+    <h3>Prompt-injection &amp; jailbreak defense (educational)</h3>
+    <p>Demonstrate attacks on an LLM and the guardrails that stop them.</p>
+    <div class="ask"><button class="copy">Copy</button>Make a notebook that demonstrates prompt-injection against a local LLM and shows defensive techniques that block it.</div>
+  </div>
+
+  <div class="idea">
+    <h3>AI-generated text / deepfake-text detection</h3>
+    <p>Train or run a detector for machine-written content.</p>
+    <div class="ask"><button class="copy">Copy</button>Build a notebook that detects AI-generated vs. human-written text and shows where it's confident or unsure.</div>
+  </div>
+
+  <div class="idea">
+    <h3>Deep-learning intrusion detection</h3>
+    <p>An autoencoder/CNN that learns "normal" traffic and flags deviations.</p>
+    <div class="ask"><button class="copy">Copy</button>Create a notebook that trains an autoencoder on network traffic to detect anomalies, with a reconstruction-error chart.</div>
+  </div>
+
+  <div class="idea">
+    <h3>Malware-as-image classification</h3>
+    <p>Convert binaries to images and classify families with a CNN.</p>
+    <div class="ask"><button class="copy">Copy</button>Build a notebook that turns malware byte data into images and trains a CNN to classify families.</div>
+  </div>
+
+  <div class="idea">
+    <h3>Threat hunting with embeddings (semantic search / RAG)</h3>
+    <p>Embed past incidents to find similar ones, or do Q&amp;A over a security-docs corpus.</p>
+    <div class="ask"><button class="copy">Copy</button>Make a notebook that embeds a set of incident reports, lets me search them by meaning, and answers questions about them.</div>
+  </div>
+
+  <div class="idea">
+    <h3>Adversarial examples on an image model</h3>
+    <p>Show how tiny perturbations fool a classifier — AI security &amp; robustness.</p>
+    <div class="ask"><button class="copy">Copy</button>Build a notebook that creates adversarial examples that fool an image classifier and shows the before/after.</div>
+  </div>
+
+  <!-- AI HORIZON TIE-IN -->
+  <h2 class="sec"><span class="pill star">★</span> Tie-in to AI Horizon</h2>
+  <p class="sec-note">Directly on the theme of how AI is reshaping the cybersecurity workforce.</p>
+
+  <div class="idea">
+    <h3>"Which security tasks will AI automate?"</h3>
+    <p>Use an LLM to classify cybersecurity job tasks as created / replaced / augmented / human-driven.</p>
+    <div class="ask"><button class="copy">Copy</button>Build a notebook that takes a list of cybersecurity job tasks and uses an LLM to label each as likely automated, augmented, or human-driven, with reasoning.</div>
+  </div>
+
+  <div class="footytip">
+    <b>The point for your audience:</b> every one of these is <b>"describe it → the AI builds it → run it on NAIRR."</b>
+    You don't need to be a programmer — you need a good question. Pick one and ask the assistant to build it live.
+  </div>
+
+  <footer>
+    NAIRR Workshop Series · Workshop 01 — Notebook Ideas (Build Your Own)
+  <br>Part of the <b>AI Horizon</b> project · NSF #2528858 · CSUSB Center for Cyber and AI
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var c = btn.parentElement.cloneNode(true); c.querySelector('.copy').remove();
+      navigator.clipboard.writeText(c.textContent.trim()).then(function(){
+        btn.textContent='Copied!'; btn.classList.add('done');
+        setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('done'); },1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>

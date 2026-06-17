@@ -48,6 +48,7 @@ Open these HTML files in any web browser (double-click, or right-click → Open)
 | [`handouts/070-instructor-preflight-checklist.html`](handouts/070-instructor-preflight-checklist.html) | Instructors | Run before each workshop — interactive go/no-go checklist (allocation, students added, end-to-end test) |
 | [`handouts/080-instructor-notes.html`](handouts/080-instructor-notes.html) | Instructors | Talking points, teaching moments, and the capacity/disk rationale behind the lab setup |
 | [`handouts/090-setup-ai-coding-assistant.html`](handouts/090-setup-ai-coding-assistant.html) | Instructors | Set up VS Code + Claude Code to build your own **Jetstream2-ready** notebooks by describing what you want to teach |
+| [`handouts/095-notebook-ideas.html`](handouts/095-notebook-ideas.html) | Instructors | Menu of **AI × cybersecurity notebook ideas** to ask the AI to build (CPU & GPU), each with a copy-paste prompt |
 
 ## Local Setup
 
