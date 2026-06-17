@@ -118,6 +118,11 @@
   .flow{display:grid; gap:10px; margin:14px 0 0}
   .fstep{display:flex; gap:12px; align-items:flex-start; font-size:15.5px}
   .fn{flex:0 0 auto; width:27px; height:27px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; font-size:14px; display:grid; place-items:center}
+
+  /* "What's happening" teaching notes before commands */
+  .explain{border-left:3px solid var(--accent); background:#f7fbfc; border-radius:0 8px 8px 0;
+    padding:10px 14px; margin:14px 0 6px; font-size:14.5px; color:#33414f}
+  .explain b{color:var(--brand-dk)}
 </style>
 </head>
 <body>
@@ -262,9 +267,23 @@
   <!-- STEP 3 -->
   <div class="step">
     <div class="step-head"><div class="num">3</div><h2>Install Jupyter</h2></div>
-    <p>In the terminal, set up a clean Python environment and install Jupyter.
-       Copy and paste these commands (run them one block at a time):</p>
+    <p>In the terminal, we'll set up a clean Python environment and install Jupyter. Run these
+       <b>one block at a time</b> — here's what each one is doing and why:</p>
+
+    <div class="explain"><b>First, update the system and install our basic tools.</b> On Ubuntu,
+       <span class="path">apt</span> is the software manager (like an app store for the command line).
+       <span class="path">apt update</span> refreshes the catalog of available software, and
+       <span class="path">apt install</span> then installs Python's virtual-environment tools, pip, and
+       <span class="path">git</span>. <span class="path">sudo</span> means "run this with administrator rights,"
+       and <span class="path">-y</span> just answers "yes" to the install prompts for you.</div>
     <div class="code"><button class="copy">Copy</button>sudo apt update && sudo apt install -y python3-venv python3-pip git</div>
+
+    <div class="explain"><b>Next, create an isolated workspace and install Jupyter into it.</b>
+       <span class="path">python3 -m venv ~/llmdemo</span> creates a fresh, self-contained Python sandbox in a
+       folder called <span class="path">llmdemo</span>. <span class="path">source …/activate</span> switches you
+       into it (your prompt will show <span class="path">(llmdemo)</span>). Then
+       <span class="path">pip install jupyterlab</span> installs the notebook software <i>inside</i> that sandbox,
+       so it never collides with the rest of the system.</div>
     <div class="code"><button class="copy">Copy</button>python3 -m venv ~/llmdemo
 source ~/llmdemo/bin/activate
 pip install jupyterlab</div>
@@ -282,7 +301,11 @@ pip install jupyterlab</div>
   <!-- STEP 4 -->
   <div class="step">
     <div class="step-head"><div class="num">4</div><h2>Download the workshop & start Jupyter</h2></div>
-    <p>Still in the same terminal, download the workshop materials and launch Jupyter:</p>
+    <p>Still in the same terminal, we'll download the workshop and start Jupyter — here's what each line does:</p>
+    <div class="explain"><b>Copy the workshop onto your instance, move into it, and launch Jupyter.</b>
+       <span class="path">git clone …</span> downloads ("clones") the workshop's files from GitHub onto your cloud
+       machine. <span class="path">cd …/notebooks</span> moves you into the notebooks folder.
+       <span class="path">jupyter lab</span> starts the JupyterLab notebook interface and opens it in the browser.</div>
     <div class="code"><button class="copy">Copy</button>git clone https://github.com/TheAIHorizon/NAIRR_Workshops.git
 cd NAIRR_Workshops/workshops/01-jetstream-jupyter/notebooks
 jupyter lab</div>
