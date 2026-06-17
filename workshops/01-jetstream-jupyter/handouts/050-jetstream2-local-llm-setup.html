@@ -232,9 +232,20 @@
       <li>Flavor (size): <b>m3.quad</b> &nbsp;<span class="sub">(4 CPUs, 15&nbsp;GB RAM — plenty for this demo)</span></li>
       <li>If asked which <b>allocation</b> to use, pick your instructor's project</li>
       <li>Leave the disk at the <b>default 20&nbsp;GB</b> — <b>no volume needed</b></li>
+      <li><b>Enable the Web Desktop</b> — turn ON the <b>"Enable web desktop"</b> option
+          <span class="sub">(you may need to expand <b>Advanced Options / Customize</b> to see it)</span></li>
       <li>Click <b>Create</b></li>
     </ul>
     <p class="sub">Wait until the instance status shows <b>Ready</b> (usually 2–5 minutes). ☕</p>
+    <div class="callout warn" style="margin:16px 0 4px">
+      <div class="ico">🖥️</div>
+      <div>
+        <h3>Turn on the Web Desktop NOW — you can't add it later</h3>
+        <p>The <b>Web Desktop must be enabled while you're creating the instance.</b> If you skip it,
+           the "Web Desktop" option won't appear afterward and you'd have to delete and rebuild. So
+           before clicking <b>Create</b>, double-check that <b>"Enable web desktop"</b> is on.</p>
+      </div>
+    </div>
     <div class="callout tip" style="margin:16px 0 4px">
       <div class="ico">💾</div>
       <div>
@@ -249,7 +260,7 @@
   <!-- STEP 2 -->
   <div class="step">
     <div class="step-head"><div class="num">2</div><h2>Open the Web Desktop</h2></div>
-    <p>On your instance's card, choose:</p>
+    <p>Because you enabled it at launch, your instance now offers it. On the instance's card, choose:</p>
     <p><b>Interactions → Web Desktop</b></p>
     <p>This opens a full Linux desktop <i>inside your browser</i>, running on the instance.
        Once it loads, open the <b>Terminal</b> application from the desktop.</p>
