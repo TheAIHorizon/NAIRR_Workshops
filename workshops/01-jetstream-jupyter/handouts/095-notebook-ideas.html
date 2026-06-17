@@ -54,6 +54,20 @@
   .footytip b{color:#7a530b}
   footer{text-align:center; color:var(--muted); font-size:13px; margin-top:40px}
   a{color:var(--brand)}
+
+  /* Best practices + exemplar */
+  .bp{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:18px 22px; margin:22px 0}
+  .bp h2{margin:0 0 8px; font-size:19px; color:var(--brand-dk)}
+  .bp ul{margin:0; padding-left:20px} .bp li{margin:0 0 7px; font-size:15px}
+  .cmp{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0}
+  @media(max-width:680px){.cmp{grid-template-columns:1fr}}
+  .col{border-radius:12px; padding:14px 16px}
+  .col.bad{background:#fdeee9; border:1px solid #f3c5b8}
+  .col.good{background:#e7f6ee; border:1px solid #bfe4cf}
+  .col h4{margin:0 0 7px; font-size:13px; text-transform:uppercase; letter-spacing:.04em}
+  .col.bad h4{color:#b4391a} .col.good h4{color:#1a7a4c}
+  .col .q{font:13px/1.5 ui-monospace,Menlo,Consolas,monospace; background:rgba(255,255,255,.75); border-radius:7px; padding:9px 11px; margin:0 0 8px; white-space:pre-wrap}
+  .col .why{margin:0; font-size:13px; color:#444}
 </style>
 </head>
 <body>
@@ -68,12 +82,37 @@
 <div class="wrap">
 
   <div class="lead">
-    <p><b>Weak prompts get weak notebooks.</b> So every idea here plugs into one strong prompt built with
-       <b>CRAFT</b> — Context, Role, Action, Format, Tone — plus one rule that does a lot of work:
-       <b>the AI interviews you first.</b></p>
-    <p>That last part matters because we can't guess your <b>course, class size, students' year/level, or
-       their coding background</b> — and those change everything. Instead of assuming, the prompt tells the
-       AI to <b>ask you those questions and wait for your answers</b> before building. You stay in control.</p>
+    <p><b>This page is also a short lesson in prompting.</b> The single biggest factor in whether an AI builds
+       something that <b>works on the first try</b> is the quality of your request. Below is a reusable prompt
+       built with <b>CRAFT</b> — Context, Role, Action, Format, Tone — that bakes in the habits that make
+       results reliable.</p>
+  </div>
+
+  <!-- BEST PRACTICES -->
+  <div class="bp">
+    <h2>6 habits of a prompt that works the first time</h2>
+    <ul>
+      <li><b>Give it a role and context.</b> "You are an expert Python educator… I teach on Jetstream2" beats a cold request.</li>
+      <li><b>Be specific about the output and where it runs.</b> One self-contained notebook, installs first, runs on a fresh Jetstream2 instance.</li>
+      <li><b>Define "done."</b> Say it must <b>run end-to-end with no errors</b> and use <b>reliable public data</b> (and name a fallback if a source might be down).</li>
+      <li><b>Let it ask, don't make it guess.</b> Tell it to <b>interview you first</b> — your class, size, level, and background — since those change everything.</li>
+      <li><b>Ask it to state its assumptions</b> before coding, so you can correct course early.</li>
+      <li><b>Iterate.</b> It's a conversation: "make it simpler," "add a chart," "explain that error." The first draft is a starting point.</li>
+    </ul>
+  </div>
+
+  <!-- EXEMPLAR -->
+  <div class="cmp">
+    <div class="col bad">
+      <h4>✗ Weak prompt</h4>
+      <div class="q">make me a phishing detector notebook in python</div>
+      <p class="why">The AI has to guess everything — the students' level, where it runs, the dataset (which may 404), whether to explain anything. You'll likely get something that doesn't run on Jetstream2 and isn't teachable.</p>
+    </div>
+    <div class="col good">
+      <h4>✓ Strong prompt (CRAFT)</h4>
+      <div class="q">Context + Role + a specific Action + Format (self-contained, runs on Jetstream2, no errors, reliable data) + Tone — and "interview me first."</div>
+      <p class="why">The AI knows who it's for, what to produce, where it runs, and what "done" means — and it asks about your class before writing a line. Far more likely to work and to teach well. (Full template below.)</p>
+    </div>
   </div>
 
   <!-- THE CRAFT TEMPLATE -->
@@ -83,11 +122,17 @@
       <span>C — Context</span><span>R — Role</span><span>A — Action</span><span>F — Format</span><span>T — Tone</span>
     </div>
     <div class="tplbox"><button class="copy">Copy</button>Context: I'm an educator using NAIRR's Jetstream2 (a cloud Jupyter environment) to teach AI for cybersecurity, and I'm not necessarily a strong programmer.
-Role: Act as an expert Python educator and instructional designer who writes clear, well-commented teaching notebooks.
+Role: Act as an expert Python educator and instructional designer who writes clear, well-commented teaching notebooks that run correctly the first time.
 Action: [PASTE ONE OF THE ACTIONS BELOW]
-Format: Produce ONE self-contained Jupyter notebook for a fresh Jetstream2 instance — put all installs in the first cells, add a plain-language markdown explanation before every code cell, auto-detect whether a GPU is present and adapt, keep any models small enough for a NAIRR allocation, and finish with a hands-on "your turn" cell. Tell me if it needs a GPU instance.
+Format: Produce ONE self-contained Jupyter notebook for a fresh Jetstream2 instance:
+- put all pip installs in the first cell;
+- use only well-known public datasets/models, and if one might be unavailable pick a reliable alternative and say which;
+- auto-detect whether a GPU is present and adapt; keep models small enough for a NAIRR allocation;
+- add a plain-language markdown explanation before every code cell;
+- it must run end-to-end with NO errors, and handle a missing file or download gracefully;
+- finish with a hands-on "your turn" cell. Tell me if it needs a GPU instance.
 Tone: Friendly and beginner-accessible; define any jargon in plain words.
-Before writing ANY code, interview me first: ask what course this is for, how many students, their year/level, and their prior coding and machine-learning experience — then wait for my answers before building.</div>
+Before writing ANY code: (1) interview me — ask what course this is for, how many students, their year/level, and their prior coding and machine-learning experience; (2) briefly state the assumptions you'll make. Then wait for my answers before building.</div>
   </div>
 
   <div class="lead">
