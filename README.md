@@ -16,7 +16,7 @@ without renumbering. The order also forms a **learning path** for working with L
 
 | # | Topic | Folder | The question it answers |
 |---|-------|--------|--------------------------|
-| 010 | Leveraging NAIRR + local LLM frameworks | [`workshops/01-jetstream-jupyter/`](workshops/01-jetstream-jupyter/) | How do I run a model on NAIRR, and which engine? |
+| 010 | Leveraging NAIRR + local LLM frameworks | [`workshops/010-jetstream-jupyter/`](workshops/010-jetstream-jupyter/) | How do I run a model on NAIRR, and which engine? |
 | 020 | Quantization: size vs. speed vs. quality | [`workshops/020-quantization/`](workshops/020-quantization/) | How small/precise a model do I need? |
 | 030 | Train vs. Tune vs. RAG | [`workshops/030-train-tune-rag/`](workshops/030-train-tune-rag/) | How do I make a model do *my* task? |
 
@@ -29,7 +29,7 @@ NAIRR_Workshops/
 ├── README.md
 ├── Notes.md                    # working notes, reference links
 ├── workshops/                  # per-workshop materials (numbered in tens)
-│   ├── 01-jetstream-jupyter/  # run a model on NAIRR + compare engines
+│   ├── 010-jetstream-jupyter/  # run a model on NAIRR + compare engines
 │   │   ├── README.md
 │   │   ├── notebooks/          # Jupyter notebooks
 │   │   └── handouts/           # HTML guides
@@ -44,7 +44,7 @@ NAIRR_Workshops/
 
 ## Attribution
 
-Workshop 010 materials are based on [MattyTheBoi/NAIRR_Intro](https://github.com/MattyTheBoi/NAIRR_Intro) (Oakland University & WPI, NAIRR Workshop Series 2026), used with permission. See [`workshops/01-jetstream-jupyter/NOTICE.md`](workshops/01-jetstream-jupyter/NOTICE.md) for details. Workshops 020+ are developed as part of **AI Horizon** (NSF #2528858, CSUSB Center for Cyber and AI).
+Workshop 010 materials are based on [MattyTheBoi/NAIRR_Intro](https://github.com/MattyTheBoi/NAIRR_Intro) (Oakland University & WPI, NAIRR Workshop Series 2026), used with permission. See [`workshops/010-jetstream-jupyter/NOTICE.md`](workshops/010-jetstream-jupyter/NOTICE.md) for details. Workshops 020+ are developed as part of **AI Horizon** (NSF #2528858, CSUSB Center for Cyber and AI).
 
 ## References
 

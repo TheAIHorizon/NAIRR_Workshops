@@ -54,7 +54,7 @@ Open these HTML files in any web browser (double-click, or right-click → Open)
 
 ```bash
 git clone https://github.com/TheAIHorizon/NAIRR_Workshops.git
-cd NAIRR_Workshops/workshops/01-jetstream-jupyter
+cd NAIRR_Workshops/workshops/010-jetstream-jupyter
 python -m venv nairr-workshop
 ```
 

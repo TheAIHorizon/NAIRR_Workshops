@@ -50,7 +50,7 @@ pip install -r requirements.txt
 ```
 
 Then open the notebooks in JupyterLab. On Jetstream2, see Workshop 1's
-[setup guide](../01-jetstream-jupyter/handouts/050-jetstream2-local-llm-setup.html) for launching an
+[setup guide](../010-jetstream-jupyter/handouts/050-jetstream2-local-llm-setup.html) for launching an
 instance.
 
 ## Editing the notebooks
