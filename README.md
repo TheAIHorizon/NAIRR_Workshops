@@ -19,8 +19,9 @@ without renumbering. The order also forms a **learning path** for working with L
 | 010 | Leveraging NAIRR + local LLM frameworks | [`workshops/010-jetstream-jupyter/`](workshops/010-jetstream-jupyter/) | How do I run a model on NAIRR, and which engine? |
 | 020 | Quantization: size vs. speed vs. quality | [`workshops/020-quantization/`](workshops/020-quantization/) | How small/precise a model do I need? |
 | 030 | Train vs. Tune vs. RAG | [`workshops/030-train-tune-rag/`](workshops/030-train-tune-rag/) | How do I make a model do *my* task? |
+| 040 | GPU showcase: throughput + a research benchmark | [`workshops/040-gpu-showcase/`](workshops/040-gpu-showcase/) | What does a big GPU (H100) unlock for research? |
 
-*More (serving at scale, evaluation, agents/tools …) will be added with the next numbers as the series grows.*
+*More (agents/tools, multimodal …) will be added with the next numbers as the series grows.*
 
 ## Repository Layout
 
@@ -34,7 +35,8 @@ NAIRR_Workshops/
 │   │   ├── notebooks/          # Jupyter notebooks
 │   │   └── handouts/           # HTML guides
 │   ├── 020-quantization/       # same model at Q4/Q6/Q8/F16
-│   └── 030-train-tune-rag/     # train vs fine-tune vs RAG
+│   ├── 030-train-tune-rag/     # train vs fine-tune vs RAG
+│   └── 040-gpu-showcase/       # H100: throughput + a research benchmark
 ├── shared/                     # cross-workshop material
 │   ├── setup-guides/           # Jetstream onboarding, JupyterHub access
 │   ├── troubleshooting/
