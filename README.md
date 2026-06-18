@@ -11,11 +11,16 @@ The initial workshop series focuses on **Jetstream2** and **Jupyter notebooks** 
 
 ## Workshops
 
-| # | Date | Topic | Folder |
-|---|------|-------|--------|
-| 1 | 2026-03-21 | Leveraging NAIRR for Research (intro to Jetstream2 + Jupyter) | [`workshops/01-jetstream-jupyter/`](workshops/01-jetstream-jupyter/) |
-| 2 | 2026-04-04 | TBD | [`workshops/02-tbd-2026-04-04/`](workshops/02-tbd-2026-04-04/) |
-| 3 | 2026-04-18 | TBD | [`workshops/03-tbd-2026-04-18/`](workshops/03-tbd-2026-04-18/) |
+Workshops are numbered in tens (010, 020, 030 …) so a new one can be slotted in between (e.g. 015)
+without renumbering. The order also forms a **learning path** for working with LLMs:
+
+| # | Topic | Folder | The question it answers |
+|---|-------|--------|--------------------------|
+| 010 | Leveraging NAIRR + local LLM frameworks | [`workshops/01-jetstream-jupyter/`](workshops/01-jetstream-jupyter/) | How do I run a model on NAIRR, and which engine? |
+| 020 | Quantization: size vs. speed vs. quality | [`workshops/020-quantization/`](workshops/020-quantization/) | How small/precise a model do I need? |
+| 030 | Train vs. Tune vs. RAG | [`workshops/030-train-tune-rag/`](workshops/030-train-tune-rag/) | How do I make a model do *my* task? |
+
+*More (serving at scale, evaluation, agents/tools …) will be added with the next numbers as the series grows.*
 
 ## Repository Layout
 
@@ -23,17 +28,13 @@ The initial workshop series focuses on **Jetstream2** and **Jupyter notebooks** 
 NAIRR_Workshops/
 ├── README.md
 ├── Notes.md                    # working notes, reference links
-├── workshops/                  # per-workshop materials
-│   ├── 01-jetstream-jupyter/
+├── workshops/                  # per-workshop materials (numbered in tens)
+│   ├── 01-jetstream-jupyter/  # run a model on NAIRR + compare engines
 │   │   ├── README.md
-│   │   ├── NOTICE.md           # attribution for imported material
-│   │   ├── requirements.txt
-│   │   ├── slides/             # PDF decks
 │   │   ├── notebooks/          # Jupyter notebooks
-│   │   ├── exercises/
-│   │   └── handouts/
-│   ├── 02-tbd-2026-04-04/
-│   └── 03-tbd-2026-04-18/
+│   │   └── handouts/           # HTML guides
+│   ├── 020-quantization/       # same model at Q4/Q6/Q8/F16
+│   └── 030-train-tune-rag/     # train vs fine-tune vs RAG
 ├── shared/                     # cross-workshop material
 │   ├── setup-guides/           # Jetstream onboarding, JupyterHub access
 │   ├── troubleshooting/
@@ -43,7 +44,7 @@ NAIRR_Workshops/
 
 ## Attribution
 
-Workshop 1 materials are based on [MattyTheBoi/NAIRR_Intro](https://github.com/MattyTheBoi/NAIRR_Intro) (Oakland University & WPI, NAIRR Workshop Series 2026), used with permission. See [`workshops/01-jetstream-jupyter/NOTICE.md`](workshops/01-jetstream-jupyter/NOTICE.md) for details.
+Workshop 010 materials are based on [MattyTheBoi/NAIRR_Intro](https://github.com/MattyTheBoi/NAIRR_Intro) (Oakland University & WPI, NAIRR Workshop Series 2026), used with permission. See [`workshops/01-jetstream-jupyter/NOTICE.md`](workshops/01-jetstream-jupyter/NOTICE.md) for details. Workshops 020+ are developed as part of **AI Horizon** (NSF #2528858, CSUSB Center for Cyber and AI).
 
 ## References
 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantization — Lesson Flow</title>
+<style>
+  :root{
+    --ink:#16202c; --muted:#5b6b7b; --line:#e3e9ef; --bg:#f6f8fb;
+    --brand:#0b6e99; --brand-dk:#084d6b; --accent:#13a4a4; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:840px; margin:0 auto; padding:0 20px 80px}
+  header{background:linear-gradient(135deg,var(--brand-dk),var(--brand) 55%,var(--accent)); color:#fff; padding:46px 20px 38px; text-align:center}
+  header .kicker{text-transform:uppercase; letter-spacing:.14em; font-size:13px; font-weight:700; opacity:.9; margin:0 0 10px}
+  header h1{margin:0 auto; max-width:680px; font-size:29px; line-height:1.22; font-weight:800}
+  header p{margin:13px auto 0; max-width:600px; font-size:16px; opacity:.95}
+  .bigidea{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:22px 24px; margin:24px 0}
+  .bigidea h2{margin:0 0 10px; font-size:21px; color:var(--brand-dk)}
+  table{width:100%; border-collapse:collapse; margin:12px 0; font-size:14.5px}
+  th,td{text-align:left; padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:#eef3f7; font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)}
+  h2.sec{font-size:13px; text-transform:uppercase; letter-spacing:.1em; color:var(--brand); margin:34px 0 10px; font-weight:800}
+  .nb{display:flex; gap:11px; align-items:flex-start; text-decoration:none; color:inherit; border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin:8px 0; transition:box-shadow .15s,border-color .15s}
+  .nb:hover{box-shadow:0 2px 8px rgba(16,32,44,.08); border-color:var(--brand)}
+  .nb .n{flex:0 0 auto; width:32px; height:32px; border-radius:8px; background:var(--brand); color:#fff; font-weight:800; font-size:13px; display:grid; place-items:center}
+  .nb .t{font-size:15px; font-weight:700} .nb .d{font-size:13px; color:var(--muted); margin-top:1px}
+  .callout{border-radius:var(--radius); padding:16px 20px; margin:20px 0; border:1px solid; display:flex; gap:14px; align-items:flex-start}
+  .callout .ico{font-size:21px; flex:0 0 auto}
+  .callout h3{margin:0 0 4px; font-size:16px} .callout p{margin:0; font-size:15px}
+  .callout.tip{background:#e8f4fa; border-color:#bfe1f0; color:#0a3f57}
+  .callout.warn{background:#fdf3e3; border-color:#f0dcb4; color:#6b4204}
+  .path{background:#eef2f6; border-radius:6px; padding:1px 7px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13px; color:#0a3f57}
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:44px}
+  a{color:var(--brand)}
+</style>
+</head>
+<body>
+<header>
+  <p class="kicker">NAIRR Workshop 020 · Lesson Flow</p>
+  <h1>Quantization: Size vs. Speed vs. Quality</h1>
+  <p>Run one model at four precisions and find the sweet spot between "small and fast" and "best answers."</p>
+</header>
+<div class="wrap">
+
+  <div class="bigidea">
+    <h2>The big idea</h2>
+    <p>Quantization stores a model's numbers at <b>lower precision</b>. Lower precision means
+       <b>less disk, less memory, and faster</b> generation — but past a point, <b>answer quality drops.</b>
+       We run the <b>same Qwen3 model</b> at four levels and measure exactly where that trade-off lands.</p>
+    <table>
+      <tr><th>Level</th><th>~Size (1.7B)</th><th>Role</th></tr>
+      <tr><td><b>Q4_K_M</b></td><td>~1.1 GB</td><td>Smallest / fastest — the popular default</td></tr>
+      <tr><td><b>Q6_K</b></td><td>~1.5 GB</td><td>A middle ground</td></tr>
+      <tr><td><b>Q8_0</b></td><td>~1.8 GB</td><td>Near-full quality</td></tr>
+      <tr><td><b>F16</b></td><td>~3.4 GB</td><td>Full precision — the reference</td></tr>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <div class="ico">🧪</div>
+    <div>
+      <h3>Why it's a fair test</h3>
+      <p>Same model, same prompts, one precision at a time. We load each quant, benchmark it, then unload
+         before the next — so the only thing changing is the precision.</p>
+    </div>
+  </div>
+
+  <h2 class="sec">Run it</h2>
+  <a class="nb" href="../notebooks/010_Quantization.ipynb"><div class="n">010</div><div><div class="t">Quantization Comparison</div><div class="d">Loads each quant, benchmarks the same prompts, compares size / speed / quality</div></div></a>
+
+  <div class="callout tip">
+    <div class="ico">⚙️</div>
+    <div>
+      <h3>Two switches in the config cell</h3>
+      <p><b>MODEL_SIZE</b>: <span class="path">"1.7b"</span> (default — all four quants fit a 20 GB disk) or
+         <span class="path">"8b"</span> (a realistic local model; the notebook then <b>deletes each file
+         after testing</b> to reclaim disk). &nbsp; <b>TEST_MODE</b>: <span class="path">single</span> /
+         <span class="path">simple</span> / <span class="path">complete</span> for run length.</p>
+    </div>
+  </div>
+
+  <h2 class="sec">What to look for</h2>
+  <table>
+    <tr><th>Dimension</th><th>Expectation</th></tr>
+    <tr><td><b>Size &amp; speed</b></td><td>Q4 ≈ ⅓ of F16's size and noticeably faster</td></tr>
+    <tr><td><b>Everyday prompts</b></td><td>All precisions answer about the same</td></tr>
+    <tr><td><b>Hard prompts</b> (reasoning, code, strict format)</td><td>Where lower quants start to drift or break</td></tr>
+    <tr><td><b>Sweet spot</b></td><td>Usually <b>Q4_K_M / Q6_K</b> — most of the quality, a fraction of the size</td></tr>
+  </table>
+
+  <div class="callout warn">
+    <div class="ico">💻</div>
+    <div>
+      <h3>Where it runs</h3>
+      <p>A regular <b>CPU</b> instance (e.g. <span class="path">m3.quad</span>) is fine. Need to launch one?
+         See the setup guide in <a href="../../010-jetstream-jupyter/handouts/050-jetstream2-local-llm-setup.html">Workshop 010</a>.</p>
+    </div>
+  </div>
+
+  <footer>
+    NAIRR Workshop Series · Workshop 020 — Quantization
+  <br>Part of the <b>AI Horizon</b> project · NSF #2528858 · CSUSB Center for Cyber and AI
+  </footer>
+</div>
+</body>
+</html>

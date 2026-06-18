@@ -45,7 +45,7 @@ flow with links and timing.
 
 ```bash
 git clone https://github.com/TheAIHorizon/NAIRR_Workshops.git
-cd NAIRR_Workshops/workshops/02-train-tune-rag
+cd NAIRR_Workshops/workshops/030-train-tune-rag
 pip install -r requirements.txt
 ```
 
