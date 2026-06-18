@@ -30,7 +30,11 @@ instrument.** Two parts:
 
 **Status: DRAFT** — test‑run on the GPU before presenting (vLLM/dataset versions can need small tweaks).""")
 
-md(r"""## 1. Setup (needs a GPU)""")
+md(r"""## 1. Setup (needs a GPU)
+
+> **Heads‑up:** `pip install vllm` is a **large download** (PyTorch + CUDA) — give it a few minutes. Also,
+> vLLM doesn't always release GPU memory cleanly between models, so **if loading the second model later
+> fails with an out‑of‑memory error, just do Kernel → Restart and run one model at a time.**""")
 code(r'''import sys, subprocess, torch
 assert torch.cuda.is_available(), "No GPU detected — run this on a full-GPU instance (g3.xl / g4.xl / g5.xl)."
 print("GPU:", torch.cuda.get_device_name(0))
@@ -112,7 +116,10 @@ del llm; gc.collect(); torch.cuda.empty_cache()
 with contextlib.suppress(Exception):
     from vllm.distributed.parallel_state import destroy_model_parallel; destroy_model_parallel()''')
 
-md(r"""### Evaluate the smaller model — does size matter?""")
+md(r"""### Evaluate the smaller model — does size matter?
+
+> If this cell errors while loading the model (GPU memory not fully freed by vLLM), **Kernel → Restart**
+> and run just one model — each loads fine in a fresh kernel.""")
 code(r'''llm_s = LLM(model=SMALL_MODEL, dtype="bfloat16", gpu_memory_utilization=0.90,
             max_model_len=4096, enforce_eager=True)
 tok = AutoTokenizer.from_pretrained(SMALL_MODEL)

@@ -28,6 +28,11 @@ cd NAIRR_Workshops/workshops/040-gpu-showcase
 pip install -r requirements.txt
 ```
 
+## Notes for running
+- **`pip install vllm` is a large download** (PyTorch + CUDA) — allow a few minutes.
+- vLLM doesn't always free GPU memory cleanly between models, so **if loading the second model errors
+  (out‑of‑memory), Kernel → Restart and run one model at a time.**
+
 ## ⚠️ Cost
 A full GPU is the **most SU‑expensive** flavor. Run the demo, then **shelve** (frees quota, stops SU
 charges, keeps the disk) or **delete** the instance. Don't leave it running idle.
