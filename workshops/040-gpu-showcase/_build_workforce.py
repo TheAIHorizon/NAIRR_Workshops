@@ -120,11 +120,18 @@ code(r'''def chat_template(msgs):
         return tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
 
 def prompt_for(r):
-    msg = ("You are a workforce analyst studying how AI affects jobs. For the role below, answer in "
-           "EXACTLY this one-line format:\n"
+    msg = ("You are a workforce analyst studying how AI affects jobs. Classify the CORE of the role below "
+           "into exactly one category, using these definitions:\n"
+           "- AUTOMATE: the core work is routine, repetitive, or rule-based and AI can already do most of "
+           "it end-to-end (e.g. tier-1 alert triage, log/report generation, data entry, basic dashboards).\n"
+           "- AUGMENT: AI speeds the work up a lot but a skilled human stays in the loop for judgment, "
+           "interpretation, and decisions (most analyst and engineering roles).\n"
+           "- HUMAN: the core depends on leadership, accountability, stakeholder trust, negotiation, or "
+           "novel open-ended problem-solving that AI cannot own (e.g. CISO, principal architect, IR lead).\n"
+           "Decide on the actual role, not the field. Do NOT default to AUGMENT — use AUTOMATE and HUMAN "
+           "whenever the definition fits. Answer in EXACTLY this one-line format and nothing else:\n"
            "IMPACT: <AUTOMATE|AUGMENT|HUMAN> | SKILLS: skill1; skill2; skill3\n"
-           "IMPACT = whether AI is most likely to automate, augment, or leave human-driven the CORE of "
-           "this role. SKILLS = the 3 most AI-exposed skills.\n\n"
+           "(SKILLS = the 3 most AI-exposed skills for this role.)\n\n"
            f"Role title: {title_of(r)}\nListed skills: {skills_of(r)}\n\nAnswer:")
     return chat_template([{"role":"user","content":msg}])
 
