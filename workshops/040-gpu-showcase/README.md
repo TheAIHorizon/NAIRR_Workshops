@@ -23,14 +23,17 @@ Open [`handouts/010-lesson-flow.html`](handouts/010-lesson-flow.html).
 | # | Notebook | What it does |
 |---|----------|--------------|
 | 010 | [`notebooks/010_H100_Research_Showcase.ipynb`](notebooks/010_H100_Research_Showcase.ipynb) | Warm‑up: throughput + MMLU benchmark (1.7B vs 8B). Runs on any full GPU. |
-| 020 | [`notebooks/020_AI_Workforce_Analysis.ipynb`](notebooks/020_AI_Workforce_Analysis.ipynb) | **Flagship** — a **32B model** (~64 GB VRAM) reads real job‑postings data and forecasts AI's impact on skills. The "you can't do this on a laptop" demo. |
+| 020 | [`notebooks/020_AI_Workforce_Analysis.ipynb`](notebooks/020_AI_Workforce_Analysis.ipynb) | **Flagship** — a **4‑bit 70B model** (~40 GB VRAM) reads real job‑postings data and forecasts AI's impact on skills. The "you can't do this on a laptop" demo. |
 
-**For the headline demo, run 020.** It loads a 32‑billion‑parameter model that uses ~64 GB of GPU memory
-(shown live via `nvidia-smi`) and analyzes a real dataset — the clearest proof of why you need a big GPU.
-Note: the 32B model is a **~64 GB download**, so **pre‑warm and shelve** before a live session. Run it headless with:
+**For the headline demo, run 020.** It loads a **70‑billion‑parameter** model in 4‑bit (`unsloth/Qwen2.5-72B-Instruct-bnb-4bit`)
+that uses ~40 GB of GPU memory (shown live via `nvidia-smi`) and analyzes a real dataset — the clearest
+proof of why you need a big GPU. Notes: the model is a **~40 GB download**, and the g5.xl root disk is only
+**60 GB**, so the notebook **frees the cached small models first**. For a live session, **pre‑warm and shelve.**
+Run it headless with:
 ```bash
 bash run_headless.sh notebooks/020_AI_Workforce_Analysis.ipynb
 ```
+*(Smaller/faster test option in the config cell: `unsloth/Qwen2.5-32B-Instruct-bnb-4bit`.)*
 
 ## Requirements
 A **full GPU** instance (it asserts `torch.cuda.is_available()`). Set up Jupyter as in

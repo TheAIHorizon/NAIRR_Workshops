@@ -28,19 +28,30 @@ md(r"""## 1. Setup""")
 code(r'''import sys, subprocess, os
 def pip(*a): subprocess.run([sys.executable,"-m","pip","install","-q",*a], check=True)
 print("Installing libraries ...")
-pip("torch", "transformers", "accelerate", "datasets", "pandas", "matplotlib")
+pip("torch", "transformers", "accelerate", "datasets", "pandas", "matplotlib", "bitsandbytes")
 import torch
 assert torch.cuda.is_available(), "Run this on a full-GPU instance (g5.xl / H100)."
 print("GPU:", torch.cuda.get_device_name(0))''')
 
 code(r'''# ============================ CONFIG ============================
-MODEL       = "Qwen/Qwen3-32B"   # ~64 GB VRAM — the "needs a big GPU" model.
-                                  # For a quick test, use "Qwen/Qwen3-8B" (smaller download).
+MODEL       = "unsloth/Qwen2.5-72B-Instruct-bnb-4bit"  # a 70B model in 4-bit: ~40 GB download/VRAM
+                                  # Smaller/faster test option: "unsloth/Qwen2.5-32B-Instruct-bnb-4bit"
 DATASET     = "lukebarousse/data_jobs"   # real tech/data job postings (titles + skills)
 N_POSTINGS  = 120                # how many postings the model analyzes (scale on purpose)
 # ===============================================================
 import time, re, gc
 print("Model:", MODEL, "| dataset:", DATASET, "| postings:", N_POSTINGS)''')
+
+md(r"""## 1b. Free disk space first
+The 4‑bit 70B is a ~40 GB download and the root disk is only 60 GB, so we delete smaller models cached
+from earlier runs to make room.""")
+code(r'''import shutil
+from pathlib import Path
+hub = Path.home()/".cache"/"huggingface"/"hub"
+for m in ["models--Qwen--Qwen3-8B","models--Qwen--Qwen3-1.7B","models--Qwen--Qwen3-1.7B-GGUF"]:
+    p = hub/m
+    if p.exists(): shutil.rmtree(p, ignore_errors=True); print("freed", m)
+print(f"Free disk: {shutil.disk_usage('/').free/1e9:.0f} GB")''')
 
 md(r"""## 2. The "look at the GPU" moment
 We check GPU memory **before** and **after** loading the model. A 32B model alone consumes ~64 GB —
@@ -56,9 +67,8 @@ u,t = gpu_mem(); print(f"GPU memory BEFORE loading the model: {u:,} / {t:,} MiB 
 code(r'''from transformers import AutoTokenizer, AutoModelForCausalLM
 tok = AutoTokenizer.from_pretrained(MODEL, padding_side="left")
 if tok.pad_token is None: tok.pad_token = tok.eos_token
-print("Loading the model (downloads ~64 GB the first time) ...")
-model = AutoModelForCausalLM.from_pretrained(MODEL, torch_dtype=torch.bfloat16,
-                                             device_map="cuda", attn_implementation="sdpa")
+print("Loading the 4-bit 70B model (downloads ~40 GB the first time) ...")
+model = AutoModelForCausalLM.from_pretrained(MODEL, device_map="cuda", attn_implementation="sdpa")
 model.eval()
 u,t = gpu_mem()
 print(f"\nGPU memory AFTER loading the model: {u:,} / {t:,} MiB used")
@@ -98,15 +108,20 @@ md(r"""## 4. The 32B model forecasts AI impact for every posting
 For each role it returns, in one line: whether AI will most likely **automate / augment / keep human**
 the core of the job, plus the most AI‑exposed skills. This is the analysis that needs both a capable
 model and the GPU throughput to run over the whole dataset.""")
-code(r'''def prompt_for(r):
+code(r'''def chat_template(msgs):
+    try:   # Qwen3 accepts enable_thinking; Qwen2.5 and others don't
+        return tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False)
+    except TypeError:
+        return tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
+
+def prompt_for(r):
     msg = ("You are a workforce analyst studying how AI affects jobs. For the role below, answer in "
            "EXACTLY this one-line format:\n"
            "IMPACT: <AUTOMATE|AUGMENT|HUMAN> | SKILLS: skill1; skill2; skill3\n"
            "IMPACT = whether AI is most likely to automate, augment, or leave human-driven the CORE of "
            "this role. SKILLS = the 3 most AI-exposed skills.\n\n"
-           f"Role title: {title_of(r)}\nListed skills: {skills_of(r)}\n\nAnswer: /no_think")
-    return tok.apply_chat_template([{"role":"user","content":msg}], tokenize=False,
-                                   add_generation_prompt=True, enable_thinking=False)
+           f"Role title: {title_of(r)}\nListed skills: {skills_of(r)}\n\nAnswer:")
+    return chat_template([{"role":"user","content":msg}])
 
 def analyze(rows, batch_size=8):
     out_rows=[]
