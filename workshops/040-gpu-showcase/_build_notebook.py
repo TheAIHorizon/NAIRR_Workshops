@@ -35,12 +35,13 @@ md(r"""## 1. Setup (needs a GPU)
 > **Heads‑up:** `pip install vllm` is a **large download** (PyTorch + CUDA) — give it a few minutes. Also,
 > vLLM doesn't always release GPU memory cleanly between models, so **if loading the second model later
 > fails with an out‑of‑memory error, just do Kernel → Restart and run one model at a time.**""")
-code(r'''import sys, subprocess, torch
-assert torch.cuda.is_available(), "No GPU detected — run this on a full-GPU instance (g3.xl / g4.xl / g5.xl)."
-print("GPU:", torch.cuda.get_device_name(0))
+code(r'''import sys, subprocess
 def pip(*a): subprocess.run([sys.executable,"-m","pip","install","-q",*a], check=True)
+print("Installing vLLM (it brings PyTorch + CUDA) — a few minutes the first time ...")
 pip("vllm", "datasets", "pandas", "matplotlib")
-print("ready")''')
+import torch   # available now that vLLM pulled it in
+assert torch.cuda.is_available(), "No GPU detected — run this on a full-GPU instance (g3.xl / g4.xl / g5.xl)."
+print("GPU:", torch.cuda.get_device_name(0), "| ready")''')
 
 code(r'''# ============================ CONFIG ============================
 SMALL_MODEL = "Qwen/Qwen3-1.7B"     # quick baseline
