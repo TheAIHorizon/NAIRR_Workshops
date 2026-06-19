@@ -28,6 +28,15 @@ cd NAIRR_Workshops/workshops/040-gpu-showcase
 pip install -r requirements.txt
 ```
 
+## Running headless (no browser / Web Shell only)
+If you can't open Jupyter in a browser (e.g., the Web Desktop won't provision), run it in the terminal:
+```bash
+bash run_headless.sh
+```
+This wraps the notebook in an `if __name__ == "__main__":` guard before running — **required** because
+vLLM spawns its engine in a separate process that re‑imports the script. A plain
+`nbconvert --to script | python` will crash with *"An attempt has been made to start a new process…"*.
+
 ## Notes for running
 - **`pip install vllm` is a large download** (PyTorch + CUDA) — allow a few minutes.
 - vLLM doesn't always free GPU memory cleanly between models, so **if loading the second model errors
