@@ -4,3 +4,4 @@ accelerate
 datasets
 pandas
 matplotlib
+bitsandbytes

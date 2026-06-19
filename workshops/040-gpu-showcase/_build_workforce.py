@@ -11,16 +11,17 @@ md(r"""# AI & the Workforce: Analyzing Real Job Data with a 32B Model
 
 **NAIRR Workshop · the H100 as a research instrument (run on `g5.xl` / H100)**
 
-This is the demo that **needs a big GPU.** We load a **32‑billion‑parameter** model — which uses
-~**64 GB of GPU memory**, impossible on a laptop — and point it at a **real dataset of tech/security job
-postings**, asking it to forecast, for each role: *will AI most likely **automate**, **augment**, or leave
+This is the demo that **needs a big GPU.** We load a **32‑billion‑parameter** model (in 4‑bit, ~**20 GB of
+GPU memory** — impossible on a laptop) and point it at a **real dataset of tech/security job postings**,
+asking it to forecast, for each role: *will AI most likely **automate**, **augment**, or leave
 **human‑driven** the core of this job?* Then we aggregate the results into a research‑style finding.
 
 > **This is AI Horizon's actual research question** (how AI reshapes the cybersecurity workforce),
 > run on real labor‑market data at a scale and model size you simply can't reach on local hardware.
 
-> ⚠️ **Two things:** (1) the 32B model is a **~64 GB download** — for a live demo, **pre‑warm and shelve**
-> the instance so it's instant. (2) A full GPU burns SUs fast — **shelve or delete when done.**
+> ⚠️ **Two things:** (1) the 4‑bit 32B is a **~19 GB download** (fits the 60 GB root disk) — for a live
+> demo, **pre‑warm and shelve** the instance so it's instant. (2) A full GPU burns SUs fast —
+> **shelve or delete when done.**
 
 **Status: DRAFT** — test on the GPU before presenting.""")
 
@@ -34,8 +35,8 @@ assert torch.cuda.is_available(), "Run this on a full-GPU instance (g5.xl / H100
 print("GPU:", torch.cuda.get_device_name(0))''')
 
 code(r'''# ============================ CONFIG ============================
-MODEL       = "unsloth/Qwen2.5-72B-Instruct-bnb-4bit"  # a 70B model in 4-bit: ~40 GB download/VRAM
-                                  # Smaller/faster test option: "unsloth/Qwen2.5-32B-Instruct-bnb-4bit"
+MODEL       = "unsloth/Qwen2.5-32B-Instruct-bnb-4bit"  # 32B in 4-bit: ~19 GB download, ~20 GB VRAM (fits 60 GB disk)
+                                  # Bigger option (needs a >80 GB disk): "unsloth/Qwen2.5-72B-Instruct-bnb-4bit" (~40 GB)
 DATASET     = "lukebarousse/data_jobs"   # real tech/data job postings (titles + skills)
 N_POSTINGS  = 120                # how many postings the model analyzes (scale on purpose)
 # ===============================================================
@@ -43,19 +44,23 @@ import time, re, gc
 print("Model:", MODEL, "| dataset:", DATASET, "| postings:", N_POSTINGS)''')
 
 md(r"""## 1b. Free disk space first
-The 4‑bit 70B is a ~40 GB download and the root disk is only 60 GB, so we delete smaller models cached
-from earlier runs to make room.""")
+The 4‑bit 32B is a ~19 GB download and the root disk is only 60 GB, so we clear models and caches left
+from earlier runs to make room. (Safe to run even on a clean instance — it just reports free space.)""")
 code(r'''import shutil
 from pathlib import Path
 hub = Path.home()/".cache"/"huggingface"/"hub"
-for m in ["models--Qwen--Qwen3-8B","models--Qwen--Qwen3-1.7B","models--Qwen--Qwen3-1.7B-GGUF"]:
-    p = hub/m
-    if p.exists(): shutil.rmtree(p, ignore_errors=True); print("freed", m)
+if hub.exists():
+    for p in hub.iterdir():
+        # keep the model we're about to use; remove every other cached model
+        if p.is_dir() and MODEL.split("/")[-1] not in p.name:
+            shutil.rmtree(p, ignore_errors=True); print("freed", p.name)
+# also clear the pip download cache (can be several GB after installing torch)
+subprocess.run([sys.executable,"-m","pip","cache","purge"], capture_output=True)
 print(f"Free disk: {shutil.disk_usage('/').free/1e9:.0f} GB")''')
 
 md(r"""## 2. The "look at the GPU" moment
-We check GPU memory **before** and **after** loading the model. A 32B model alone consumes ~64 GB —
-that number is the whole point of this workshop.""")
+We check GPU memory **before** and **after** loading the model. The 4‑bit 32B alone consumes ~20 GB of
+VRAM — that number is the whole point of this workshop (a laptop GPU has 0–8 GB).""")
 code(r'''def gpu_mem():
     out = subprocess.run(["nvidia-smi","--query-gpu=memory.used,memory.total","--format=csv,noheader,nounits"],
                          capture_output=True, text=True).stdout.strip().splitlines()[0]
@@ -67,7 +72,7 @@ u,t = gpu_mem(); print(f"GPU memory BEFORE loading the model: {u:,} / {t:,} MiB 
 code(r'''from transformers import AutoTokenizer, AutoModelForCausalLM
 tok = AutoTokenizer.from_pretrained(MODEL, padding_side="left")
 if tok.pad_token is None: tok.pad_token = tok.eos_token
-print("Loading the 4-bit 70B model (downloads ~40 GB the first time) ...")
+print("Loading the 4-bit 32B model (downloads ~19 GB the first time) ...")
 model = AutoModelForCausalLM.from_pretrained(MODEL, device_map="cuda", attn_implementation="sdpa")
 model.eval()
 u,t = gpu_mem()
@@ -171,8 +176,8 @@ plt.tight_layout(); plt.show()''')
 
 md(r"""## 6. What this demonstrates
 
-- **A model this size needs the GPU** — ~64 GB of VRAM just to *exist*. We showed it on `nvidia-smi`.
-  This is the single clearest "you can't do this on a laptop."
+- **A model this size needs the GPU** — ~20 GB of VRAM just to *exist* (and that's the 4‑bit version;
+  full precision would be ~64 GB). We showed it on `nvidia-smi`. The clearest "you can't do this on a laptop."
 - **Real analysis at scale** — the model read and classified a whole dataset of real job postings in
   minutes. That's a genuine research workflow (LLM‑assisted analysis), not a toy.
 - **On mission** — this *is* AI Horizon's question — forecasting AI's effect on the cyber/tech workforce —
