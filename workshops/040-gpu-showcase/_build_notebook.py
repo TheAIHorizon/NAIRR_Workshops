@@ -35,13 +35,18 @@ md(r"""## 1. Setup (needs a GPU)
 > **Heads‑up:** `pip install vllm` is a **large download** (PyTorch + CUDA) — give it a few minutes. Also,
 > vLLM doesn't always release GPU memory cleanly between models, so **if loading the second model later
 > fails with an out‑of‑memory error, just do Kernel → Restart and run one model at a time.**""")
-code(r'''import sys, subprocess
+code(r'''import sys, subprocess, os
 def pip(*a): subprocess.run([sys.executable,"-m","pip","install","-q",*a], check=True)
 print("Installing vLLM (it brings PyTorch + CUDA) — a few minutes the first time ...")
 pip("vllm", "datasets", "pandas", "matplotlib")
+
+# Use the prebuilt FLASH_ATTN backend. The default (FlashInfer) JIT-compiles CUDA kernels
+# at runtime, which needs `nvcc` / the CUDA toolkit -- absent on driver-only GPU images.
+os.environ.setdefault("VLLM_ATTENTION_BACKEND", "FLASH_ATTN")  # fallback: "TORCH_SDPA"
+
 import torch   # available now that vLLM pulled it in
 assert torch.cuda.is_available(), "No GPU detected — run this on a full-GPU instance (g3.xl / g4.xl / g5.xl)."
-print("GPU:", torch.cuda.get_device_name(0), "| ready")''')
+print("GPU:", torch.cuda.get_device_name(0), "| attention:", os.environ["VLLM_ATTENTION_BACKEND"], "| ready")''')
 
 code(r'''# ============================ CONFIG ============================
 SMALL_MODEL = "Qwen/Qwen3-1.7B"     # quick baseline
