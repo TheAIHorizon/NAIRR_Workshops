@@ -3,11 +3,15 @@
 A demo for a **full GPU** (Jetstream2 `g5.xl` / H100, or `g4.xl` / L40S) that shows NAIRR's big GPUs
 as a **research instrument**, not just a toy:
 
-1. **Capability** — serve a model with **vLLM** and measure raw **throughput** (thousands of tokens/sec).
+1. **Capability** — generate a big batch of text on the GPU and measure **throughput** (tokens/sec).
 2. **A reproducible research workflow** — benchmark open LLMs on the **MMLU "computer security"** exam
    set, report accuracy, and compare a small vs. a larger model (a real, citable‑style finding:
    *bigger model → higher accuracy*).
 3. **Bonus** — synthetic data generation (the pattern behind LLM‑built training datasets).
+
+> Uses Hugging Face **`transformers`** (not vLLM) so it runs on a stock **driver‑only GPU image** with no
+> CUDA‑toolkit/compiler setup — the generic Jetstream2 Ubuntu image has the GPU driver but not `nvcc`,
+> which vLLM/FlashInfer need. Same research workflow, maximum compatibility.
 
 > **Part of AI Horizon** (NSF #2528858, CSUSB Center for Cyber and AI). **Status: DRAFT** — test on the
 > GPU before presenting.
@@ -33,14 +37,12 @@ If you can't open Jupyter in a browser (e.g., the Web Desktop won't provision), 
 ```bash
 bash run_headless.sh
 ```
-This wraps the notebook in an `if __name__ == "__main__":` guard before running — **required** because
-vLLM spawns its engine in a separate process that re‑imports the script. A plain
-`nbconvert --to script | python` will crash with *"An attempt has been made to start a new process…"*.
+That converts the notebook to a script and runs it, printing results (throughput, accuracy) to the
+terminal. Charts won't display in a pure terminal — that's the only trade‑off.
 
 ## Notes for running
-- **`pip install vllm` is a large download** (PyTorch + CUDA) — allow a few minutes.
-- vLLM doesn't always free GPU memory cleanly between models, so **if loading the second model errors
-  (out‑of‑memory), Kernel → Restart and run one model at a time.**
+- The **first run is slow** — it installs torch/transformers and downloads the models (8B ≈ 16 GB).
+- On an 80 GB H100 the models load with room to spare; each is freed before the next loads.
 
 ## ⚠️ Cost
 A full GPU is the **most SU‑expensive** flavor. Run the demo, then **shelve** (frees quota, stops SU

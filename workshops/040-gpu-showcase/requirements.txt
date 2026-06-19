@@ -1,5 +1,6 @@
-vllm
-datasets
+torch
 transformers
+accelerate
+datasets
 pandas
 matplotlib

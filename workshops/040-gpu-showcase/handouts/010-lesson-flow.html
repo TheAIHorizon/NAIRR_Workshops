@@ -62,7 +62,7 @@
   <a class="nb" href="../notebooks/010_H100_Research_Showcase.ipynb"><div class="n">010</div><div><div class="t">H100 Research Showcase</div><div class="d">Throughput demo → MMLU benchmark (1.7B vs 8B) → synthetic‑data bonus</div></div></a>
 
   <h2 class="sec">What happens</h2>
-  <div class="step"><h3>1 · Throughput</h3><p>vLLM serves a 128‑prompt batch at once; we report aggregate <b>tokens/sec</b> — the GPU saturated.</p></div>
+  <div class="step"><h3>1 · Throughput</h3><p>Generate a 64‑prompt batch on the GPU at once; we report aggregate <b>tokens/sec</b>. (Uses Hugging Face <span class="path">transformers</span> — runs on a stock driver‑only GPU image, no CUDA‑toolkit setup.)</p></div>
   <div class="step"><h3>2 · Research benchmark</h3><p>Evaluate accuracy on <b>MMLU computer_security</b>; compare a <b>1.7B vs 8B</b> model. Output: an accuracy table + chart, and a clear finding (bigger → better).</p></div>
   <div class="step"><h3>3 · Bonus</h3><p>Generate synthetic labeled data (phishing vs. legit emails) — the pattern behind LLM‑built training sets.</p></div>
 
