@@ -40,9 +40,12 @@ def pip(*a): subprocess.run([sys.executable,"-m","pip","install","-q",*a], check
 print("Installing vLLM (it brings PyTorch + CUDA) — a few minutes the first time ...")
 pip("vllm", "datasets", "pandas", "matplotlib")
 
-# Use the prebuilt FLASH_ATTN backend. The default (FlashInfer) JIT-compiles CUDA kernels
-# at runtime, which needs `nvcc` / the CUDA toolkit -- absent on driver-only GPU images.
-os.environ.setdefault("VLLM_ATTENTION_BACKEND", "FLASH_ATTN")  # fallback: "TORCH_SDPA"
+# vLLM defaults to the FlashInfer backend, which JIT-COMPILES CUDA kernels at load time and
+# needs `nvcc` / the CUDA toolkit -- absent on driver-only GPU images (you get the driver, not
+# the dev toolkit). Remove FlashInfer so vLLM falls back to prebuilt flash-attn, and pin it.
+subprocess.run([sys.executable,"-m","pip","uninstall","-y","-q","flashinfer-python","flashinfer"],
+               check=False)
+os.environ.setdefault("VLLM_ATTENTION_BACKEND", "FLASH_ATTN")  # fallback if needed: "TORCH_SDPA"
 
 import torch   # available now that vLLM pulled it in
 assert torch.cuda.is_available(), "No GPU detected — run this on a full-GPU instance (g3.xl / g4.xl / g5.xl)."
