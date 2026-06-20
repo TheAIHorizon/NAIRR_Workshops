@@ -149,8 +149,9 @@
     <div class="qa">
       <h3>🖥️ We're going to "spin up a compute instance"</h3>
       <p>An <b>instance</b> is simply a computer you borrow over the internet — you don't own
-         the hardware, you rent it for as long as you need it. We'll start with a
-         <b>CPU‑only</b> instance (no graphics card) to keep things simple and inexpensive.</p>
+         the hardware, you rent it for as long as you need it. For this demo we use a
+         <b>GPU instance</b> (a computer with a real graphics card) so we can run <b>all three</b>
+         engines — including vLLM, which needs a GPU — and watch them use it.</p>
       <span class="like">Same idea as Amazon AWS or Google Cloud: a computer that lives in the cloud, not on your desk.</span>
     </div>
 
@@ -229,14 +230,25 @@
     <ul>
       <li>Click <b>Create → Instance</b></li>
       <li>Image: <b>Featured-Ubuntu24</b></li>
-      <li>Flavor (size): <b>m3.quad</b> &nbsp;<span class="sub">(4 CPUs, 15&nbsp;GB RAM — plenty for this demo)</span></li>
+      <li>Flavor (size): <b>g3.medium</b> &nbsp;<span class="sub">(a GPU instance — an NVIDIA A100 slice — so all three engines run on the GPU)</span></li>
       <li>If asked which <b>allocation</b> to use, pick your instructor's project</li>
-      <li>Leave the disk at the <b>default 20&nbsp;GB</b> — <b>no volume needed</b></li>
+      <li>Leave the disk at the <b>default</b> — <b>no volume needed</b></li>
       <li><b>Enable the Web Desktop</b> — turn ON the <b>"Enable web desktop"</b> option
           <span class="sub">(you may need to expand <b>Advanced Options / Customize</b> to see it)</span></li>
       <li>Click <b>Create</b></li>
     </ul>
     <p class="sub">Wait until the instance status shows <b>Ready</b> (usually 2–5 minutes). ☕</p>
+    <div class="callout warn" style="margin:16px 0 4px">
+      <div class="ico">💲</div>
+      <div>
+        <h3>A GPU instance costs more — shelve or delete when done</h3>
+        <p><b>g3.medium</b> is a GPU flavor, so it spends your allocation faster than a plain CPU
+           instance. That's fine for a demo — just remember to <b>Shelve</b> or <b>Delete</b> it the
+           moment you're finished so it stops drawing credits. <span class="sub">(A CPU flavor like
+           <b>m3.quad</b> also runs this notebook — Ollama + llama.cpp only, no vLLM — if you want a
+           cheaper, GPU‑free run.)</span></p>
+      </div>
+    </div>
     <div class="callout warn" style="margin:16px 0 4px">
       <div class="ico">🖥️</div>
       <div>
@@ -250,7 +262,7 @@
       <div class="ico">💾</div>
       <div>
         <h3>The default disk is enough</h3>
-        <p>This demo uses a <b>small model</b> that fits the default 20&nbsp;GB disk, so you don't need to
+        <p>This demo uses a <b>small 1.5B model</b>, so the default disk is plenty — you don't need to
            add a volume. (Avoiding volumes also lets a whole class run at once — volumes are limited per
            allocation.) If you ever switch to a much larger model, you'd then need more disk.</p>
       </div>
@@ -271,6 +283,16 @@
         <p>The <b>Console</b> is a raw boot screen with no browser and clumsy copy-paste.
            The <b>Web Desktop</b> includes a browser, which we need to view the notebook.
            The first load may take a minute and could ask for a passphrase shown on the instance page.</p>
+      </div>
+    </div>
+    <div class="callout tip" style="margin:16px 0 4px">
+      <div class="ico">🎮</div>
+      <div>
+        <h3>Confirm the GPU is there (10 seconds, worth it)</h3>
+        <p>In the terminal, type <span class="path">nvidia-smi</span> and press Enter. You should see an
+           NVIDIA <b>A100</b> and, in the top‑right, a <b>CUDA Version</b> (e.g. <b>12.2</b>). That confirms
+           your GPU is ready before you run anything. If this command isn't found or shows no GPU, you
+           launched a CPU flavor — delete it and create a <b>g3.medium</b>.</p>
       </div>
     </div>
   </div>
@@ -334,12 +356,15 @@ jupyter lab</div>
        <kbd>Shift</kbd> + <kbd>Enter</kbd>, or use <b>Run → Run All Cells</b>.</p>
 
     <div class="grid">
-      <div class="seebox"><b>Section 2</b> should print <b>"CPU mode"</b> — this is correct for the
-        m3.quad instance. It compares Ollama and llama.cpp and skips vLLM (which needs a GPU).</div>
-      <div class="seebox"><b>Section 3</b> installs the AI engines. This is the slow step
-        (a few minutes) — let it finish before moving on.</div>
+      <div class="seebox"><b>Section 2</b> should print <b>"GPU mode: Ollama + llama.cpp + vLLM"</b> —
+        all three engines will run on the GPU. <span class="sub">(On a CPU instance it says "CPU mode" and
+        compares just Ollama + llama.cpp.)</span></div>
+      <div class="seebox"><b>Section 3</b> installs the three engines. This is the slow step —
+        <b>several minutes</b>, mostly the vLLM + PyTorch download — let it finish before moving on.</div>
+      <div class="seebox"><b>Sections 6–8</b> run each engine in turn — <b>Ollama</b>, then <b>llama.cpp</b>,
+        then <b>vLLM</b> — and stream the answers live, so you see real output from all three.</div>
       <div class="seebox"><b>Section 9</b> shows the comparison table. The <b>tokens/sec</b>
-        column is the headline: how fast each engine generates text on the same hardware.</div>
+        column is the headline: how fast each engine generates text on the same GPU.</div>
     </div>
   </div>
 
@@ -357,9 +382,15 @@ jupyter lab</div>
           <b>Interactions → Web Desktop</b>.</td>
     </tr>
     <tr>
-      <td>The notebook feels slow on the long "essay" prompt</td>
-      <td>That's expected on a 4-CPU instance. In the notebook's <b>config cell</b>, the comments
-          show how to switch to a smaller, faster model (<span class="path">qwen3:1.7b</span>).</td>
+      <td>Section 3 takes several minutes</td>
+      <td>Normal — it's installing vLLM + PyTorch and downloading the model. Only the <b>first</b> run is
+          slow; set <span class="path">RUN_INSTALL = False</span> in the config cell to skip installs on re-runs.</td>
+    </tr>
+    <tr>
+      <td><b>git pull</b> says "local changes would be overwritten"</td>
+      <td>Running the notebook saved outputs into the file. Discard them, then pull:
+          <span class="path">git checkout -- workshops/010-jetstream-jupyter/notebooks/04_Local_LLM_Frameworks.ipynb</span>
+          then <span class="path">git pull</span>.</td>
     </tr>
     <tr>
       <td>"externally-managed-environment" error on pip</td>
