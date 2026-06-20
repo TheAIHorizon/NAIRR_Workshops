@@ -131,7 +131,7 @@
   <p class="kicker">NAIRR Workshop · Jetstream2</p>
   <h1>Running the Local LLM Notebook on Jetstream2</h1>
   <p>A step-by-step guide to launching a cloud instance and running the
-     notebook that compares three local AI engines — Ollama, llama.cpp, and vLLM.</p>
+     notebook that compares three local AI engines — Ollama, llama.cpp, and Transformers.</p>
   <div class="meta">
     <span class="chip">⏱ About 30–40 minutes</span>
     <span class="chip">💻 No software needed on your laptop</span>
@@ -149,9 +149,9 @@
     <div class="qa">
       <h3>🖥️ We're going to "spin up a compute instance"</h3>
       <p>An <b>instance</b> is simply a computer you borrow over the internet — you don't own
-         the hardware, you rent it for as long as you need it. For this demo we use a
-         <b>GPU instance</b> (a computer with a real graphics card) so we can run <b>all three</b>
-         engines — including vLLM, which needs a GPU — and watch them use it.</p>
+         the hardware, you rent it for as long as you need it. We use a <b>CPU instance</b>
+         (no graphics card needed) to keep things simple and inexpensive — all three engines
+         run on the CPU.</p>
       <span class="like">Same idea as Amazon AWS or Google Cloud: a computer that lives in the cloud, not on your desk.</span>
     </div>
 
@@ -177,7 +177,7 @@
       <p>To use an AI <b>model</b> (the "brain" — really just a big file of math), you need a
          program to actually <b>run</b> it. Those programs are called <b>inferencing apps</b>.
          We take <b>one</b> model and run it through <b>three</b> different apps —
-         <b>Ollama</b>, <b>llama.cpp</b>, and <b>vLLM</b> — giving each the <b>same questions</b>
+         <b>Ollama</b>, <b>llama.cpp</b>, and <b>Transformers</b> — giving each the <b>same questions</b>
          (called <b>prompts</b>). The goal: <b>is one app clearly the better choice?</b>
          We compare their speed, memory use, and answer quality.</p>
     </div>
@@ -230,25 +230,14 @@
     <ul>
       <li>Click <b>Create → Instance</b></li>
       <li>Image: <b>Featured-Ubuntu24</b></li>
-      <li>Flavor (size): <b>g3.medium</b> &nbsp;<span class="sub">(a GPU instance — an NVIDIA A100 slice — so all three engines run on the GPU)</span></li>
+      <li>Flavor (size): <b>m3.quad</b> &nbsp;<span class="sub">(4 CPUs, 15&nbsp;GB RAM — plenty for this demo, and inexpensive)</span></li>
       <li>If asked which <b>allocation</b> to use, pick your instructor's project</li>
-      <li>Leave the disk at the <b>default</b> — <b>no volume needed</b></li>
+      <li>Leave the disk at the <b>default 20&nbsp;GB</b> — <b>no volume needed</b></li>
       <li><b>Enable the Web Desktop</b> — turn ON the <b>"Enable web desktop"</b> option
           <span class="sub">(you may need to expand <b>Advanced Options / Customize</b> to see it)</span></li>
       <li>Click <b>Create</b></li>
     </ul>
     <p class="sub">Wait until the instance status shows <b>Ready</b> (usually 2–5 minutes). ☕</p>
-    <div class="callout warn" style="margin:16px 0 4px">
-      <div class="ico">💲</div>
-      <div>
-        <h3>A GPU instance costs more — shelve or delete when done</h3>
-        <p><b>g3.medium</b> is a GPU flavor, so it spends your allocation faster than a plain CPU
-           instance. That's fine for a demo — just remember to <b>Shelve</b> or <b>Delete</b> it the
-           moment you're finished so it stops drawing credits. <span class="sub">(A CPU flavor like
-           <b>m3.quad</b> also runs this notebook — Ollama + llama.cpp only, no vLLM — if you want a
-           cheaper, GPU‑free run.)</span></p>
-      </div>
-    </div>
     <div class="callout warn" style="margin:16px 0 4px">
       <div class="ico">🖥️</div>
       <div>
@@ -283,16 +272,6 @@
         <p>The <b>Console</b> is a raw boot screen with no browser and clumsy copy-paste.
            The <b>Web Desktop</b> includes a browser, which we need to view the notebook.
            The first load may take a minute and could ask for a passphrase shown on the instance page.</p>
-      </div>
-    </div>
-    <div class="callout tip" style="margin:16px 0 4px">
-      <div class="ico">🎮</div>
-      <div>
-        <h3>Confirm the GPU is there (10 seconds, worth it)</h3>
-        <p>In the terminal, type <span class="path">nvidia-smi</span> and press Enter. You should see an
-           NVIDIA <b>A100</b> and, in the top‑right, a <b>CUDA Version</b> (e.g. <b>12.2</b>). That confirms
-           your GPU is ready before you run anything. If this command isn't found or shows no GPU, you
-           launched a CPU flavor — delete it and create a <b>g3.medium</b>.</p>
       </div>
     </div>
   </div>
@@ -356,15 +335,16 @@ jupyter lab</div>
        <kbd>Shift</kbd> + <kbd>Enter</kbd>, or use <b>Run → Run All Cells</b>.</p>
 
     <div class="grid">
-      <div class="seebox"><b>Section 2</b> should print <b>"GPU mode: Ollama + llama.cpp + vLLM"</b> —
-        all three engines will run on the GPU. <span class="sub">(On a CPU instance it says "CPU mode" and
-        compares just Ollama + llama.cpp.)</span></div>
+      <div class="seebox"><b>Section 2</b> should print <b>"CPU mode: Ollama + llama.cpp + Transformers"</b> —
+        all three engines run on the CPU, so this works on any instance.</div>
       <div class="seebox"><b>Section 3</b> installs the three engines. This is the slow step —
-        <b>several minutes</b>, mostly the vLLM + PyTorch download — let it finish before moving on.</div>
+        <b>several minutes</b> (PyTorch + Transformers, and it compiles llama.cpp) — let it finish.</div>
       <div class="seebox"><b>Sections 6–8</b> run each engine in turn — <b>Ollama</b>, then <b>llama.cpp</b>,
-        then <b>vLLM</b> — and stream the answers live, so you see real output from all three.</div>
+        then <b>Transformers</b> — and stream the answers live, so you see real output from all three.
+        <span class="sub">Transformers is the full‑precision <i>reference</i> engine — expect it to be the
+        <b>slowest</b> (that's the lesson: why optimized engines like Ollama/llama.cpp exist).</span></div>
       <div class="seebox"><b>Section 9</b> shows the comparison table. The <b>tokens/sec</b>
-        column is the headline: how fast each engine generates text on the same GPU.</div>
+        column is the headline: how fast each engine generates text on the same CPU.</div>
     </div>
   </div>
 
@@ -383,7 +363,7 @@ jupyter lab</div>
     </tr>
     <tr>
       <td>Section 3 takes several minutes</td>
-      <td>Normal — it's installing vLLM + PyTorch and downloading the model. Only the <b>first</b> run is
+      <td>Normal — it's installing PyTorch + Transformers, compiling llama.cpp, and downloading the model. Only the <b>first</b> run is
           slow; set <span class="path">RUN_INSTALL = False</span> in the config cell to skip installs on re-runs.</td>
     </tr>
     <tr>
