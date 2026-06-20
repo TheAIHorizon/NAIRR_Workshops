@@ -65,11 +65,12 @@
   <h2 class="sec">Set the framing up front</h2>
 
   <div class="key">
-    <h3>🧠 Why we use a small model (Qwen3‑1.7B)</h3>
+    <h3>🧠 Why we use a small model (Qwen2.5‑0.5B)</h3>
     <p>Be explicit with students: <b>we are deliberately using a small model because we sized it
        to fit the allocation we have</b> — not because it's the "best" model. NAIRR Starter
-       allocations come with limited compute and disk, so a 1.7‑billion‑parameter model runs
-       comfortably on a modest CPU instance and fits the default disk.</p>
+       allocations come with limited compute and disk, so a half‑billion‑parameter model runs
+       comfortably on a modest CPU instance and lets all three engines (including the
+       full‑precision Transformers copy) fit the default disk.</p>
     <p>This is a genuine real‑world lesson, not a limitation to apologize for: <b>matching the
        model to the resources you actually have</b> is exactly the judgment researchers and
        educators make every day.</p>
@@ -98,21 +99,22 @@
   <div class="step">
     <div class="where">Section 2 — Environment check</div>
     <h3>Hardware shapes what's possible</h3>
-    <p>It prints <code>CPU mode</code> and skips vLLM. Point out that <b>vLLM needs a GPU</b>, so
-       on a CPU instance we compare Ollama vs llama.cpp. Good moment to mention that NAIRR offers
-       GPU instances too (g3/g4/g5) when a project needs them.</p>
+    <p>It prints <code>CPU mode</code> and reports free disk. We run all three engines on the CPU,
+       so it works on any flavor. Good moment to mention that NAIRR offers <b>GPU instances too
+       (g3/g4/g5)</b> when a project needs them — but you don't need one for this.</p>
   </div>
 
   <div class="step">
     <div class="where">Section 3 — Install / model download</div>
     <h3>Each app manages its own copy of the model</h3>
-    <p>The model downloads <b>twice</b> — once for Ollama, once for llama.cpp — because each
-       program keeps its own model store. This is why disk planning matters, and a concrete tie‑in
-       to the small‑model decision above.</p>
+    <p>The model downloads <b>three times</b> — once for Ollama, once for llama.cpp (both 4‑bit
+       GGUF), and once for Transformers (the larger full‑precision copy) — because each program
+       keeps its own model store. This is why disk planning matters, and a concrete tie‑in to the
+       small‑model decision above.</p>
   </div>
 
   <div class="step">
-    <div class="where">Sections 6–7 — Watching the answers stream</div>
+    <div class="where">Sections 6–8 — Watching the answers stream</div>
     <h3>What "generating tokens" actually means</h3>
     <p>Students watch the text appear word‑by‑word. Use this to explain that the model produces one
        <b>token</b> at a time, and that <b>tokens/second</b> is the speed metric we care about.
@@ -136,10 +138,12 @@
   </div>
 
   <div class="step">
-    <div class="where">Section 11 — Batch test</div>
-    <h3>Why production serving is different</h3>
-    <p>(GPU only.) When many requests arrive at once, vLLM's design pulls far ahead — which is why
-       real AI services run vLLM, not Ollama. On CPU this is skipped; mention it conceptually.</p>
+    <div class="where">Section 8 — Transformers (the reference engine)</div>
+    <h3>Why the optimized engines exist</h3>
+    <p>Transformers runs the <b>full‑precision</b> model — the standard library researchers reach
+       for, but the <b>slowest</b> on CPU. That contrast <i>is</i> the lesson: Ollama and llama.cpp
+       use a 4‑bit GGUF that's far faster and lighter. Point out the tokens/sec gap in the table,
+       and that Transformers is what you'd use for fine‑tuning or running any model from the Hub.</p>
   </div>
 
   <!-- RUNNING IT -->

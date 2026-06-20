@@ -29,7 +29,7 @@ Introductory workshop on the National AI Research Resource (NAIRR) and Jetstream
 | 01 | [`notebooks/01_NAIRR_Models_and_HuggingFace.ipynb`](notebooks/01_NAIRR_Models_and_HuggingFace.ipynb) | NASA sentence transformer, semantic search |
 | 02 | [`notebooks/02_Bulk_Data_Processing.ipynb`](notebooks/02_Bulk_Data_Processing.ipynb) | 500K-row dataset, sklearn, grid search |
 | 03 | [`notebooks/03_NAIRR_Open_Datasets.ipynb`](notebooks/03_NAIRR_Open_Datasets.ipynb) | AG News, TF-IDF, text classification |
-| 04 | [`notebooks/04_Local_LLM_Frameworks.ipynb`](notebooks/04_Local_LLM_Frameworks.ipynb) | Same model (Qwen3) benchmarked across Ollama, llama.cpp & vLLM — speed, throughput, quality; auto-adapts to CPU or GPU instances |
+| 04 | [`notebooks/04_Local_LLM_Frameworks.ipynb`](notebooks/04_Local_LLM_Frameworks.ipynb) | Same model (Qwen2.5) benchmarked across Ollama, llama.cpp & Transformers — speed, TTFT, quality; runs entirely on CPU |
 
 ## Handouts
 

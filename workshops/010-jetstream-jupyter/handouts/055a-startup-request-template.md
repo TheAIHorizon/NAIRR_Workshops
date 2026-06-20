@@ -44,7 +44,7 @@ practical, reproducible workshops on NAIRR's Jetstream2 resource.
 Activities. We will deliver [number] hands-on workshop sessions for approximately [20]
 participants each. Using openly published Jupyter notebooks, participants launch their
 own Jetstream2 instances and run guided exercises — including a comparison of local AI
-inference frameworks (Ollama, llama.cpp, and vLLM) running the same model — to understand
+inference frameworks (Ollama, llama.cpp, and Hugging Face Transformers) running the same model — to understand
 cloud-based AI computing and the trade-offs between tools. Sessions cover both classroom
 and research use, and how to apply for NAIRR resources independently.
 
