@@ -30,6 +30,7 @@ Introductory workshop on the National AI Research Resource (NAIRR) and Jetstream
 | 02 | [`notebooks/02_Bulk_Data_Processing.ipynb`](notebooks/02_Bulk_Data_Processing.ipynb) | 500K-row dataset, sklearn, grid search |
 | 03 | [`notebooks/03_NAIRR_Open_Datasets.ipynb`](notebooks/03_NAIRR_Open_Datasets.ipynb) | AG News, TF-IDF, text classification |
 | 04 | [`notebooks/04_Local_LLM_Frameworks.ipynb`](notebooks/04_Local_LLM_Frameworks.ipynb) | Same model (Qwen2.5) benchmarked across Ollama, llama.cpp & Transformers — speed, TTFT, quality; runs entirely on CPU |
+| 05 | [`notebooks/05_Hermes_Agent_Intro.ipynb`](notebooks/05_Hermes_Agent_Intro.ipynb) | Intro to AI **agents** — install the Hermes Agent, point it at a local Ollama model (CPU, no API key), then chat with it in the terminal and watch it use tools |
 
 ## Handouts
 
@@ -49,6 +50,7 @@ Open these HTML files in any web browser (double-click, or right-click → Open)
 | [`handouts/080-instructor-notes.html`](handouts/080-instructor-notes.html) | Instructors | Talking points, teaching moments, and the capacity/disk rationale behind the lab setup |
 | [`handouts/090-setup-ai-coding-assistant.html`](handouts/090-setup-ai-coding-assistant.html) | Instructors | Set up VS Code + Claude Code to build your own **Jetstream2-ready** notebooks by describing what you want to teach |
 | [`handouts/095-notebook-ideas.html`](handouts/095-notebook-ideas.html) | Instructors | Menu of **AI × cybersecurity notebook ideas** to ask the AI to build (CPU & GPU), each with a copy-paste prompt |
+| [`handouts/100-hermes-agent-intro.html`](handouts/100-hermes-agent-intro.html) | Students | Step-by-step — install the **Hermes Agent** and run Notebook 05 (intro to AI agents on CPU) |
 
 ## Local Setup
 

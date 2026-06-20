@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intro to AI Agents with Hermes — Student Guide</title>
+<style>
+  :root{
+    --ink:#16202c; --muted:#5b6b7b; --line:#e3e9ef; --bg:#f6f8fb;
+    --brand:#0b6e99; --brand-dk:#084d6b; --accent:#13a4a4;
+    --tip-bg:#e8f4fa; --tip-ln:#bfe1f0; --warn-bg:#fdf3e3; --warn-ln:#f0dcb4;
+    --stop-bg:#fdecec; --stop-ln:#f3c5c5; --stop:#b42318;
+    --code:#0f1b27; --code-ink:#e8eef4; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 80px}
+  header{background:linear-gradient(135deg,var(--brand-dk),var(--brand) 55%,var(--accent)); color:#fff; padding:48px 20px 40px; text-align:center}
+  header .kicker{text-transform:uppercase; letter-spacing:.14em; font-size:13px; font-weight:700; opacity:.9; margin:0 0 10px}
+  header h1{margin:0 auto; max-width:680px; font-size:30px; line-height:1.25; font-weight:800}
+  header p{margin:14px auto 0; max-width:620px; font-size:16px; opacity:.95}
+  .meta{margin:22px auto 0; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+  .chip{background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28); padding:6px 14px; border-radius:999px; font-size:13.5px; font-weight:600}
+
+  .intro{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px 26px; margin:26px 0; box-shadow:0 1px 3px rgba(16,32,44,.05)}
+  .intro h2{margin:0 0 6px; font-size:22px; color:var(--brand-dk)}
+  .intro .lead{font-size:17px; margin:0 0 16px; color:#33414f}
+  .vs{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0 0}
+  .vs .box{border:1px solid var(--line); border-radius:10px; padding:14px 16px; background:#fafdfd}
+  .vs .box h3{margin:0 0 5px; font-size:16px; color:var(--brand-dk)}
+  .vs .box p{margin:0; font-size:14.5px; color:#33414f}
+  @media(max-width:560px){.vs{grid-template-columns:1fr}}
+
+  .callout{border-radius:var(--radius); padding:18px 20px; margin:22px 0; border:1px solid; display:flex; gap:14px; align-items:flex-start}
+  .callout .ico{font-size:22px; flex:0 0 auto}
+  .callout h3{margin:0 0 4px; font-size:16px} .callout p{margin:0; font-size:15px}
+  .callout ul{margin:6px 0 0; padding-left:18px; font-size:15px}
+  .callout.tip{background:var(--tip-bg); border-color:var(--tip-ln); color:#0a3f57}
+  .callout.warn{background:var(--warn-bg); border-color:var(--warn-ln); color:#6b4204}
+
+  .step{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px 24px 10px; margin:18px 0; box-shadow:0 1px 2px rgba(16,32,44,.04)}
+  .step-head{display:flex; gap:16px; align-items:center; margin-bottom:6px}
+  .num{flex:0 0 auto; width:38px; height:38px; border-radius:50%; background:var(--brand); color:#fff; font-weight:800; font-size:18px; display:grid; place-items:center}
+  .step-head h2{margin:0; font-size:20px}
+  .step p{color:var(--ink)} .step .sub{color:var(--muted); font-size:14.5px}
+
+  .code{position:relative; background:var(--code); color:var(--code-ink); border-radius:10px; padding:16px 50px 16px 18px; margin:12px 0 16px;
+    font:14px/1.7 "SF Mono",ui-monospace,Menlo,Consolas,monospace; overflow-x:auto; white-space:pre}
+  .copy{position:absolute; top:10px; right:10px; background:rgba(255,255,255,.12); color:#cfe6f2; border:1px solid rgba(255,255,255,.2);
+    border-radius:7px; padding:5px 10px; font-size:12px; font-weight:600; cursor:pointer}
+  .copy:hover{background:rgba(255,255,255,.24)} .copy.done{background:#13a45f; color:#fff; border-color:#13a45f}
+  .path{background:#eef2f6; border-radius:6px; padding:1px 7px; font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace; font-size:13.5px; color:#0a3f57}
+  kbd{background:#eef2f6; border:1px solid #d4dde5; border-bottom-width:2px; border-radius:5px; padding:1px 7px; font-size:13px; font-weight:600; color:#243240}
+
+  .try{border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:8px; padding:12px 16px; margin:10px 0; background:#fafdfd}
+  .try b{color:var(--brand-dk)}
+  h2.section{margin:40px 0 6px; font-size:22px; border-bottom:2px solid var(--line); padding-bottom:8px}
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:#eef3f7; font-size:13px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)}
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:50px}
+  a{color:var(--brand)}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="kicker">NAIRR Workshop · Jetstream2</p>
+  <h1>Your First AI Agent: Hermes</h1>
+  <p>Install the open-source <b>Hermes Agent</b>, point it at a free local model on a CPU
+     instance, and watch it <i>take actions</i> — not just answer questions.</p>
+  <div class="meta">
+    <span class="chip">⏱ About 20–30 minutes</span>
+    <span class="chip">💻 CPU instance — no GPU</span>
+    <span class="chip">🧩 Notebook 05</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="intro">
+    <h2>First — engine vs. agent</h2>
+    <p class="lead">Notebook 04 ran <b>engines</b> (Ollama, llama.cpp, Transformers). This one
+       introduces an <b>agent</b>. Same kind of model underneath — completely different idea.</p>
+    <div class="vs">
+      <div class="box">
+        <h3>🔧 An engine</h3>
+        <p>Takes a prompt, returns <b>text</b>. It answers. That's the whole job.</p>
+      </div>
+      <div class="box">
+        <h3>🤖 An agent</h3>
+        <p>Uses the model as a <b>brain to take actions</b> — it can run commands, read and write
+           files, use tools, and remember across chats. The model decides <i>what to do</i>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="ico">✅</div>
+    <div>
+      <h3>Before you begin</h3>
+      <ul>
+        <li>A running <b>m3.quad</b> instance with <b>Jupyter</b> open — set it up exactly as in the
+            <a href="050-jetstream2-local-llm-setup.html">Workshop 04 setup guide</a> (Steps 1–4).</li>
+        <li>Doing <b>notebook 04 first</b> is ideal (Ollama is already installed) — but not required,
+            this notebook will install Ollama for you if needed.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-head"><div class="num">1</div><h2>Open notebook 05 and run the setup cells</h2></div>
+    <p>In JupyterLab, open:</p>
+    <p><span class="path">05_Hermes_Agent_Intro.ipynb</span></p>
+    <p>Run the cells from the top (<kbd>Shift</kbd>+<kbd>Enter</kbd>, or <b>Run → Run All Cells</b>).
+       They do three things, in order:</p>
+    <table>
+      <tr><th>Cell</th><th>What it does</th></tr>
+      <tr><td><b>Step 1 — Ollama</b></td><td>Makes sure a small local model (<span class="path">qwen2.5:3b</span>) is downloaded and running. This is the agent's "brain."</td></tr>
+      <tr><td><b>Step 2 — Install Hermes</b></td><td>Runs the official Hermes installer (a few minutes — it sets up Python, Node.js, and tools).</td></tr>
+      <tr><td><b>Step 3 — Configure</b></td><td>Points Hermes at your local Ollama (no API key needed) by writing <span class="path">~/.hermes/config.yaml</span>.</td></tr>
+    </table>
+    <div class="callout warn" style="margin:14px 0 4px">
+      <div class="ico">⏳</div>
+      <div>
+        <h3>The install step is the slow one</h3>
+        <p>Step 2 downloads and sets up several tools — give it a few minutes. It only happens once
+           per instance. When the cells finish, the notebook tells you to switch to the Terminal.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-head"><div class="num">2</div><h2>Open the Terminal and start Hermes</h2></div>
+    <p>Hermes's chat is a full-screen <b>terminal</b> app, so we run it there — not in a notebook cell.
+       In the Web Desktop, open the <b>Terminal</b> and run:</p>
+    <div class="code"><button class="copy">Copy</button>hermes</div>
+    <p>The first time, Hermes may show a quick setup screen — <b>accept the defaults</b> (it will use
+       the local-Ollama settings the notebook wrote in Step 3).</p>
+    <div class="callout warn" style="margin:14px 0 4px">
+      <div class="ico">⚠️</div>
+      <div>
+        <h3>"command not found: hermes"?</h3>
+        <p>The installer added Hermes to your shell startup, which a Terminal only reads when it opens.
+           Open a <b>new</b> Terminal window, or run <span class="path">source ~/.bashrc</span> first,
+           then <span class="path">hermes</span> again.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-head"><div class="num">3</div><h2>Talk to your agent — and watch what it <i>does</i></h2></div>
+    <p>Type these one at a time. Watch the <b>screen</b>, not just the final answer:</p>
+
+    <div class="try"><b>1.</b> <span class="path">What is the NAIRR pilot, in two sentences?</span><br>
+      <span class="sub">A plain answer — this is the "engine" part: the model just responds.</span></div>
+    <div class="try"><b>2.</b> <span class="path">What files are in my home directory? Use a tool to check, don't guess.</span><br>
+      <span class="sub">Now watch Hermes <b>call a tool</b> — it runs a real command and answers from the actual result.</span></div>
+    <div class="try"><b>3.</b> <span class="path">Make a file called hello.txt that says "Hello from Hermes".</span><br>
+      <span class="sub">Hermes <b>takes an action</b> on your instance. Check it with <span class="path">ls</span> / <span class="path">cat hello.txt</span>.</span></div>
+
+    <div class="callout tip" style="margin:14px 0 4px">
+      <div class="ico">💡</div>
+      <div>
+        <h3>The takeaway to land</h3>
+        <p>The model didn't just <i>describe</i> how to do these — Hermes turned its decisions into
+           <b>real actions</b> (running commands, writing files). That's the leap from an <b>engine</b>
+           to an <b>agent</b>. With a small CPU model it won't pick the right tool every time — that's
+           expected; the goal is to <b>see the mechanism</b>.</p>
+      </div>
+    </div>
+    <p class="sub">Leave the chat with <span class="path">/exit</span> (or <kbd>Ctrl</kbd>+<kbd>C</kbd>).</p>
+  </div>
+
+  <!-- TROUBLESHOOTING -->
+  <h2 class="section">Troubleshooting</h2>
+  <table>
+    <tr><th>Problem</th><th>Fix</th></tr>
+    <tr><td><b>command not found: hermes</b></td><td>Open a new Terminal, or run <span class="path">source ~/.bashrc</span> first.</td></tr>
+    <tr><td>Hermes feels slow to reply</td><td>Expected on a CPU instance with a 3B model. For snappier replies, change <span class="path">MODEL</span> in the notebook's Step 1 cell to <span class="path">qwen2.5:0.5b</span> and re-run (it's faster but weaker at choosing tools).</td></tr>
+    <tr><td>It answers but won't use a tool</td><td>Small models are inconsistent at tool-calling. Re-phrase ("use a tool to…"), or try again — the point is to see it work at least once.</td></tr>
+    <tr><td>Disk space errors during install</td><td>Start a <b>fresh m3.quad</b> (clean 20&nbsp;GB), or remove old model caches with <span class="path">rm -rf ~/.cache/huggingface</span>.</td></tr>
+    <tr><td>I'm done — avoid using credits</td><td>Back in the Jetstream2 portal, <b>Shelve</b> or <b>Delete</b> your instance.</td></tr>
+  </table>
+
+  <div class="callout tip">
+    <div class="ico">🎓</div>
+    <div>
+      <h3>What this teaches</h3>
+      <p>An <b>agent</b> = a model + the ability to <b>act</b>. Hermes shows the whole pattern —
+         tools, memory, and skills — running on free NAIRR compute with a local model. Explore more
+         with <span class="path">hermes model</span>, <span class="path">hermes tools</span>, and the
+         docs at <a href="https://hermes-agent.nousresearch.com/docs">hermes-agent.nousresearch.com/docs</a>.</p>
+    </div>
+  </div>
+
+  <footer>
+    NAIRR Workshop Series · Workshop 01 — Notebook 05: Intro to AI Agents (Hermes)
+  <br>Part of the <b>AI Horizon</b> project · NSF #2528858 · CSUSB Center for Cyber and AI
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var c = btn.parentElement.cloneNode(true); c.querySelector('.copy').remove();
+      navigator.clipboard.writeText(c.textContent.trim()).then(function(){
+        btn.textContent='Copied!'; btn.classList.add('done');
+        setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('done'); },1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>
