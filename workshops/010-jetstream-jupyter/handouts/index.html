@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workshop 01 Handouts — Index</title>
+<style>
+  :root{
+    --ink:#16202c; --muted:#5b6b7b; --line:#e3e9ef; --bg:#f6f8fb;
+    --brand:#0b6e99; --brand-dk:#084d6b; --accent:#13a4a4;
+    --a:#0b6e99; --a-bg:#eaf5fb; --a-ln:#bfe1f0;
+    --b:#6a3da8; --b-bg:#f1ebf9; --b-ln:#d9c9f0;
+    --c:#13a4a4; --c-bg:#e6f6f5; --c-ln:#bfe7e5;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px; margin:0 auto; padding:0 20px 70px}
+
+  header{background:linear-gradient(135deg,var(--brand-dk),var(--brand) 55%,var(--accent)); color:#fff; padding:48px 20px 40px; text-align:center}
+  header .kicker{text-transform:uppercase; letter-spacing:.14em; font-size:13px; font-weight:700; opacity:.9; margin:0 0 10px}
+  header h1{margin:0 auto; max-width:700px; font-size:32px; line-height:1.2; font-weight:800}
+  header p{margin:14px auto 0; max-width:620px; font-size:17px; opacity:.95}
+
+  .section{margin:34px 0 0}
+  .section > h2{font-size:14px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin:0 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line)}
+
+  .cards{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  @media(max-width:720px){.cards{grid-template-columns:1fr}}
+  .card{background:#fff; border:1px solid var(--line); border-left:5px solid var(--brand); border-radius:var(--radius); padding:18px 20px; box-shadow:0 1px 3px rgba(16,32,44,.05); text-decoration:none; color:inherit; display:block; transition:box-shadow .15s, transform .15s}
+  .card:hover{box-shadow:0 4px 14px rgba(16,32,44,.1); transform:translateY(-1px)}
+  .card.a{border-left-color:var(--a)} .card.b{border-left-color:var(--b)} .card.c{border-left-color:var(--c)}
+  .card .num{font-size:12px; font-weight:800; letter-spacing:.06em; color:var(--muted)}
+  .card h3{margin:4px 0 5px; font-size:17px; line-height:1.3; color:var(--brand-dk)}
+  .card.b h3{color:#4a2779} .card.c h3{color:#0a6e6b}
+  .card p{margin:0; font-size:14px; color:var(--muted)}
+  .card.full{grid-column:1 / -1}
+
+  .start{background:linear-gradient(135deg,var(--a-bg),#fff); border:1px solid var(--a-ln); border-radius:var(--radius); padding:22px 24px; margin:26px 0 0; display:flex; gap:16px; align-items:center}
+  .start .ico{font-size:30px; flex:0 0 auto}
+  .start h3{margin:0 0 3px; font-size:18px}
+  .start p{margin:0; font-size:15px; color:var(--muted)}
+  .start a{color:var(--brand); font-weight:700}
+
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:44px}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="kicker">NAIRR Workshop · Workshop 01 — Jetstream2 &amp; Jupyter</p>
+  <h1>Handouts Index</h1>
+  <p>Every guide, checklist, and reference for this workshop in one place. New here? Start with the card below.</p>
+</header>
+
+<div class="wrap">
+
+  <a class="start" href="010-start-here.html">
+    <div class="ico">🧭</div>
+    <div>
+      <h3>New here? Start Here →</h3>
+      <p>Pick your track (run the lab, or build your own materials) and follow the roadmap.</p>
+    </div>
+  </a>
+
+  <!-- EVERYONE -->
+  <div class="section">
+    <h2>Start &amp; Orientation</h2>
+    <div class="cards">
+      <a class="card a" href="010-start-here.html">
+        <div class="num">010</div>
+        <h3>Start Here</h3>
+        <p>The workshop roadmap — choose Track A (run the lab) or Track B (build materials).</p>
+      </a>
+      <a class="card a" href="020-roadmap.html">
+        <div class="num">020</div>
+        <h3>Resource Map</h3>
+        <p>How all the pieces — ACCESS, NAIRR, Jetstream2, Jupyter — fit together.</p>
+      </a>
+      <a class="card a" href="030-get-your-access-id.html">
+        <div class="num">030</div>
+        <h3>Create Your ACCESS ID</h3>
+        <p>Step 0 for everyone: register your free ACCESS ID before the workshop.</p>
+      </a>
+      <a class="card a" href="040-what-this-demo-does.html">
+        <div class="num">040</div>
+        <h3>What This Demo Is Doing — and Why</h3>
+        <p>Read first: the concepts behind the local-LLM frameworks lab.</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- STUDENT TRACK -->
+  <div class="section">
+    <h2>Student Track — Run the Lab</h2>
+    <div class="cards">
+      <a class="card a" href="050-jetstream2-local-llm-setup.html">
+        <div class="num">050</div>
+        <h3>Jetstream2 Local-LLM Setup</h3>
+        <p>Step-by-step student guide to launch an instance and run the notebook.</p>
+      </a>
+      <a class="card a" href="055-request-startup-allocation.html">
+        <div class="num">055</div>
+        <h3>Request a NAIRR Pilot Start-Up Allocation</h3>
+        <p>Submission helper for getting your own free compute allocation.</p>
+      </a>
+      <a class="card a" href="055a-startup-request-template.md">
+        <div class="num">055a</div>
+        <h3>Start-Up Request Template</h3>
+        <p>Copy-paste template (Markdown) for your allocation request.</p>
+      </a>
+      <a class="card a" href="100-hermes-agent-intro.html">
+        <div class="num">100</div>
+        <h3>Intro to AI Agents with Hermes</h3>
+        <p>Student guide for the AI-agents notebook (Notebook 05).</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- BUILD YOUR OWN -->
+  <div class="section">
+    <h2>Build Your Own — AI Coding Assistant</h2>
+    <div class="cards">
+      <a class="card b" href="090-setup-ai-coding-assistant.html">
+        <div class="num">090</div>
+        <h3>Set Up Your Own AI Coding Assistant</h3>
+        <p>Install VS Code + Claude Code and start generating notebooks by description.</p>
+      </a>
+      <a class="card b" href="095-notebook-ideas.html">
+        <div class="num">095</div>
+        <h3>Notebook Ideas to Ask the AI to Build</h3>
+        <p>AI × Cybersecurity prompts and project ideas to build with the assistant.</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- INSTRUCTOR -->
+  <div class="section">
+    <h2>Instructor Resources</h2>
+    <div class="cards">
+      <a class="card c" href="060-instructor-allocation-setup.html">
+        <div class="num">060</div>
+        <h3>Instructor Allocation Playbook</h3>
+        <p>From allocation request to a running class — full pre-class admin.</p>
+      </a>
+      <a class="card c" href="070-instructor-preflight-checklist.html">
+        <div class="num">070</div>
+        <h3>Pre-Flight Checklist</h3>
+        <p>What to verify before each workshop session.</p>
+      </a>
+      <a class="card c" href="080-instructor-notes.html">
+        <div class="num">080</div>
+        <h3>Instructor Notes</h3>
+        <p>Teaching notes for the local-LLM frameworks lab.</p>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    NAIRR Workshop Series · Workshop 01 — Jetstream2 &amp; Jupyter · Handouts Index
+  <br>Part of the <b>AI Horizon</b> project · NSF #2528858 · CSUSB Center for Cyber and AI
+  </footer>
+
+</div>
+</body>
+</html>
